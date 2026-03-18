@@ -19,7 +19,7 @@ const Categories = () => {
   return (
     <section className="px-8 py-2">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between">
         <h2 className="font-bold text-xl text-[#1a1a1a]">
           What's on your mind?
         </h2>
@@ -32,23 +32,24 @@ const Categories = () => {
       </div>
 
       {/* Categories Row */}
-      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide justify-between">
+      <div className="flex gap-4 overflow-x-auto p-5 scrollbar-hide justify-between">
         {categories.map((cat) => (
           <div
             key={cat.id}
             onClick={() => setActive(cat.id)}
-            className="flex flex-col items-center gap-2 shrink-0 cursor-pointer group"
+            className={`flex flex-col items-center gap-2 shrink-0 cursor-pointer group transition-all duration-300 ease-out `}
           >
             {/* Icon Box */}
             <div
-              className={`w-18 h-18 rounded-xl flex items-center justify-center text-3xl border transition-all duration-200
-                ${
-                  active === cat.id
-                    ? "bg-[#F4521E] border-[#F4521E] shadow-lg scale-105"
-                    : "bg-white border-black/7 hover:shadow-md hover:-translate-y-1"
-                }`}
+              className={`w-18 h-18 rounded-xl flex items-center justify-center text-[42px] transition-all duration-300 ${
+                active === cat.id
+                  ? "bg-[#F4521E] shadow-[0_12px_24px_rgba(244,82,30,0.2)] scale-95"
+                  : "bg-white border border-gray-100 shadow-sm group-hover:scale-110 group-hover:shadow-md group-hover:border-[#F4521E]"
+              }`}
             >
-              {cat.emoji}
+              <span className="leading-none select-none transition-transform duration-300 group-hover:rotate-6">
+                {cat.emoji}
+              </span>
             </div>
 
             {/* Label */}
