@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Categories from './components/Categories'
 import Restaurants from './components/Restaurants'
+import PromoBanner from './components/PromoBanner'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Hero />
       <Categories />
       <Restaurants />
+      <PromoBanner />
     </div>
   )
 }
