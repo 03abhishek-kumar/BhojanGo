@@ -16,9 +16,8 @@ const Restaurants = () => {
       status: "BUSY STATUS",
       statusColor: "text-red-500",
       dotColor: "bg-red-500",
-      statusRight: "+15 min extra",
-      statusRightColor: "text-[#F4521E]",
-      image:
+      statusBoxColor: "bg-red-50",
+      statusRight: "+15 min extra",      image:
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=200&fit=crop",
     },
     {
@@ -32,8 +31,9 @@ const Restaurants = () => {
       status: "FREE STATUS",
       statusColor: "text-green-500",
       dotColor: "bg-green-500",
+            statusBoxColor: "bg-green-50",
+
       statusRight: "Fast Delivery",
-      statusRightColor: "text-green-500",
       image:
         "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=200&fit=crop",
     },
@@ -48,8 +48,8 @@ const Restaurants = () => {
       status: "STEADY",
       statusColor: "text-yellow-500",
       dotColor: "bg-yellow-500",
+      statusBoxColor: "bg-yellow-50",
       statusRight: "Expected timing",
-      statusRightColor: "text-gray-400",
       image:
         "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=200&fit=crop",
     },
@@ -65,10 +65,10 @@ const Restaurants = () => {
       status: "VERY BUSY",
       statusColor: "text-red-700",
       dotColor: "bg-red-700",
+      statusBoxColor: "bg-red-50",
       statusRight: "+20 min extra",
-      statusRightColor: "text-[#F4521E]",
       image:
-        "https://images.unsplash.com/photo-1708782345014-db93ddd5608f?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=687&auto=format&fit=crop",
     },
   ];
 
@@ -81,17 +81,17 @@ const Restaurants = () => {
   };
 
   return (
-    <section className="px-[5%] py-6">
+    <section className="px-8 py-6">
       {/* ── Section Header ── */}
       <div className="flex items-center justify-between mb-1">
         <h2 className="font-bold text-xl text-[#151515]">
           Popular Restaurants Near You
         </h2>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-full px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
+          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-xl px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
             <FunnelIcon className="w-5 h-5" /> Filter
           </button>
-          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-full px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
+          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-xl px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
             <BarsArrowUpIcon className="w-5 h-5" /> Sort by
           </button>
         </div>
@@ -101,14 +101,14 @@ const Restaurants = () => {
       </p>
 
       {/* ── Cards Grid ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
         {restaurants.map((r) => (
           <div
             key={r.id}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
           >
             {/* ── Card Image ── */}
-            <div className="relative h-36">
+            <div className="relative h-55">
               <img
                 src={r.image}
                 alt={r.name}
@@ -158,13 +158,15 @@ const Restaurants = () => {
                 <span>🛵 {r.fee}</span>
               </div>
 
+              <hr className="text-gray-300 my-3 mx-6"/>
+
               {/* Status Bar */}
-              <div className="flex items-center justify-between pt-3 border-t border-black/5 text-[11px] font-semibold">
+              <div className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor} rounded-xl p-3`}>
                 <span className={`flex items-center gap-1 ${r.statusColor}`}>
                   <span className={`w-2 h-2 rounded-full ${r.dotColor}`} />
                   {r.status}
                 </span>
-                <span className={`${r.statusRightColor} italic`}>
+                <span className={`${r.statusColor} italic`}>
                   {r.statusRight}
                 </span>
               </div>
