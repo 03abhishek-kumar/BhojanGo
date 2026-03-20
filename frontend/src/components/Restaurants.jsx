@@ -17,7 +17,8 @@ const Restaurants = () => {
       statusColor: "text-red-500",
       dotColor: "bg-red-500",
       statusBoxColor: "bg-red-50",
-      statusRight: "+15 min extra",      image:
+      statusRight: "+15 min extra",
+      image:
         "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=200&fit=crop",
     },
     {
@@ -31,7 +32,7 @@ const Restaurants = () => {
       status: "FREE STATUS",
       statusColor: "text-green-500",
       dotColor: "bg-green-500",
-            statusBoxColor: "bg-green-50",
+      statusBoxColor: "bg-green-50",
 
       statusRight: "Fast Delivery",
       image:
@@ -158,10 +159,12 @@ const Restaurants = () => {
                 <span>🛵 {r.fee}</span>
               </div>
 
-              <hr className="text-gray-300 my-3 mx-6"/>
+              <hr className="text-gray-300 my-3 mx-6" />
 
               {/* Status Bar */}
-              <div className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor} rounded-xl p-3`}>
+              <div
+                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor} rounded-xl p-3`}
+              >
                 <span className={`flex items-center gap-1 ${r.statusColor}`}>
                   <span className={`w-2 h-2 rounded-full ${r.dotColor}`} />
                   {r.status}

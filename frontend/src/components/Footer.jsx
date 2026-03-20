@@ -1,0 +1,110 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+const Footer = () => {
+  const footerLinks = {
+    Discovery: [
+      { label: "Trending Near Me", to: "/trending" },
+      { label: "Top Rated", to: "/top-rated" },
+      { label: "New Restaurants", to: "/new" },
+      { label: "Healthy Choices", to: "/healthy" },
+    ],
+    Company: [
+      { label: "About Us", to: "/about" },
+      { label: "Join as Partner", to: "/partner" },
+      { label: "Delivery Careers", to: "/careers" },
+      { label: "Press Kit", to: "/press" },
+    ],
+    Support: [
+      { label: "Help Center", to: "/help" },
+      { label: "Refund Policy", to: "/refund" },
+      { label: "Terms of Use", to: "/terms" },
+      { label: "Privacy", to: "/privacy" },
+    ],
+  };
+
+  return (
+    <footer className="bg-white mt-16 border-t border-black/5 px-[5%] pt-12 pb-8">
+      {/* ── Top Grid ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+        {/* ── Brand Column ── */}
+        <div>
+          {/* Logo */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-['Sora'] font-extrabold text-xl text-[#151515] no-underline"
+          >
+            <div className="w-9 h-9 bg-[#F4521E] rounded-xl flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
+                <path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z" />
+              </svg>
+            </div>
+            BhojanGo
+          </Link>
+
+          {/* Tagline */}
+          <p className="text-sm text-gray-400 mt-3 leading-relaxed max-w-[200px]">
+            Redefining food discovery with real-time analytics and predictive
+            peak hour insights.
+          </p>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-3 mt-5">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noreferrer"
+              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+            >
+              f
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noreferrer"
+              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+            >
+              @
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer"
+              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+            >
+              📷
+            </a>
+          </div>
+        </div>
+
+        {/* ── Link Columns ── */}
+        {Object.entries(footerLinks).map(([title, links]) => (
+          <div key={title}>
+            <h4 className="text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-4">
+              {title}
+            </h4>
+            <ul className="space-y-3">
+              {links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="text-sm text-[#151515] hover:text-[#F4521E] transition no-underline"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Bottom Bar ── */}
+      <div className="border-t border-black/5 pt-6 text-center text-xs text-gray-400 tracking-wide uppercase">
+        © 2024 BhojanGo Technologies Inc. All Rights Reserved
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
