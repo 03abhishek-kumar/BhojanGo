@@ -32,7 +32,7 @@ const Footer = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 font-['Sora'] font-extrabold text-xl text-[#151515] no-underline"
+            className="flex items-center gap-2 font-extrabold text-xl text-[#F4521E] no-underline"
           >
             <div className="w-9 h-9 bg-[#F4521E] rounded-xl flex items-center justify-center">
               <svg viewBox="0 0 24 24" className="w-5 h-5 fill-white">
@@ -43,7 +43,7 @@ const Footer = () => {
           </Link>
 
           {/* Tagline */}
-          <p className="text-sm text-gray-400 mt-3 leading-relaxed max-w-[200px]">
+          <p className="text-sm text-gray-400 mt-3 leading-relaxed max-w-50">
             Redefining food discovery with real-time analytics and predictive
             peak hour insights.
           </p>
@@ -80,7 +80,7 @@ const Footer = () => {
         {/* ── Link Columns ── */}
         {Object.entries(footerLinks).map(([title, links]) => (
           <div key={title}>
-            <h4 className="text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-4">
+            <h4 className="text-[11px] font-bold tracking-widest uppercase text-[#151515] mb-4">
               {title}
             </h4>
             <ul className="space-y-3">
@@ -88,7 +88,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-[#151515] hover:text-[#F4521E] transition no-underline"
+                    className="text-sm text-gray-400 hover:text-[#F4521E] transition no-underline font-bold"
                   >
                     {link.label}
                   </Link>
