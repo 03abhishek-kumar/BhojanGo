@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FunnelIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
 import { HeartIcon, HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
+
 
 const Restaurants = () => {
   const restaurants = [
@@ -81,6 +83,8 @@ const Restaurants = () => {
     );
   };
 
+  const navigate = useNavigate();
+
   return (
     <section className="px-8 py-6">
       {/* ── Section Header ── */}
@@ -106,6 +110,7 @@ const Restaurants = () => {
         {restaurants.map((r) => (
           <div
             key={r.id}
+            onClick={()=>navigate(`/restaurant/${r.id}`)}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
           >
             {/* ── Card Image ── */}
