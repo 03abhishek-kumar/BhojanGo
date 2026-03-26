@@ -69,7 +69,10 @@ const Restaurants = () => {
 
               {/* Heart Button */}
               <button
-                onClick={() => toggleLike(r.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleLike(r.id);
+                }}
                 className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition"
               >
                 {liked.includes(r.id) ? (
