@@ -27,7 +27,7 @@ const DetailSidebar = () => {
   const [active, setActive] = useState(1);
 
   return (
-    <aside className="flex flex-col w-50 shrink-0 gap-2">
+    <aside className="flex flex-col w-50 shrink-0 gap-2 m-5">
       {/* Categories List */}
       {categories.map((cat) => (
         <button
