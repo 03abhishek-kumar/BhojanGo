@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { MagnifyingGlassIcon,ArrowTrendingUpIcon } from "@heroicons/react/24/solid";
+import {
+  MagnifyingGlassIcon,
+  ArrowTrendingUpIcon,
+} from "@heroicons/react/24/solid";
 
 const Hero = () => {
   const [query, setQuery] = useState("");
@@ -28,7 +31,7 @@ const Hero = () => {
 
       {/* Subtext */}
       <div className="flex items-center gap-2 mt-3 text-sm text-gray-400">
-        <ArrowTrendingUpIcon className="w-4 h-4 text-[#F4521E]"/>
+        <ArrowTrendingUpIcon className="w-4 h-4 text-[#F4521E]" />
         <span>Real-time peak hour insights for the fastest delivery</span>
       </div>
     </section>
