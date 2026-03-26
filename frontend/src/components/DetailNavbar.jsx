@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
-import restaurants from "../data/restaurants";
 import { RestaurantContext } from "../context/RestaurantContext";
 
-
-const DetailNavbar = () => {
+const DetailNavbar = ({ cartTotal }) => {
   const { selectedRestaurant } = useContext(RestaurantContext);
+  const displayTotal =
+    cartTotal !== undefined ? cartTotal.toFixed(2) : "42.50";
+
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* Left Logo */}
@@ -17,7 +18,7 @@ const DetailNavbar = () => {
           </svg>
         </div>
         <span className="font-bold text-2xl text-[#F4521E] tracking-tight">
-          BhojanGo
+          Bhojan<span className="text-[#151515]">Go</span>
         </span>
       </Link>
 
@@ -27,17 +28,17 @@ const DetailNavbar = () => {
           Ordering From
         </p>
         <p className="text-sm font-bold text-[#F4521E]">
-            {selectedRestaurant ? selectedRestaurant.name : "Select a Restaurant"}
+          {selectedRestaurant ? selectedRestaurant.name : "BhojanGo Kitchen"}
         </p>
       </div>
 
-      {/* ── Right — Cart + Avatar ── */}
+      {/* Right — Cart + Avatar */}
       <div className="flex items-center gap-3">
-        <button className="flex items-center gap-2 bg-[#F4521E] text-white text-sm font-bold px-4 py-2 rounded-full">
-          🛒 $42.50
+        <button className="flex items-center gap-2 bg-[#F4521E] text-white text-sm font-bold px-4 py-2 rounded-full shadow-md shadow-orange-200 hover:bg-[#e03d0e] transition-colors cursor-pointer">
+          🛒 ${displayTotal}
         </button>
-        <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
-          <User color="white" />
+        <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center">
+          <User color="white" size={18} />
         </div>
       </div>
     </nav>
