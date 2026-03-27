@@ -11,7 +11,7 @@ import {
 const Navbar = () => {
   const [location, setLocation] = useState("New York, Central Park");
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+   <nav className="flex items-center justify-between p-5 h-20 bg-gradient-to-r from-white/80 to-orange-50/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* left Side */}
       <div className="flex gap-14">
         {/* Logo */}
