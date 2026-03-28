@@ -12,6 +12,16 @@ const RestaurantDetail = () => {
   const [viewOrderOpen, setViewOrderOpen] = useState(false);
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
+  
+  const groupedCart = cart.reduce((acc, item) => {
+    const existing = acc.find((c) => c.id === item.id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      acc.push({ ...item, quantity: 1 });
+    }
+    return acc;
+  }, []);
   const items = menuItems[activeCategory] || [];
 
   const handleAddToCart = (item) => {
@@ -20,6 +30,16 @@ const RestaurantDetail = () => {
 
   const handleRemoveFromCart = (index) => {
     setCart((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleRemoveItem = (itemId) => {
+    setCart((prev) => {
+      const index = prev.findIndex(item => item.id === itemId);
+      if (index !== -1) {
+        return prev.filter((_, i) => i !== index);
+      }
+      return prev;
+    });
   };
 
   return (
@@ -53,13 +73,18 @@ const RestaurantDetail = () => {
 
           {/* Food Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pb-28">
-            {items.map((item) => (
-              <FoodCard
-                key={item.id}
-                item={item}
-                onAddToCart={handleAddToCart}
-              />
-            ))}
+            {items.map((item) => {
+              const quantity = cart.filter((c) => c.id === item.id).length;
+              return (
+                <FoodCard
+                  key={item.id}
+                  item={item}
+                  quantity={quantity}
+                  onAddToCart={handleAddToCart}
+                  onRemoveFromCart={handleRemoveItem}
+                />
+              );
+            })}
           </div>
         </main>
       </div>
@@ -123,9 +148,9 @@ const RestaurantDetail = () => {
             ) : (
               <>
                 <div className="flex flex-col gap-3 mb-5">
-                  {cart.map((item, idx) => (
+                  {groupedCart.map((item) => (
                     <div
-                      key={idx}
+                      key={item.id}
                       className="flex items-center justify-between py-2 border-b border-slate-100"
                     >
                       <div>
@@ -133,15 +158,28 @@ const RestaurantDetail = () => {
                           {item.name}
                         </p>
                         <p className="text-xs text-gray-400">
-                          ${item.price.toFixed(2)}
+                          ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
-                      <button
-                        onClick={() => handleRemoveFromCart(idx)}
-                        className="text-red-400 hover:text-red-600 text-xs font-semibold cursor-pointer"
-                      >
-                        Remove
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center bg-gray-50 border border-slate-200 rounded-lg">
+                          <button
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="w-7 h-7 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded-l-lg transition-colors cursor-pointer"
+                          >
+                            -
+                          </button>
+                          <span className="text-xs font-bold w-6 text-center text-[#151515]">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => handleAddToCart(item)}
+                            className="w-7 h-7 flex items-center justify-center text-gray-500 hover:text-[#F4521E] hover:bg-gray-100 rounded-r-lg transition-colors cursor-pointer"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>

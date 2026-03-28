@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { ShoppingCart, Mic } from "lucide-react";
 
-const FoodCard = ({ item, onAddToCart }) => {
+const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
   const [recording, setRecording] = useState(false);
-  const [added, setAdded] = useState(false);
 
   const handleAddToCart = () => {
     onAddToCart(item);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+  };
+
+  const handleRemoveFromCart = () => {
+    if (onRemoveFromCart) {
+      onRemoveFromCart(item.id);
+    }
   };
 
   const handleRecording = () => {
@@ -88,19 +91,32 @@ const FoodCard = ({ item, onAddToCart }) => {
             )}
           </button>
 
-          {/* Add to Cart */}
-          <button
-            onClick={handleAddToCart}
-            className={`flex items-center gap-2 flex-1 justify-center px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer
-              ${
-                added
-                  ? "bg-emerald-500 text-white"
-                  : "bg-[#F4521E] text-white hover:bg-[#e03d0e] shadow-sm shadow-orange-200"
-              }`}
-          >
-            <ShoppingCart size={15} />
-            {added ? "Added!" : "Add to Cart"}
-          </button>
+          {/* Add to Cart or Quantity Controls */}
+          {quantity > 0 ? (
+            <div className="flex items-center justify-between flex-1 bg-white border border-slate-200 rounded-xl px-2 py-1.5 shadow-sm">
+              <button
+                onClick={handleRemoveFromCart}
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-600 font-bold hover:bg-gray-100 hover:text-red-500 transition-colors cursor-pointer"
+              >
+                -
+              </button>
+              <span className="font-bold text-[#151515] px-2">{quantity}</span>
+              <button
+                onClick={handleAddToCart}
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#F4521E] text-white font-bold hover:bg-[#e03d0e] transition-colors shadow-sm shadow-orange-200 cursor-pointer"
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleAddToCart}
+              className="flex items-center gap-2 flex-1 justify-center px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer bg-[#F4521E] text-white hover:bg-[#e03d0e] shadow-sm shadow-orange-200"
+            >
+              <ShoppingCart size={15} />
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>
