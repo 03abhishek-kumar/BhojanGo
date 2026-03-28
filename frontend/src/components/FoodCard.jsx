@@ -69,11 +69,11 @@ const FoodCard = ({ item, onAddToCart }) => {
               <>
                 <Mic size={14} />
                 <span>RECORDING</span>
-                <div className="flex items-end gap-[1px] h-3 mt-0.5">
+                <div className="flex items-end gap-px h-3 mt-0.5">
                   {[2, 4, 3, 5, 3].map((h, i) => (
                     <div
                       key={i}
-                      className="w-[2px] bg-white rounded-full"
+                      className="w-0.5 bg-white rounded-full"
                       style={{ height: `${h * 2}px` }}
                     />
                   ))}

@@ -55,11 +55,11 @@ const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
           directly.
         </p>
         {/* Waveform visual */}
-        <div className="flex items-end gap-[2px] h-6">
+        <div className="flex items-end gap-0.5 h-6">
           {[3, 6, 9, 5, 8, 4, 7, 5, 9, 6, 3].map((h, i) => (
             <div
               key={i}
-              className="w-[3px] bg-[#F4521E] rounded-full opacity-60"
+              className="w-0.75 bg-[#F4521E] rounded-full opacity-60"
               style={{ height: `${h * 2.5}px` }}
             />
           ))}

@@ -40,7 +40,7 @@ const PeakHourChart = () => {
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#F4521E] text-white text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-md shadow-orange-200">
                   NOW: 1:45 PM
                   {/* small triangle */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5px] w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-[#F4521E]" />
+                  <div className="absolute left-1/2 -translate-x-1/2 -bottom-1.25 w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-[#F4521E]" />
                 </div>
               )}
               {slot.bars.map((h, bIdx) => (
