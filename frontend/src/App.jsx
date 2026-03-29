@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RestaurantDetail from "./pages/RestaurantDetail";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   return (
@@ -11,6 +10,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/restaurant/:id" element={<RestaurantDetail />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   );

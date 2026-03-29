@@ -45,7 +45,7 @@ const RestaurantDetail = () => {
   return (
     <div className="min-h-screen bg-[#F5F3EE] flex flex-col">
       {/* Navbar */}
-      <DetailNavbar cartTotal={cartTotal} />
+      <DetailNavbar />
 
       {/* Body */}
       <div className="flex flex-1 overflow-hidden">
