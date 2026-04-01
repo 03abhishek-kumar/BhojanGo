@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CheckoutNavbar from "../components/CheckoutNavbar";
 import DeliveryAddress from "../components/DeliveryAddress";
 import OrderSummary from "../components/OrderSummary";
-// import VoiceNote from "../components/VoiceNote";
+import VoiceNote from "../components/VoiceNote";
 // import PaymentDetails from "../components/PaymentDetails";
 
 const Checkout = () => {
@@ -24,14 +24,14 @@ const Checkout = () => {
         </h1>
       </div>
 
-      {/* ── Two Column Layout ── */}
+      {/* Two Column Layout */}
       <div className="px-[5%] py-4 flex gap-6 items-start">
 
         {/* Left Column */}
         <div className="flex-1 flex flex-col gap-4">
           <DeliveryAddress />
           <OrderSummary />
-          {/* <VoiceNote /> */}
+          <VoiceNote />
         </div>
 
         {/* Right Column */}
@@ -41,7 +41,7 @@ const Checkout = () => {
 
       </div>
 
-      {/* ── Footer ── */}
+      {/* Footer */}
       <footer className="mt-12 border-t border-black/5 bg-white px-[5%] py-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 bg-[#F4521E] rounded-lg flex items-center justify-center">

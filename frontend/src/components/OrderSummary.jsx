@@ -119,7 +119,7 @@ const OrderSummary = () => {
 
               {/* Right — Price + Remove */}
               <div className="flex flex-col items-end gap-2">
-                <p className="font-['Sora'] font-bold text-sm text-[#151515]">
+                <p className="font-bold text-sm text-[#151515]">
                   ${(item.price * item.qty).toFixed(2)}
                 </p>
                 <button
