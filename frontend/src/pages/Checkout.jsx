@@ -3,7 +3,7 @@ import CheckoutNavbar from "../components/CheckoutNavbar";
 import DeliveryAddress from "../components/DeliveryAddress";
 import OrderSummary from "../components/OrderSummary";
 import VoiceNote from "../components/VoiceNote";
-// import PaymentDetails from "../components/PaymentDetails";
+import PaymentDetails from "../components/PaymentDetails";
 
 const Checkout = () => {
   return (
@@ -36,7 +36,7 @@ const Checkout = () => {
 
         {/* Right Column */}
         <div className="w-[320px] shrink-0 flex flex-col gap-4">
-          {/* <PaymentDetails /> */}
+          <PaymentDetails />
         </div>
 
       </div>
