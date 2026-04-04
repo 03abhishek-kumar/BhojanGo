@@ -23,7 +23,7 @@ const Tracking = () => {
 
         {/* ── Right Map ── */}
         <div className="flex-1">
-          {/* <TrackingMap /> */}
+          <TrackingMap />
         </div>
 
       </div>

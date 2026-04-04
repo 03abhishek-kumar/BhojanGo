@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import RestaurantDetail from "./pages/RestaurantDetail";
 import Checkout from "./pages/Checkout";
 import Tracking from "./pages/Tracking";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/restaurant/:id" element={<RestaurantDetail />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/tracking" element={<Tracking />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
