@@ -25,7 +25,7 @@ const PaymentDetails = () => {
   const handleConfirm = () => {
     setConfirmed(true);
     setTimeout(() => {
-      navigate("/");
+      navigate("/tracking");
     }, 2000);
   };
 
@@ -102,7 +102,7 @@ const PaymentDetails = () => {
         <div className="relative">
           <div className="flex items-center gap-2 mb-2">
             <GiftIcon className="w-5 h-5 text-[#F4521E]" />
-            <h3 className="font-['Sora'] font-bold text-sm text-[#151515]">
+            <h3 className="font-bold text-sm text-[#151515]">
               Refer & Earn
             </h3>
           </div>

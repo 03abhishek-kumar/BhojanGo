@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RestaurantDetail from "./pages/RestaurantDetail";
 import Checkout from "./pages/Checkout";
+import Tracking from "./pages/Tracking";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/restaurant/:id" element={<RestaurantDetail />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/tracking" element={<Tracking />} />
       </Routes>
     </div>
   );
