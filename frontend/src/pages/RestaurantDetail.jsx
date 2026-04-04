@@ -5,6 +5,7 @@ import PeakHourChart from "../components/PeakHourChart";
 import FoodCard from "../components/FoodCard";
 import menuItems from "../data/menuItems";
 import DetailNavbar from "../components/DetailNavbar";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantDetail = () => {
   const [activeCategory, setActiveCategory] = useState("Appetizers");
@@ -12,7 +13,7 @@ const RestaurantDetail = () => {
   const [viewOrderOpen, setViewOrderOpen] = useState(false);
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
-  
+
   const groupedCart = cart.reduce((acc, item) => {
     const existing = acc.find((c) => c.id === item.id);
     if (existing) {
@@ -34,13 +35,15 @@ const RestaurantDetail = () => {
 
   const handleRemoveItem = (itemId) => {
     setCart((prev) => {
-      const index = prev.findIndex(item => item.id === itemId);
+      const index = prev.findIndex((item) => item.id === itemId);
       if (index !== -1) {
         return prev.filter((_, i) => i !== index);
       }
       return prev;
     });
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#F5F3EE] flex flex-col">
@@ -189,7 +192,10 @@ const RestaurantDetail = () => {
                     ${cartTotal.toFixed(2)}
                   </span>
                 </div>
-                <button className="w-full bg-[#F4521E] text-white font-bold py-3 rounded-xl hover:bg-[#e03d0e] transition-colors shadow-md shadow-orange-200 cursor-pointer">
+                <button className="w-full bg-[#F4521E] text-white font-bold py-3 rounded-xl hover:bg-[#e03d0e] transition-colors shadow-md shadow-orange-200 cursor-pointer"
+                onClick={()=>{
+                  navigate("/checkout")
+                }}>
                   Place Order
                 </button>
               </>
@@ -198,7 +204,7 @@ const RestaurantDetail = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default RestaurantDetail
+export default RestaurantDetail;
