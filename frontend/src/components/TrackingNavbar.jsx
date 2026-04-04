@@ -1,8 +1,9 @@
 import { BellIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User } from "lucide-react";
 
 const TrackingNavbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* ── Left — Logo + Order Info ── */}
@@ -64,7 +65,10 @@ const TrackingNavbar = () => {
         </div>
 
         {/* Avatar + Name */}
-        <div className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full">
+        <div
+          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+          onClick={() => navigate("/profile")}
+        >
           <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
             <User color="white" />
           </div>

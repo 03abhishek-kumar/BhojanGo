@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutNavbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* Logo */}
@@ -34,7 +36,10 @@ const CheckoutNavbar = () => {
       </div>
 
       {/* Account */}
-      <div className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full">
+      <div
+        className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+        onClick={() => navigate("/profile")}
+      >
         <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
           <User color="white" />
         </div>
