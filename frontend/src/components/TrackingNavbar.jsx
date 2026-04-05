@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Link, useNavigate } from "react-router-dom";
-import { User } from "lucide-react";
+import { User, Settings } from "lucide-react";
+import SettingsPopup from "./SettingsPopup";
+import NotificationsPopup from "./NotificationsPopup";
 
 const TrackingNavbar = () => {
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
@@ -48,11 +53,23 @@ const TrackingNavbar = () => {
       </div>
 
       <div className="flex gap-3">
-        {/* ── Right — Bell + Support ── */}
+        {/* ── Right — Bell + Settings + Support ── */}
         <div className="flex items-center gap-3 ">
           {/* Bell */}
-          <div className="w-10 h-10 rounded-full flex items-center justify-center border border-black/8 cursor-pointer hover:bg-gray-50 transition">
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-black/8 cursor-pointer hover:bg-gray-50 transition relative"
+            onClick={() => setNotificationsOpen(true)}
+          >
             <BellIcon className="w-5 h-5 text-[#151515]" />
+            <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F4521E]" />
+          </div>
+
+          {/* Settings */}
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-black/8 cursor-pointer hover:bg-orange-50 transition"
+            onClick={() => setSettingsOpen(true)}
+          >
+            <Settings className="w-5 h-5 text-[#151515]" />
           </div>
 
           {/* Support Button */}
@@ -77,6 +94,16 @@ const TrackingNavbar = () => {
           </span>
         </div>
       </div>
+
+      {/* Settings Popup */}
+      <SettingsPopup
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
+      <NotificationsPopup
+        isOpen={notificationsOpen}
+        onClose={() => setNotificationsOpen(false)}
+      />
     </nav>
   );
 };

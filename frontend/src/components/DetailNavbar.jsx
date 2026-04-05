@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { User } from "lucide-react";
+import { User, Settings } from "lucide-react";
 import { RestaurantContext } from "../context/RestaurantContext";
 import { useNavigate } from "react-router-dom";
+import SettingsPopup from "./SettingsPopup";
 
 const DetailNavbar = () => {
   const { selectedRestaurant } = useContext(RestaurantContext);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -32,18 +34,34 @@ const DetailNavbar = () => {
         </p>
       </div>
 
-      {/* Right — Cart + Avatar */}
-      <div
-        className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
-        onClick={() => navigate("/profile")}
-      >
-        <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
-          <User color="white" />
+      {/* Right — Settings + Avatar */}
+      <div className="flex items-center gap-5">
+        {/* Settings */}
+        <div
+          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 transition-all"
+          onClick={() => setSettingsOpen(true)}
+        >
+          <Settings className="w-5 h-5 text-slate-600" />
         </div>
-        <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
-          Alex
-        </span>
+
+        <div
+          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+          onClick={() => navigate("/profile")}
+        >
+          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
+            <User color="white" />
+          </div>
+          <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+            Alex
+          </span>
+        </div>
       </div>
+
+      {/* Settings Popup */}
+      <SettingsPopup
+        isOpen={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+      />
     </nav>
   );
 };
