@@ -16,7 +16,7 @@ const ProfileHeader = () => {
       <div className="flex items-center gap-6">
         {/* ── Avatar ── */}
         <div className="relative">
-          <div className="w-20 h-20 rounded-full bg-[#E0D7FF] flex items-center justify-center text-2xl font-bold text-[#5B4FCC] flex-shrink-0">
+          <div className="w-20 h-20 rounded-full bg-[#E0D7FF] flex items-center justify-center text-2xl font-bold text-[#5B4FCC] shrink-0">
             {name.charAt(0)}
           </div>
           {/* Online dot */}
@@ -32,7 +32,7 @@ const ProfileHeader = () => {
                 type="text"
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                className="font-['Sora'] font-bold text-xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#151515]"
+                className="font-bold text-xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#151515]"
               />
               <button
                 onClick={handleSave}
