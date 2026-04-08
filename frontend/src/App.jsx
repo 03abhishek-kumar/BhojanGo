@@ -5,8 +5,13 @@ import RestaurantDetail from "./pages/RestaurantDetail";
 import Checkout from "./pages/Checkout";
 import Tracking from "./pages/Tracking";
 import Profile from "./pages/Profile";
+import { useAuth } from "./context/AuthContext";
 
 const App = () => {
+  const { user } = useAuth();
+
+  console.log("Firebase connected! Current user:", user);
+
   return (
     <div className="bg-[#F5F3EE] min-h-screen">
       <Routes>
