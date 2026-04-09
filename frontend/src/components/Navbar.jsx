@@ -10,12 +10,14 @@ import {
 } from "@heroicons/react/24/solid";
 import SettingsPopup from "./SettingsPopup";
 import NotificationsPopup from "./NotificationsPopup";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [location, setLocation] = useState("New York, Central Park");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* left Side */}
@@ -59,18 +61,31 @@ const Navbar = () => {
           <Settings className="w-5 h-5 text-slate-600" />
         </div>
 
-        {/* Avatar + Name */}
-        <div
-          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
-          onClick={() => navigate("/profile")}
-        >
-          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
-            <User color="white" />
+        {/* Avatar + Name or Login Button */}
+        {user ? (
+          <div
+            className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+            onClick={() => navigate("/profile")}
+          >
+            <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all overflow-hidden">
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <User color="white" />
+              )}
+            </div>
+            <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+              {user.displayName || "User"}
+            </span>
           </div>
-          <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
-            Alex
-          </span>
-        </div>
+        ) : (
+          <button
+            onClick={() => navigate("/auth")}
+            className="bg-[#F4521E] hover:bg-[#E64A19] text-white px-5 py-2.5 rounded-full font-medium transition-colors shadow-md hover:shadow-lg text-sm"
+          >
+            Login / Sign Up
+          </button>
+        )}
       </div>
 
       {/* Settings Popup */}
