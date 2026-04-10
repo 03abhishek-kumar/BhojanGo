@@ -5,11 +5,15 @@ import { BellIcon } from "@heroicons/react/24/solid";
 import { User, Settings } from "lucide-react";
 import SettingsPopup from "./SettingsPopup";
 import NotificationsPopup from "./NotificationsPopup";
+import { useAuth } from "../context/AuthContext";
 
 const ProfileNavbar = () => {
+  const { user, profileData } = useAuth();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
+
+  const displayName = profileData?.name?.split(" ")[0] || user?.displayName?.split(" ")[0] || "User";
 
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
@@ -62,7 +66,7 @@ const ProfileNavbar = () => {
             <User color="white" />
           </div>
           <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
-            Alex
+            {displayName}
           </span>
         </div>
       </div>

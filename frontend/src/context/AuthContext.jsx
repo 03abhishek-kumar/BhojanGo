@@ -15,6 +15,7 @@ const AuthContext = createContext();
 // 2. Create provider
 export function AuthProvider({ children }) {
   const [user,    setUser]    = useState(null);
+  const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // ── Register ──
@@ -52,20 +53,40 @@ export function AuthProvider({ children }) {
     return await signOut(auth);
   };
 
+  // ── Update User Profile in Firestore ──
+  const updateUserProfile = async (uid, data) => {
+    try {
+      const docRef = doc(db, "users", uid);
+      await setDoc(docRef, { ...data, updatedAt: new Date().toISOString() }, { merge: true });
+      // Update local state as well
+      setProfileData(prev => ({ ...prev, ...data }));
+    } catch (err) {
+      console.error("Error updating profile:", err);
+      throw err;
+    }
+  };
+
   // ── Get User Profile from Firestore ──
   const getUserProfile = async (uid) => {
     const docRef  = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      return docSnap.data();
+      const data = docSnap.data();
+      setProfileData(data);
+      return data;
     }
     return null;
   };
 
   // ── Listen to auth state changes ──
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        await getUserProfile(currentUser.uid);
+      } else {
+        setProfileData(null);
+      }
       setLoading(false);
     });
 
@@ -76,11 +97,13 @@ export function AuthProvider({ children }) {
   return (
     <AuthContext.Provider value={{
       user,
+      profileData,
       loading,
       register,
       login,
       logout,
       getUserProfile,
+      updateUserProfile,
     }}>
       {/* don't render children until auth state is known */}
       {!loading && children}

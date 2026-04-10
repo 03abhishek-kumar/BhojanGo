@@ -1,25 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export default function PersonalInfo() {
+  const { user, profileData, updateUserProfile } = useAuth();
+
   const [form, setForm] = useState({
-    firstName: "Alex",
-    lastName:  "Johnson",
-    email:     "alex.johnson@email.com",
-    phone:     "+1 (555) 012-3456",
-    dob:       "1995-06-15",
+    firstName: "",
+    lastName:  "",
+    email:     "",
+    phone:     "",
+    dob:       "",
     gender:    "male",
   });
 
   const [saved, setSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    if (profileData) {
+      const nameParts = (profileData.name || "").split(" ");
+      setForm({
+        firstName: nameParts[0] || "",
+        lastName:  nameParts.slice(1).join(" ") || "",
+        email:     profileData.email || "",
+        phone:     profileData.phone || "",
+        dob:       profileData.dob || "",
+        gender:    profileData.gender || "male",
+      });
+    }
+  }, [profileData]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setSaved(false);
   };
 
-  const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+  const handleSave = async () => {
+    if (!user) return;
+    setIsSaving(true);
+    try {
+      const fullName = `${form.firstName} ${form.lastName}`.trim();
+      await updateUserProfile(user.uid, {
+        name: fullName,
+        phone: form.phone,
+        dob: form.dob,
+        gender: form.gender,
+        // email is usually not updated here for security reasons, 
+        // but if it is allowed in your app, you'd add it here.
+      });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch (err) {
+      console.error("Failed to update profile:", err);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -142,9 +177,13 @@ export default function PersonalInfo() {
       {/* ── Save Button ── */}
       <button
         onClick={handleSave}
-        className="mt-6 w-full bg-[#F4521E] hover:bg-[#D43E0E] text-white font-bold py-3 rounded-xl text-sm transition"
+        disabled={isSaving}
+        className="mt-6 w-full bg-[#F4521E] hover:bg-[#D43E0E] text-white font-bold py-3 rounded-xl text-sm transition disabled:opacity-70 flex items-center justify-center gap-2"
       >
-        Save Changes
+        {isSaving ? (
+           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        ) : null}
+        {isSaving ? "Saving..." : "Save Changes"}
       </button>
 
     </div>

@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PencilIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "../context/AuthContext";
 
 const ProfileHeader = () => {
+  const { user, profileData, updateUserProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Alex Johnson");
+  const [name, setName] = useState(profileData?.name || "User");
   const [tempName, setTempName] = useState(name);
 
-  const handleSave = () => {
-    setName(tempName);
-    setIsEditing(false);
+  useEffect(() => {
+    if (profileData?.name) {
+      setName(profileData.name);
+      setTempName(profileData.name);
+    }
+  }, [profileData]);
+
+  const handleSave = async () => {
+    if (!user) return;
+    try {
+      await updateUserProfile(user.uid, { name: tempName });
+      setName(tempName);
+      setIsEditing(false);
+    } catch (err) {
+      console.error("Failed to update name:", err);
+    }
   };
 
   return (
@@ -47,9 +62,9 @@ const ProfileHeader = () => {
             </h2>
           )}
 
-          <p className="text-sm text-gray-400 mb-1">alex.johnson@email.com</p>
+          <p className="text-sm text-gray-400 mb-1">{profileData?.email || user?.email}</p>
           <p className="text-xs text-gray-300 font-medium">
-            Member since January 2023 • 🍽️ 42 orders placed
+            Member since {profileData?.createdAt ? new Date(profileData.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : 'Joining...'} • 🍽️ {profileData?.orders?.length || 0} orders placed
           </p>
         </div>
 
