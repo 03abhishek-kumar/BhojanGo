@@ -6,12 +6,12 @@ import Checkout from "./pages/Checkout";
 import Tracking from "./pages/Tracking";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
+import Management from "./pages/Management";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 
 const App = () => {
   const { user } = useAuth();
-
-  console.log("Firebase connected! Current user:", user);
 
   return (
     <div className="bg-[#F5F3EE] min-h-screen">
@@ -19,9 +19,18 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/restaurant/:id" element={<RestaurantDetail />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/tracking" element={<Tracking />} />
-        <Route path="/profile" element={<Profile />} />
+        
+        {/* Protected Routes */}
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+        <Route path="/tracking" element={<ProtectedRoute><Tracking /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        
+        {/* Admin/Owner only routes */}
+        <Route path="/manage" element={
+          <ProtectedRoute allowedRoles={["admin", "restaurant_owner"]}>
+            <Management />
+          </ProtectedRoute>
+        } />
       </Routes>
     </div>
   );

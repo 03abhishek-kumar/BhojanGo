@@ -8,6 +8,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("customer");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   
@@ -28,7 +29,7 @@ const Auth = () => {
           setIsLoading(false);
           return;
         }
-        await register(name, email, password);
+        await register(name, email, password, role);
       }
       navigate("/"); // Redirect to home on success
     } catch (err) {
@@ -47,11 +48,11 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 to-orange-100 flex items-center justify-center p-4">
       <div className="relative w-full max-w-md overflow-hidden bg-white rounded-3xl shadow-2xl shadow-orange-200 border border-orange-100">
         
         {/* Decorative Top Banner */}
-        <div className="h-32 bg-gradient-to-r from-[#F4521E] to-[#FF8A65] flex items-center justify-center p-6 relative">
+        <div className="h-32 bg-linear-to-r from-[#F4521E] to-[#FF8A65] flex items-center justify-center p-6 relative">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm pointer-events-none"></div>
           <Link to="/" className="z-10 flex items-center gap-3 no-underline group">
             <div className="bg-white p-2 text-[#F4521E] rounded-xl shadow-lg transform group-hover:scale-105 transition-all">
@@ -97,6 +98,33 @@ const Auth = () => {
                   className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all"
                   required={!isLogin}
                 />
+              </div>
+            )}
+
+            {!isLogin && (
+              <div className="space-y-3">
+                <label className="text-sm font-semibold text-gray-700 ml-1">Select your role</label>
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { id: "customer", label: "Customer", icon: "👤" },
+                    { id: "restaurant_owner", label: "Owner", icon: "👨‍🍳" },
+                    { id: "admin", label: "Admin", icon: "🛡️" },
+                  ].map((r) => (
+                    <button
+                      key={r.id}
+                      type="button"
+                      onClick={() => setRole(r.id)}
+                      className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all ${
+                        role === r.id
+                          ? "border-[#F4521E] bg-[#FFF0EB] text-[#F4521E] shadow-sm"
+                          : "border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-200"
+                      }`}
+                    >
+                      <span className="text-xl">{r.icon}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">{r.label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 

@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   // ── Register ──
-  const register = async (name, email, password) => {
+  const register = async (name, email, password, role) => {
     // create user in Firebase Auth
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
       uid:       userCredential.user.uid,
       name:      name,
       email:     email,
+      role:      role,
       createdAt: new Date().toISOString(),
       orders:    [],
       addresses: [],

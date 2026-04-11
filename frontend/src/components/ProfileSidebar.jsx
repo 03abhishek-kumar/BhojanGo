@@ -1,4 +1,6 @@
 import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const tabs = [
   { id: "personal", label: "Personal Info", emoji: "👤" },
@@ -9,6 +11,18 @@ const tabs = [
 ];
 
 const ProfileSidebar = ({ active, setActive }) => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
   return (
     <aside className="w-55 shrink-0">
       <div className="bg-white rounded-2xl p-3 shadow-sm flex flex-col gap-1">
@@ -30,7 +44,10 @@ const ProfileSidebar = ({ active, setActive }) => {
 
         {/* ── Logout ── */}
         <div className="border-t border-black/5 mt-2 pt-2">
-          <button className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition w-full text-left">
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition w-full text-left cursor-pointer"
+          >
             <span>🚪</span>
             <span>Log Out</span>
           </button>
