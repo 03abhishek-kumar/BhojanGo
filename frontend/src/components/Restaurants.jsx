@@ -1,15 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FunnelIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
 import { HeartIcon, HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
-import restaurants from "../data/restaurants";
 import { RestaurantContext } from "../context/RestaurantContext";
-
-
 
 const Restaurants = () => {
   const { setSelectedRestaurant } = useContext(RestaurantContext);
+  const [restaurants, setRestaurants] = useState([]);
   const [liked, setLiked] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/restaurants");
+        const data = await response.json();
+        setRestaurants(data);
+      } catch (err) {
+        console.error("Error fetching restaurants:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
 
   const toggleLike = (id) => {
     setLiked((prev) =>
@@ -18,6 +33,14 @@ const Restaurants = () => {
   };
 
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <section className="px-8 py-6">
@@ -43,10 +66,10 @@ const Restaurants = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
         {restaurants.map((r) => (
           <div
-            key={r.id}
+            key={r._id}
             onClick={() => {
               setSelectedRestaurant(r);
-              navigate(`/restaurant/${r.id}`);
+              navigate(`/restaurant/${r._id}`);
             }}
             className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
           >
@@ -61,7 +84,7 @@ const Restaurants = () => {
               {/* Badge */}
               {r.badge && (
                 <span
-                  className={`absolute top-2 left-2 ${r.badgeColor} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide`}
+                  className={`absolute top-2 left-2 ${r.badgeColor || 'bg-orange-500'} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide`}
                 >
                   {r.badge}
                 </span>
@@ -71,11 +94,11 @@ const Restaurants = () => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  toggleLike(r.id);
+                  toggleLike(r._id);
                 }}
                 className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition"
               >
-                {liked.includes(r.id) ? (
+                {liked.includes(r._id) ? (
                   <HeartSolid className="w-4 h-4 text-red-500" />
                 ) : (
                   <HeartIcon className="w-4 h-4 text-gray-400" />
@@ -108,13 +131,13 @@ const Restaurants = () => {
 
               {/* Status Bar */}
               <div
-                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor} rounded-xl p-3`}
+                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || 'bg-gray-50'} rounded-xl p-3`}
               >
-                <span className={`flex items-center gap-1 ${r.statusColor}`}>
-                  <span className={`w-2 h-2 rounded-full ${r.dotColor}`} />
+                <span className={`flex items-center gap-1 ${r.statusColor || 'text-gray-500'}`}>
+                  <span className={`w-2 h-2 rounded-full ${r.dotColor || 'bg-gray-500'}`} />
                   {r.status}
                 </span>
-                <span className={`${r.statusColor} italic`}>
+                <span className={`${r.statusColor || 'text-gray-500'} italic`}>
                   {r.statusRight}
                 </span>
               </div>

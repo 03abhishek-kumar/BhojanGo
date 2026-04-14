@@ -1,32 +1,85 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShieldCheckIcon } from "@heroicons/react/24/solid";
 import { BoltIcon, GiftIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const PaymentDetails = () => {
-  const feeDetails = [
-    { label: "Items Subtotal", amount: 42.5, color: "text-[#151515]" },
-    {
-      label: "Delivery Fee",
-      amount: 5.99,
-      color: "text-[#F4521E]",
-      prefix: "+",
-    },
-    { label: "Service Fee", amount: 1.5, color: "text-[#151515]" },
-    { label: "Taxes & Charges", amount: 3.82, color: "text-[#151515]" },
-  ];
-
+  const { user } = useAuth();
+  const [cart, setCart] = useState([]);
+  const [restaurantInfo, setRestaurantInfo] = useState(null);
   const [confirmed, setConfirmed] = useState(false);
   const navigate = useNavigate();
 
-  // ── calculate total ──
-  const total = feeDetails.reduce((sum, fee) => sum + fee.amount, 0);
+  useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const savedRestaurant = JSON.parse(localStorage.getItem("restaurant") || "null");
+    setCart(savedCart);
+    setRestaurantInfo(savedRestaurant);
+  }, []);
 
-  const handleConfirm = () => {
-    setConfirmed(true);
-    setTimeout(() => {
-      navigate("/tracking");
-    }, 2000);
+  const itemsSubtotal = cart.reduce((sum, item) => sum + item.price, 0);
+  const deliveryFee = 5.99;
+  const serviceFee = 1.5;
+  const taxes = itemsSubtotal * 0.09; // 9% tax
+
+  const feeDetails = [
+    { label: "Items Subtotal", amount: itemsSubtotal, color: "text-[#151515]" },
+    {
+      label: "Delivery Fee",
+      amount: deliveryFee,
+      color: "text-[#F4521E]",
+      prefix: "+",
+    },
+    { label: "Service Fee", amount: serviceFee, color: "text-[#151515]" },
+    { label: "Taxes & Charges", amount: taxes, color: "text-[#151515]" },
+  ];
+
+  const total = itemsSubtotal + deliveryFee + serviceFee + taxes;
+
+  const handleConfirm = async () => {
+    if (!user) {
+      alert("Please login to place an order");
+      return;
+    }
+
+    try {
+      const orderData = {
+        userId: user.uid,
+        restaurantId: restaurantInfo?.id,
+        restaurantName: restaurantInfo?.name,
+        items: cart.map(item => ({
+          itemId: item._id,
+          name: item.name,
+          price: item.price,
+          quantity: 1 // In this simple cart, we store duplicates for multiple quantity
+        })),
+        totalAmount: total,
+        status: "Confirmed",
+        address: "123 Main St, New York, NY", // Placeholder or fetch from user profile
+      };
+
+      const response = await fetch("http://localhost:5000/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        setConfirmed(true);
+        localStorage.removeItem("cart");
+        localStorage.removeItem("restaurant");
+        setTimeout(() => {
+          navigate("/tracking");
+        }, 2000);
+      } else {
+        console.error("Failed to place order");
+      }
+    } catch (err) {
+      console.error("Error placing order:", err);
+    }
   };
 
   return (
@@ -81,13 +134,13 @@ const PaymentDetails = () => {
         {/* Confirm Button */}
         <button
           onClick={handleConfirm}
-          disabled={confirmed}
+          disabled={confirmed || cart.length === 0}
           className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white transition
             ${
               confirmed
                 ? "bg-green-500 cursor-not-allowed"
                 : "bg-[#F4521E] hover:bg-[#D43E0E]"
-            }`}
+            } ${cart.length === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
         >
           {confirmed ? <>✅ Order Placed!</> : <>Confirm & Place Order →</>}
         </button>

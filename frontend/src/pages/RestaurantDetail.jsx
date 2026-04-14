@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Mic, ShoppingCart } from "lucide-react";
 import MenuSidebar from "../components/MenuSidebar";
 import PeakHourChart from "../components/PeakHourChart";
 import FoodCard from "../components/FoodCard";
-import menuItems from "../data/menuItems";
 import DetailNavbar from "../components/DetailNavbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const RestaurantDetail = () => {
+  const { id } = useParams();
+  const [restaurant, setRestaurant] = useState(null);
   const [activeCategory, setActiveCategory] = useState("Appetizers");
   const [cart, setCart] = useState([]);
   const [viewOrderOpen, setViewOrderOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRestaurant = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/restaurants/${id}`);
+        const data = await response.json();
+        setRestaurant(data);
+      } catch (err) {
+        console.error("Error fetching restaurant:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRestaurant();
+  }, [id]);
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
 
   const groupedCart = cart.reduce((acc, item) => {
-    const existing = acc.find((c) => c.id === item.id);
+    const existing = acc.find((c) => c._id === item._id);
     if (existing) {
       existing.quantity += 1;
     } else {
@@ -23,19 +41,17 @@ const RestaurantDetail = () => {
     }
     return acc;
   }, []);
-  const items = menuItems[activeCategory] || [];
+
+  // Filter items based on activeCategory from the restaurant's menu
+  const items = restaurant?.menu?.filter(item => item.category === activeCategory) || [];
 
   const handleAddToCart = (item) => {
     setCart((prev) => [...prev, item]);
   };
 
-  const handleRemoveFromCart = (index) => {
-    setCart((prev) => prev.filter((_, i) => i !== index));
-  };
-
   const handleRemoveItem = (itemId) => {
     setCart((prev) => {
-      const index = prev.findIndex((item) => item.id === itemId);
+      const index = prev.findIndex((item) => item._id === itemId);
       if (index !== -1) {
         return prev.filter((_, i) => i !== index);
       }
@@ -44,6 +60,28 @@ const RestaurantDetail = () => {
   };
 
   const navigate = useNavigate();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-[#F5F3EE]">
+        <div className="w-12 h-12 border-4 border-[#F4521E] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!restaurant) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-[#F5F3EE]">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Restaurant not found</h2>
+        <button 
+          onClick={() => navigate("/")}
+          className="bg-[#F4521E] text-white px-6 py-2 rounded-xl font-bold"
+        >
+          Go Back Home
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F3EE] flex flex-col">
@@ -67,7 +105,7 @@ const RestaurantDetail = () => {
           {/* Section header */}
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl font-bold text-[#151515]">
-              BhojanGo Specials
+              {restaurant.name} Specials
             </h2>
             <span className="text-[11px] font-bold tracking-widest uppercase bg-[#FFF0EB] text-[#F4521E] border border-[#F4521E]/20 px-3 py-1 rounded-full">
               Top Rated
@@ -77,10 +115,10 @@ const RestaurantDetail = () => {
           {/* Food Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pb-28">
             {items.map((item) => {
-              const quantity = cart.filter((c) => c.id === item.id).length;
+              const quantity = cart.filter((c) => c._id === item._id).length;
               return (
                 <FoodCard
-                  key={item.id}
+                  key={item._id}
                   item={item}
                   quantity={quantity}
                   onAddToCart={handleAddToCart}
@@ -153,7 +191,7 @@ const RestaurantDetail = () => {
                 <div className="flex flex-col gap-3 mb-5">
                   {groupedCart.map((item) => (
                     <div
-                      key={item.id}
+                      key={item._id}
                       className="flex items-center justify-between py-2 border-b border-slate-100"
                     >
                       <div>
@@ -167,7 +205,7 @@ const RestaurantDetail = () => {
                       <div className="flex items-center gap-2">
                         <div className="flex items-center bg-gray-50 border border-slate-200 rounded-lg">
                           <button
-                            onClick={() => handleRemoveItem(item.id)}
+                            onClick={() => handleRemoveItem(item._id)}
                             className="w-7 h-7 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded-l-lg transition-colors cursor-pointer"
                           >
                             -
@@ -194,6 +232,8 @@ const RestaurantDetail = () => {
                 </div>
                 <button className="w-full bg-[#F4521E] text-white font-bold py-3 rounded-xl hover:bg-[#e03d0e] transition-colors shadow-md shadow-orange-200 cursor-pointer"
                 onClick={()=>{
+                  localStorage.setItem("cart", JSON.stringify(cart));
+                  localStorage.setItem("restaurant", JSON.stringify({id: restaurant._id, name: restaurant.name}));
                   navigate("/checkout")
                 }}>
                   Place Order
