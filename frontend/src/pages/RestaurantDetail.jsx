@@ -5,6 +5,7 @@ import PeakHourChart from "../components/PeakHourChart";
 import FoodCard from "../components/FoodCard";
 import DetailNavbar from "../components/DetailNavbar";
 import { useNavigate, useParams } from "react-router-dom";
+import { config } from "../config/config.js";
 
 const RestaurantDetail = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const RestaurantDetail = () => {
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/restaurants/${id}`);
+        const response = await fetch(`${config.BASE_URL}/api/restaurants/${id}`);
         const data = await response.json();
         setRestaurant(data);
       } catch (err) {

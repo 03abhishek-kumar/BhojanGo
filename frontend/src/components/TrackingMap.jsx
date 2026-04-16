@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PhoneIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/solid";
+import { useAuth } from "../context/AuthContext";
 import {
   PlusIcon,
   MinusIcon,
@@ -7,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 const TrackingMap = () => {
+  const { user } = useAuth();
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -95,7 +97,7 @@ const TrackingMap = () => {
       {/* ── Home Destination Pin ── */}
       <div className="absolute" style={{ top: "72%", left: "68%" }}>
         <div className="bg-[#F4521E] text-white text-xs font-bold px-3 py-2 rounded-xl shadow-lg whitespace-nowrap">
-          Home (John's Place)
+          Home ({user?.displayName || "Your"}'s Place)
           {/* Arrow */}
           <div className="absolute left-4 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#F4521E]" />
         </div>

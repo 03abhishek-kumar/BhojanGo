@@ -13,7 +13,9 @@ app.use(express.json());
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("DB is Connected"))
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.error("MongoDB Connection Error Details:", err);
+  });
 
 // ── API ROUTES ──
 
@@ -23,7 +25,8 @@ app.get('/api/restaurants', async (req, res) => {
     const restaurants = await Restaurant.find();
     res.json(restaurants);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Error in GET /api/restaurants:", err);
+    res.status(500).json({ error: "Failed to fetch restaurants", details: err.message });
   }
 });
 

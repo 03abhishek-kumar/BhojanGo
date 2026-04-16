@@ -3,6 +3,7 @@ import { ShieldCheckIcon } from "@heroicons/react/24/solid";
 import { BoltIcon, GiftIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { config } from "../config/config";
 
 const PaymentDetails = () => {
   const { user } = useAuth();
@@ -59,7 +60,7 @@ const PaymentDetails = () => {
         address: "123 Main St, New York, NY", // Placeholder or fetch from user profile
       };
 
-      const response = await fetch("http://localhost:5000/api/orders", {
+      const response = await fetch(`${config.BASE_URL}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,8 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { User, Settings } from "lucide-react";
 import SettingsPopup from "./SettingsPopup";
 import NotificationsPopup from "./NotificationsPopup";
+import { useAuth } from "../context/AuthContext";
 
 const TrackingNavbar = () => {
+  const { user } = useAuth();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
@@ -90,7 +92,7 @@ const TrackingNavbar = () => {
             <User color="white" />
           </div>
           <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
-            Alex
+            {user?.displayName || "User"}
           </span>
         </div>
       </div>

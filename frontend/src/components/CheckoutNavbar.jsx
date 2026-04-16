@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { User, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SettingsPopup from "./SettingsPopup";
+import { useAuth } from "../context/AuthContext";
 
 const CheckoutNavbar = () => {
+  const { user } = useAuth();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const navigate = useNavigate();
   return (
@@ -56,7 +58,7 @@ const CheckoutNavbar = () => {
             <User color="white" />
           </div>
           <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
-            Alex
+            {user?.displayName || "User"}
           </span>
         </div>
       </div>

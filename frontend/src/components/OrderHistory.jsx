@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { config } from "../config/config";
 
 export default function OrderHistory() {
   const { user } = useAuth();
@@ -10,11 +11,16 @@ export default function OrderHistory() {
     const fetchOrders = async () => {
       if (!user) return;
       try {
-        const response = await fetch(`http://localhost:5000/api/orders/user/${user.uid}`);
+        const response = await fetch(`${config.BASE_URL}/api/orders/user/${user.uid}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        setOrders(data);
+        // Ensure data is an array before setting state
+        setOrders(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching orders:", err);
+        setOrders([]); // Fallback to empty array on error
       } finally {
         setIsLoading(false);
       }

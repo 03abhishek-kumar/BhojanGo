@@ -3,6 +3,7 @@ import { FunnelIcon, BarsArrowUpIcon } from "@heroicons/react/24/outline";
 import { HeartIcon, HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
 import { RestaurantContext } from "../context/RestaurantContext";
+import { config } from "../config/config";
 
 const Restaurants = () => {
   const { setSelectedRestaurant } = useContext(RestaurantContext);
@@ -13,11 +14,16 @@ const Restaurants = () => {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/restaurants");
+        const response = await fetch(`${config.BASE_URL}/api/restaurants`);
+        if (!response.ok) {
+           throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        setRestaurants(data);
+        // Ensure data is an array before setting state
+        setRestaurants(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching restaurants:", err);
+        setRestaurants([]); // Fallback to empty array on error
       } finally {
         setIsLoading(false);
       }
