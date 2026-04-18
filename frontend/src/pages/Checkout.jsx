@@ -8,7 +8,6 @@ import PaymentDetails from "../components/PaymentDetails";
 const Checkout = () => {
   return (
     <div className="bg-[#F5F3EE] min-h-screen">
-
       <CheckoutNavbar />
 
       {/* Page Header */}
@@ -26,7 +25,6 @@ const Checkout = () => {
 
       {/* Two Column Layout */}
       <div className="px-[5%] py-4 flex gap-6 items-start">
-
         {/* Left Column */}
         <div className="flex-1 flex flex-col gap-4">
           <DeliveryAddress />
@@ -38,7 +36,6 @@ const Checkout = () => {
         <div className="w-[320px] shrink-0 flex flex-col gap-4">
           <PaymentDetails />
         </div>
-
       </div>
 
       {/* Footer */}
@@ -52,18 +49,37 @@ const Checkout = () => {
           <span className="font-bold text-sm text-[#F4521E]">BhojanGo</span>
         </div>
         <div className="flex items-center gap-8 text-sm">
-          <Link to="/privacy" className="hover:text-[#F4521E] transition no-underline text-gray-400">Privacy Policy</Link>
-          <Link to="/terms"   className="hover:text-[#F4521E] transition no-underline text-gray-400">Terms of Service</Link>
-          <Link to="/rider"   className="hover:text-[#F4521E] transition no-underline text-gray-400">Become a Rider</Link>
-          <Link to="/support" className="hover:text-[#F4521E] transition no-underline text-gray-400">Support</Link>
+          <Link
+            to="/privacy"
+            className="hover:text-[#F4521E] transition no-underline text-gray-400"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            to="/terms"
+            className="hover:text-[#F4521E] transition no-underline text-gray-400"
+          >
+            Terms of Service
+          </Link>
+          <Link
+            to="/rider"
+            className="hover:text-[#F4521E] transition no-underline text-gray-400"
+          >
+            Become a Rider
+          </Link>
+          <Link
+            to="/support"
+            className="hover:text-[#F4521E] transition no-underline text-gray-400"
+          >
+            Support
+          </Link>
         </div>
         <span className="text-xs text-gray-400">
           © 2024 BhojanGo Technologies Inc.
         </span>
       </footer>
-
     </div>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;

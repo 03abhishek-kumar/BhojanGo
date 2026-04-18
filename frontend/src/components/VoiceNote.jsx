@@ -2,21 +2,19 @@ import { useState, useRef, useEffect } from "react";
 import { MicrophoneIcon, StopIcon } from "@heroicons/react/24/solid";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 
-
 const VoiceNote = () => {
-
-  const [isRecording, setIsRecording]   = useState(false);
-  const [seconds, setSeconds]           = useState(0);
-  const [instruction, setInstruction]   = useState("");
-  const [waveHeights, setWaveHeights]   = useState(
-    Array(12).fill(4) // 12 bars, all start flat
+  const [isRecording, setIsRecording] = useState(false);
+  const [seconds, setSeconds] = useState(0);
+  const [instruction, setInstruction] = useState("");
+  const [waveHeights, setWaveHeights] = useState(
+    Array(12).fill(4), // 12 bars, all start flat
   );
 
-  const timerRef    = useRef(null); // holds the interval
-  const waveRef     = useRef(null); // holds the wave animation interval
-  const maxSeconds  = 30;
+  const timerRef = useRef(null); // holds the interval
+  const waveRef = useRef(null); // holds the wave animation interval
+  const maxSeconds = 30;
 
-  //  Start Recording 
+  //  Start Recording
   const handleStart = () => {
     setIsRecording(true);
     setSeconds(0);
@@ -35,12 +33,14 @@ const VoiceNote = () => {
     // wave animation — randomizes bar heights every 200ms
     waveRef.current = setInterval(() => {
       setWaveHeights(
-        Array(12).fill(0).map(() => Math.floor(Math.random() * 28) + 4)
+        Array(12)
+          .fill(0)
+          .map(() => Math.floor(Math.random() * 28) + 4),
       );
     }, 200);
   };
 
-  //  Stop Recording 
+  //  Stop Recording
   const handleStop = () => {
     setIsRecording(false);
     clearInterval(timerRef.current);
@@ -49,14 +49,14 @@ const VoiceNote = () => {
     setWaveHeights(Array(12).fill(4));
   };
 
-  // Format seconds to MM:SS 
+  // Format seconds to MM:SS
   const formatTime = (s) => {
     const mins = String(Math.floor(s / 60)).padStart(2, "0");
     const secs = String(s % 60).padStart(2, "0");
     return `${mins}:${secs}`;
   };
 
-  // Cleanup on unmount 
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       clearInterval(timerRef.current);
@@ -64,10 +64,8 @@ const VoiceNote = () => {
     };
   }, []);
 
-
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
-
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <div className="flex items-center gap-2">
@@ -86,7 +84,6 @@ const VoiceNote = () => {
 
       {/* Recorder Box */}
       <div className="bg-[#F5F3EE] rounded-2xl p-6 flex flex-col items-center gap-5 mb-4">
-
         {/* Waveform */}
         <div className="flex items-end gap-1 h-10">
           {waveHeights.map((h, i) => (
@@ -110,14 +107,14 @@ const VoiceNote = () => {
 
         {/* Buttons */}
         <div className="flex items-center gap-3">
-
           {/* Record / Stop Button */}
           <button
             onClick={isRecording ? handleStop : handleStart}
             className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition
-              ${isRecording
-                ? "bg-red-500 hover:bg-red-600"
-                : "bg-[#F4521E] hover:bg-[#D43E0E]"
+              ${
+                isRecording
+                  ? "bg-red-500 hover:bg-red-600"
+                  : "bg-[#F4521E] hover:bg-[#D43E0E]"
               }`}
           >
             {isRecording ? (
@@ -138,7 +135,6 @@ const VoiceNote = () => {
             <ArrowUpTrayIcon className="w-4 h-4" />
             Upload Clip
           </button>
-
         </div>
       </div>
 
@@ -155,9 +151,8 @@ const VoiceNote = () => {
           className="w-full border border-black/10 rounded-xl px-4 py-3 text-sm text-[#151515] placeholder-gray-400 outline-none focus:border-[#F4521E] resize-none transition"
         />
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default VoiceNote
+export default VoiceNote;

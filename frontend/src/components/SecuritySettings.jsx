@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { EyeIcon, EyeSlashIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import {
+  EyeIcon,
+  EyeSlashIcon,
+  ShieldCheckIcon,
+} from "@heroicons/react/24/outline";
 
 export default function SecuritySettings() {
-  const [showCurrent, setShowCurrent]   = useState(false);
-  const [showNew, setShowNew]           = useState(false);
-  const [showConfirm, setShowConfirm]   = useState(false);
-  const [twoFA, setTwoFA]               = useState(false);
-  const [saved, setSaved]               = useState(false);
-  const [showDelete, setShowDelete]     = useState(false);
+  const [showCurrent, setShowCurrent] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [twoFA, setTwoFA] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
 
   const [passwords, setPasswords] = useState({
     current: "",
@@ -24,10 +28,12 @@ export default function SecuritySettings() {
 
   const validate = () => {
     const newErrors = {};
-    if (!passwords.current)              newErrors.current = "Current password is required";
-    if (!passwords.newPass)              newErrors.newPass = "New password is required";
-    if (passwords.newPass.length < 8)    newErrors.newPass = "Password must be at least 8 characters";
-    if (passwords.newPass !== passwords.confirm) newErrors.confirm = "Passwords do not match";
+    if (!passwords.current) newErrors.current = "Current password is required";
+    if (!passwords.newPass) newErrors.newPass = "New password is required";
+    if (passwords.newPass.length < 8)
+      newErrors.newPass = "Password must be at least 8 characters";
+    if (passwords.newPass !== passwords.confirm)
+      newErrors.confirm = "Passwords do not match";
     return newErrors;
   };
 
@@ -52,9 +58,10 @@ export default function SecuritySettings() {
         onChange={handleChange}
         placeholder={placeholder}
         className={`w-full border rounded-xl px-4 py-3 text-sm outline-none transition pr-12
-          ${errors[name]
-            ? "border-red-400 bg-red-50"
-            : "border-black/10 focus:border-[#F4521E]"
+          ${
+            errors[name]
+              ? "border-red-400 bg-red-50"
+              : "border-black/10 focus:border-[#F4521E]"
           }`}
       />
       <button
@@ -62,10 +69,11 @@ export default function SecuritySettings() {
         onClick={toggleShow}
         className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#151515]"
       >
-        {show
-          ? <EyeSlashIcon className="w-4 h-4" />
-          : <EyeIcon className="w-4 h-4" />
-        }
+        {show ? (
+          <EyeSlashIcon className="w-4 h-4" />
+        ) : (
+          <EyeIcon className="w-4 h-4" />
+        )}
       </button>
       {errors[name] && (
         <p className="text-red-500 text-xs mt-1">{errors[name]}</p>
@@ -75,7 +83,6 @@ export default function SecuritySettings() {
 
   return (
     <div className="flex flex-col gap-4">
-
       {/* ── Change Password ── */}
       <div className="bg-white rounded-2xl p-6 shadow-sm">
         <div className="flex items-center justify-between mb-6">
@@ -154,7 +161,8 @@ export default function SecuritySettings() {
         {twoFA && (
           <div className="mt-4 bg-green-50 border border-green-200 rounded-xl p-3">
             <p className="text-xs text-green-600 font-medium">
-              ✅ Two-factor authentication is enabled. Your account is more secure!
+              ✅ Two-factor authentication is enabled. Your account is more
+              secure!
             </p>
           </div>
         )}
@@ -166,7 +174,8 @@ export default function SecuritySettings() {
           Danger Zone
         </h3>
         <p className="text-xs text-gray-400 mb-4">
-          Once you delete your account all your data will be permanently removed.
+          Once you delete your account all your data will be permanently
+          removed.
         </p>
 
         {!showDelete ? (
@@ -195,7 +204,6 @@ export default function SecuritySettings() {
           </div>
         )}
       </div>
-
     </div>
   );
 }

@@ -1,22 +1,52 @@
 import { useState } from "react";
 
 const notificationOptions = [
-  { id: "order_updates",  label: "Order Updates",       description: "Get notified about your order status",       emoji: "📦" },
-  { id: "promotions",     label: "Promotions & Offers",  description: "Deals, discounts and special offers",        emoji: "🎉" },
-  { id: "peak_hours",     label: "Peak Hour Alerts",     description: "Get notified when kitchen traffic is low",   emoji: "⏰" },
-  { id: "new_restaurant", label: "New Restaurants",      description: "Discover new restaurants near you",          emoji: "🍽️" },
-  { id: "email_notifs",   label: "Email Notifications",  description: "Receive updates via email",                  emoji: "📧" },
-  { id: "sms_notifs",     label: "SMS Notifications",    description: "Receive updates via text message",           emoji: "💬" },
+  {
+    id: "order_updates",
+    label: "Order Updates",
+    description: "Get notified about your order status",
+    emoji: "📦",
+  },
+  {
+    id: "promotions",
+    label: "Promotions & Offers",
+    description: "Deals, discounts and special offers",
+    emoji: "🎉",
+  },
+  {
+    id: "peak_hours",
+    label: "Peak Hour Alerts",
+    description: "Get notified when kitchen traffic is low",
+    emoji: "⏰",
+  },
+  {
+    id: "new_restaurant",
+    label: "New Restaurants",
+    description: "Discover new restaurants near you",
+    emoji: "🍽️",
+  },
+  {
+    id: "email_notifs",
+    label: "Email Notifications",
+    description: "Receive updates via email",
+    emoji: "📧",
+  },
+  {
+    id: "sms_notifs",
+    label: "SMS Notifications",
+    description: "Receive updates via text message",
+    emoji: "💬",
+  },
 ];
 
 export default function NotificationSettings() {
   const [settings, setSettings] = useState({
-    order_updates:  true,
-    promotions:     true,
-    peak_hours:     false,
+    order_updates: true,
+    promotions: true,
+    peak_hours: false,
     new_restaurant: false,
-    email_notifs:   true,
-    sms_notifs:     false,
+    email_notifs: true,
+    sms_notifs: false,
   });
 
   const toggle = (id) => {
@@ -25,7 +55,6 @@ export default function NotificationSettings() {
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
-
       {/* ── Header ── */}
       <div className="mb-6">
         <h3 className="font-['Sora'] font-bold text-base text-[#151515]">
@@ -52,9 +81,7 @@ export default function NotificationSettings() {
                 <p className="font-medium text-sm text-[#151515]">
                   {option.label}
                 </p>
-                <p className="text-xs text-gray-400">
-                  {option.description}
-                </p>
+                <p className="text-xs text-gray-400">{option.description}</p>
               </div>
             </div>
 
@@ -69,11 +96,9 @@ export default function NotificationSettings() {
                   ${settings[option.id] ? "left-7" : "left-1"}`}
               />
             </button>
-
           </div>
         ))}
       </div>
-
     </div>
   );
 }

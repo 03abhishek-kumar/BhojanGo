@@ -44,7 +44,7 @@ const ProfileSidebar = ({ active, setActive }) => {
 
         {/* ── Logout ── */}
         <div className="border-t border-black/5 mt-2 pt-2">
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition w-full text-left cursor-pointer"
           >

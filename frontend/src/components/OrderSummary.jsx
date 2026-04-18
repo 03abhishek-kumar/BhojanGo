@@ -2,28 +2,7 @@ import React, { useState } from "react";
 import { PlusIcon, MinusIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 const OrderSummary = () => {
-  const initialItems = [
-    {
-      id: 1,
-      name: "Organic Harvest Buddha Bowl",
-      description: "Extra avocado, No onions",
-      price: 18.5,
-      qty: 1,
-      image:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop",
-    },
-    {
-      id: 2,
-      name: "Truffle Mushroom Pizza",
-      description: "12 inch, Gluten-free crust",
-      price: 24.0,
-      qty: 1,
-      image:
-        "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=100&h=100&fit=crop",
-    },
-  ];
-
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([]);
 
   // increase qty
   const handleIncrease = (id) => {

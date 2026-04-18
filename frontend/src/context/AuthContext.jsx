@@ -14,7 +14,7 @@ const AuthContext = createContext();
 
 // 2. Create provider
 export function AuthProvider({ children }) {
-  const [user,    setUser]    = useState(null);
+  const [user, setUser] = useState(null);
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
     );
 
     // update display name
@@ -32,12 +32,12 @@ export function AuthProvider({ children }) {
 
     // save user data to Firestore
     await setDoc(doc(db, "users", userCredential.user.uid), {
-      uid:       userCredential.user.uid,
-      name:      name,
-      email:     email,
-      role:      role,
+      uid: userCredential.user.uid,
+      name: name,
+      email: email,
+      role: role,
       createdAt: new Date().toISOString(),
-      orders:    [],
+      orders: [],
       addresses: [],
     });
 
@@ -58,9 +58,13 @@ export function AuthProvider({ children }) {
   const updateUserProfile = async (uid, data) => {
     try {
       const docRef = doc(db, "users", uid);
-      await setDoc(docRef, { ...data, updatedAt: new Date().toISOString() }, { merge: true });
+      await setDoc(
+        docRef,
+        { ...data, updatedAt: new Date().toISOString() },
+        { merge: true },
+      );
       // Update local state as well
-      setProfileData(prev => ({ ...prev, ...data }));
+      setProfileData((prev) => ({ ...prev, ...data }));
     } catch (err) {
       console.error("Error updating profile:", err);
       throw err;
@@ -69,7 +73,7 @@ export function AuthProvider({ children }) {
 
   // ── Get User Profile from Firestore ──
   const getUserProfile = async (uid) => {
-    const docRef  = doc(db, "users", uid);
+    const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
@@ -96,16 +100,18 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      profileData,
-      loading,
-      register,
-      login,
-      logout,
-      getUserProfile,
-      updateUserProfile,
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        profileData,
+        loading,
+        register,
+        login,
+        logout,
+        getUserProfile,
+        updateUserProfile,
+      }}
+    >
       {/* don't render children until auth state is known */}
       {!loading && children}
     </AuthContext.Provider>

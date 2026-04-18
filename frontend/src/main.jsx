@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { RestaurantProvider } from "./context/RestaurantContext.jsx";
 import { AuthProvider } from "./context/AuthContext";
 
-
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <StrictMode>

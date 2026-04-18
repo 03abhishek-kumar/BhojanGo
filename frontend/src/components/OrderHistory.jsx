@@ -11,7 +11,9 @@ export default function OrderHistory() {
     const fetchOrders = async () => {
       if (!user) return;
       try {
-        const response = await fetch(`${config.BASE_URL}/api/orders/user/${user.uid}`);
+        const response = await fetch(
+          `${config.BASE_URL}/api/orders/user/${user.uid}`,
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -39,7 +41,6 @@ export default function OrderHistory() {
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
-
       {/* ── Header ── */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -55,7 +56,9 @@ export default function OrderHistory() {
       {/* ── Orders List ── */}
       <div className="flex flex-col gap-3">
         {orders.length === 0 ? (
-           <p className="text-center text-gray-400 py-10">No orders found yet.</p>
+          <p className="text-center text-gray-400 py-10">
+            No orders found yet.
+          </p>
         ) : (
           orders.map((order) => (
             <div
@@ -78,15 +81,20 @@ export default function OrderHistory() {
                   </p>
                 </div>
                 <p className="text-xs text-gray-400 mb-1">
-                  {order.items.map(i => i.name).join(", ")}
+                  {order.items.map((i) => i.name).join(", ")}
                 </p>
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-gray-300">
-                    {new Date(order.createdAt).toLocaleDateString()} • #{order._id.slice(-6).toUpperCase()}
+                    {new Date(order.createdAt).toLocaleDateString()} • #
+                    {order._id.slice(-6).toUpperCase()}
                   </p>
-                  <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
-                    order.status === 'Cancelled' ? 'text-red-500 bg-red-50' : 'text-green-500 bg-green-50'
-                  }`}>
+                  <span
+                    className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${
+                      order.status === "Cancelled"
+                        ? "text-red-500 bg-red-50"
+                        : "text-green-500 bg-green-50"
+                    }`}
+                  >
                     {order.status}
                   </span>
                 </div>

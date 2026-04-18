@@ -19,18 +19,42 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/restaurant/:id" element={<RestaurantDetail />} />
-        
+
         {/* Protected Routes */}
-        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-        <Route path="/tracking" element={<ProtectedRoute><Tracking /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tracking"
+          element={
+            <ProtectedRoute>
+              <Tracking />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
         {/* Admin/Owner only routes */}
-        <Route path="/manage" element={
-          <ProtectedRoute allowedRoles={["admin", "restaurant_owner"]}>
-            <Management />
-          </ProtectedRoute>
-        } />
+        <Route
+          path="/manage"
+          element={
+            <ProtectedRoute allowedRoles={["admin", "restaurant_owner"]}>
+              <Management />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Mail, Lock, User, ArrowRight, AlertCircle, ChefHat } from "lucide-react";
+import {
+  Mail,
+  Lock,
+  User,
+  ArrowRight,
+  AlertCircle,
+  ChefHat,
+} from "lucide-react";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,7 +18,7 @@ const Auth = () => {
   const [role, setRole] = useState("customer");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { login, register } = useAuth();
   const navigate = useNavigate();
 
@@ -50,13 +57,15 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-orange-50 to-orange-100 flex items-center justify-center p-4">
       <div className="relative w-full max-w-md overflow-hidden bg-white rounded-3xl shadow-2xl shadow-orange-200 border border-orange-100">
-        
         {/* Decorative Top Banner */}
         <div className="h-32 bg-linear-to-r from-[#F4521E] to-[#FF8A65] flex items-center justify-center p-6 relative">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm pointer-events-none"></div>
-          <Link to="/" className="z-10 flex items-center gap-3 no-underline group">
+          <Link
+            to="/"
+            className="z-10 flex items-center gap-3 no-underline group"
+          >
             <div className="bg-white p-2 text-[#F4521E] rounded-xl shadow-lg transform group-hover:scale-105 transition-all">
-               <ChefHat size={32} />
+              <ChefHat size={32} />
             </div>
             <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
               BhojanGo
@@ -80,8 +89,8 @@ const Auth = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
               <div className="flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 rounded-xl border border-red-100 animate-pulse">
-               <AlertCircle size={18} />
-               <span>{error}</span>
+                <AlertCircle size={18} />
+                <span>{error}</span>
               </div>
             )}
 
@@ -103,7 +112,9 @@ const Auth = () => {
 
             {!isLogin && (
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-gray-700 ml-1">Select your role</label>
+                <label className="text-sm font-semibold text-gray-700 ml-1">
+                  Select your role
+                </label>
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { id: "customer", label: "Customer", icon: "👤" },
@@ -121,7 +132,9 @@ const Auth = () => {
                       }`}
                     >
                       <span className="text-xl">{r.icon}</span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider">{r.label}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">
+                        {r.label}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -178,7 +191,10 @@ const Auth = () => {
               ) : (
                 <>
                   {isLogin ? "Sign In" : "Sign Up"}
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight
+                    size={20}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </>
               )}
             </button>

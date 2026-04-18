@@ -7,13 +7,11 @@ import TrackingMap from "../components/TrackingMap";
 const Tracking = () => {
   return (
     <div className="bg-[#F5F3EE] min-h-screen flex flex-col">
-
       {/* ── Navbar ── */}
       <TrackingNavbar />
 
       {/* ── Main Layout ── */}
       <div className="flex flex-1 overflow-hidden">
-
         {/* ── Left Sidebar ── */}
         <div className="w-95 shrink-0 flex flex-col gap-4 p-5 overflow-y-auto">
           <OrderJourney />
@@ -25,11 +23,9 @@ const Tracking = () => {
         <div className="flex-1">
           <TrackingMap />
         </div>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Tracking
+export default Tracking;

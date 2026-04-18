@@ -6,11 +6,11 @@ export default function PersonalInfo() {
 
   const [form, setForm] = useState({
     firstName: "",
-    lastName:  "",
-    email:     "",
-    phone:     "",
-    dob:       "",
-    gender:    "male",
+    lastName: "",
+    email: "",
+    phone: "",
+    dob: "",
+    gender: "male",
   });
 
   const [saved, setSaved] = useState(false);
@@ -21,11 +21,11 @@ export default function PersonalInfo() {
       const nameParts = (profileData.name || "").split(" ");
       setForm({
         firstName: nameParts[0] || "",
-        lastName:  nameParts.slice(1).join(" ") || "",
-        email:     profileData.email || "",
-        phone:     profileData.phone || "",
-        dob:       profileData.dob || "",
-        gender:    profileData.gender || "male",
+        lastName: nameParts.slice(1).join(" ") || "",
+        email: profileData.email || "",
+        phone: profileData.phone || "",
+        dob: profileData.dob || "",
+        gender: profileData.gender || "male",
       });
     }
   }, [profileData]);
@@ -45,7 +45,7 @@ export default function PersonalInfo() {
         phone: form.phone,
         dob: form.dob,
         gender: form.gender,
-        // email is usually not updated here for security reasons, 
+        // email is usually not updated here for security reasons,
         // but if it is allowed in your app, you'd add it here.
       });
       setSaved(true);
@@ -59,7 +59,6 @@ export default function PersonalInfo() {
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm">
-
       {/* ── Header ── */}
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -79,7 +78,6 @@ export default function PersonalInfo() {
 
       {/* ── Form ── */}
       <div className="grid grid-cols-2 gap-4">
-
         {/* First Name */}
         <div>
           <label className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-2">
@@ -161,9 +159,10 @@ export default function PersonalInfo() {
                 key={g}
                 onClick={() => setForm({ ...form, gender: g })}
                 className={`flex-1 py-3 rounded-xl text-sm font-medium capitalize border-2 transition
-                  ${form.gender === g
-                    ? "border-[#F4521E] bg-orange-50 text-[#F4521E]"
-                    : "border-black/10 text-gray-400 hover:border-orange-200"
+                  ${
+                    form.gender === g
+                      ? "border-[#F4521E] bg-orange-50 text-[#F4521E]"
+                      : "border-black/10 text-gray-400 hover:border-orange-200"
                   }`}
               >
                 {g}
@@ -171,7 +170,6 @@ export default function PersonalInfo() {
             ))}
           </div>
         </div>
-
       </div>
 
       {/* ── Save Button ── */}
@@ -181,11 +179,10 @@ export default function PersonalInfo() {
         className="mt-6 w-full bg-[#F4521E] hover:bg-[#D43E0E] text-white font-bold py-3 rounded-xl text-sm transition disabled:opacity-70 flex items-center justify-center gap-2"
       >
         {isSaving ? (
-           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
         ) : null}
         {isSaving ? "Saving..." : "Save Changes"}
       </button>
-
     </div>
   );
 }

@@ -14,7 +14,9 @@ const PaymentDetails = () => {
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const savedRestaurant = JSON.parse(localStorage.getItem("restaurant") || "null");
+    const savedRestaurant = JSON.parse(
+      localStorage.getItem("restaurant") || "null",
+    );
     setCart(savedCart);
     setRestaurantInfo(savedRestaurant);
   }, []);
@@ -49,11 +51,11 @@ const PaymentDetails = () => {
         userId: user.uid,
         restaurantId: restaurantInfo?.id,
         restaurantName: restaurantInfo?.name,
-        items: cart.map(item => ({
+        items: cart.map((item) => ({
           itemId: item._id,
           name: item.name,
           price: item.price,
-          quantity: 1 // In this simple cart, we store duplicates for multiple quantity
+          quantity: 1, // In this simple cart, we store duplicates for multiple quantity
         })),
         totalAmount: total,
         status: "Confirmed",
@@ -145,7 +147,6 @@ const PaymentDetails = () => {
         >
           {confirmed ? <>✅ Order Placed!</> : <>Confirm & Place Order →</>}
         </button>
-
       </div>
 
       {/* ── Refer & Earn Card ── */}
@@ -156,9 +157,7 @@ const PaymentDetails = () => {
         <div className="relative">
           <div className="flex items-center gap-2 mb-2">
             <GiftIcon className="w-5 h-5 text-[#F4521E]" />
-            <h3 className="font-bold text-sm text-[#151515]">
-              Refer & Earn
-            </h3>
+            <h3 className="font-bold text-sm text-[#151515]">Refer & Earn</h3>
           </div>
           <p className="text-xs text-gray-400 leading-relaxed mb-3">
             Get $10 off your next BhojanGo order by referring a friend.

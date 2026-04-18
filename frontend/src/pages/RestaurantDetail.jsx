@@ -18,7 +18,9 @@ const RestaurantDetail = () => {
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const response = await fetch(`${config.BASE_URL}/api/restaurants/${id}`);
+        const response = await fetch(
+          `${config.BASE_URL}/api/restaurants/${id}`,
+        );
         const data = await response.json();
         setRestaurant(data);
       } catch (err) {
@@ -44,7 +46,8 @@ const RestaurantDetail = () => {
   }, []);
 
   // Filter items based on activeCategory from the restaurant's menu
-  const items = restaurant?.menu?.filter(item => item.category === activeCategory) || [];
+  const items =
+    restaurant?.menu?.filter((item) => item.category === activeCategory) || [];
 
   const handleAddToCart = (item) => {
     setCart((prev) => [...prev, item]);
@@ -73,8 +76,10 @@ const RestaurantDetail = () => {
   if (!restaurant) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-[#F5F3EE]">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Restaurant not found</h2>
-        <button 
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          Restaurant not found
+        </h2>
+        <button
           onClick={() => navigate("/")}
           className="bg-[#F4521E] text-white px-6 py-2 rounded-xl font-bold"
         >
@@ -231,12 +236,20 @@ const RestaurantDetail = () => {
                     ${cartTotal.toFixed(2)}
                   </span>
                 </div>
-                <button className="w-full bg-[#F4521E] text-white font-bold py-3 rounded-xl hover:bg-[#e03d0e] transition-colors shadow-md shadow-orange-200 cursor-pointer"
-                onClick={()=>{
-                  localStorage.setItem("cart", JSON.stringify(cart));
-                  localStorage.setItem("restaurant", JSON.stringify({id: restaurant._id, name: restaurant.name}));
-                  navigate("/checkout")
-                }}>
+                <button
+                  className="w-full bg-[#F4521E] text-white font-bold py-3 rounded-xl hover:bg-[#e03d0e] transition-colors shadow-md shadow-orange-200 cursor-pointer"
+                  onClick={() => {
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    localStorage.setItem(
+                      "restaurant",
+                      JSON.stringify({
+                        id: restaurant._id,
+                        name: restaurant.name,
+                      }),
+                    );
+                    navigate("/checkout");
+                  }}
+                >
                   Place Order
                 </button>
               </>

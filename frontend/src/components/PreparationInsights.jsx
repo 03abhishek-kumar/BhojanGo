@@ -1,16 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const PreparationInsights = () => {
-
-    const predicted = 22;
+  const predicted = 22;
   const actual = 18;
   const efficiency = Math.round(((predicted - actual) / predicted) * 100);
   const progressPercent = Math.round((actual / predicted) * 100);
 
-
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm">
-
       {/* ── Header ── */}
       <div className="flex items-center justify-around m-4">
         <p className="text-[11px] font-bold tracking-widest uppercase text-gray-400">
@@ -26,18 +23,14 @@ const PreparationInsights = () => {
 
       {/* ── Stats Card ── */}
       <div className="bg-[#F5F3EE] rounded-xl p-4">
-
         {/* ── Predicted vs Actual ── */}
         <div className="flex items-start justify-between mb-4">
-
           {/* Predicted */}
           <div>
             <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-1">
               BhojanGo Predicted
             </p>
-            <p className="font-bold text-3xl text-[#151515]">
-              {predicted}m
-            </p>
+            <p className="font-bold text-3xl text-[#151515]">{predicted}m</p>
           </div>
 
           {/* Divider */}
@@ -52,7 +45,6 @@ const PreparationInsights = () => {
               {actual}m
             </p>
           </div>
-
         </div>
 
         {/* ── Speed Efficiency ── */}
@@ -79,11 +71,9 @@ const PreparationInsights = () => {
         <p className="text-xs text-gray-400 italic">
           "Kitchen is performing exceptionally well despite high demand."
         </p>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default PreparationInsights
+export default PreparationInsights;

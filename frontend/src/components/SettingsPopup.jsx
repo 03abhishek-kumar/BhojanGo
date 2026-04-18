@@ -16,7 +16,8 @@ const SettingsPopup = ({ isOpen, onClose }) => {
   const popupRef = useRef(null);
   const navigate = useNavigate();
   const { logout, profileData } = useAuth();
-  const isManagementAllowed = profileData?.role === "admin" || profileData?.role === "restaurant_owner";
+  const isManagementAllowed =
+    profileData?.role === "admin" || profileData?.role === "restaurant_owner";
 
   const handleLogout = async () => {
     try {
@@ -57,16 +58,18 @@ const SettingsPopup = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const quickToggles = [
-    { icon: Moon,   label: "Dark Mode",    desc: "Switch to dark theme" },
-    { icon: Globe,  label: "Language",     desc: "English (US)" },
-    { icon: Bell,   label: "Notifications", desc: "Push & email alerts" },
-    { icon: Shield, label: "Privacy",      desc: "Data & visibility" },
+    { icon: Moon, label: "Dark Mode", desc: "Switch to dark theme" },
+    { icon: Globe, label: "Language", desc: "English (US)" },
+    { icon: Bell, label: "Notifications", desc: "Push & email alerts" },
+    { icon: Shield, label: "Privacy", desc: "Data & visibility" },
   ];
 
   const navLinks = [
-    { icon: User,       label: "My Profile",     to: "/profile" },
-    ...(isManagementAllowed ? [{ icon: Shield, label: "Management", to: "/manage" }] : []),
-    { icon: HelpCircle, label: "Help & Support",  to: "/support" },
+    { icon: User, label: "My Profile", to: "/profile" },
+    ...(isManagementAllowed
+      ? [{ icon: Shield, label: "Management", to: "/manage" }]
+      : []),
+    { icon: HelpCircle, label: "Help & Support", to: "/support" },
   ];
 
   return (

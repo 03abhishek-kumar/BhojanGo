@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const MenuItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -7,7 +7,7 @@ const MenuItemSchema = new mongoose.Schema({
   badge: String,
   badgeColor: String,
   image: String,
-  category: { type: String, required: true }
+  category: { type: String, required: true },
 });
 
 const RestaurantSchema = new mongoose.Schema({
@@ -25,7 +25,7 @@ const RestaurantSchema = new mongoose.Schema({
   statusRight: String,
   image: String,
   menu: [MenuItemSchema], // Embedding menu items for simplicity in this case
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Restaurant', RestaurantSchema);
+module.exports = mongoose.model("Restaurant", RestaurantSchema);

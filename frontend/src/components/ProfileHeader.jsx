@@ -62,9 +62,18 @@ const ProfileHeader = () => {
             </h2>
           )}
 
-          <p className="text-sm text-gray-400 mb-1">{profileData?.email || user?.email}</p>
+          <p className="text-sm text-gray-400 mb-1">
+            {profileData?.email || user?.email}
+          </p>
           <p className="text-xs text-gray-300 font-medium">
-            Member since {profileData?.createdAt ? new Date(profileData.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : 'Joining...'} • 🍽️ {profileData?.orders?.length || 0} orders placed
+            Member since{" "}
+            {profileData?.createdAt
+              ? new Date(profileData.createdAt).toLocaleDateString("en-US", {
+                  month: "long",
+                  year: "numeric",
+                })
+              : "Joining..."}{" "}
+            • 🍽️ {profileData?.orders?.length || 0} orders placed
           </p>
         </div>
 

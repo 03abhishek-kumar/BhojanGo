@@ -13,7 +13,10 @@ const ProfileNavbar = () => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const displayName = profileData?.name?.split(" ")[0] || user?.displayName?.split(" ")[0] || "User";
+  const displayName =
+    profileData?.name?.split(" ")[0] ||
+    user?.displayName?.split(" ")[0] ||
+    "User";
 
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">

@@ -9,51 +9,45 @@ import NotificationSettings from "../components/NotificationSettings";
 import SecuritySettings from "../components/SecuritySettings";
 
 const Profile = () => {
-
   const [activeTab, setActiveTab] = useState("personal");
 
   // renders the correct component based on active tab
   const renderContent = () => {
     switch (activeTab) {
-      case "personal":      return <PersonalInfo />;
-      case "orders":        return <OrderHistory />;
-      case "addresses":     return <SavedAddresses />;
-      case "notifications": return <NotificationSettings />;
-      case "security":      return <SecuritySettings />;
-      default:              return <PersonalInfo />;
+      case "personal":
+        return <PersonalInfo />;
+      case "orders":
+        return <OrderHistory />;
+      case "addresses":
+        return <SavedAddresses />;
+      case "notifications":
+        return <NotificationSettings />;
+      case "security":
+        return <SecuritySettings />;
+      default:
+        return <PersonalInfo />;
     }
   };
 
-
   return (
     <div className="bg-[#F5F3EE] min-h-screen">
-
       <ProfileNavbar />
 
       <div className="px-[5%] py-6">
-
         {/* ── Profile Header ── */}
         <ProfileHeader />
 
         {/* ── Main Layout ── */}
         <div className="flex gap-6 items-start">
-
           {/* Left — Sidebar */}
-          <ProfileSidebar
-            active={activeTab}
-            setActive={setActiveTab}
-          />
+          <ProfileSidebar active={activeTab} setActive={setActiveTab} />
 
           {/* Right — Content */}
-          <div className="flex-1">
-            {renderContent()}
-          </div>
-
+          <div className="flex-1">{renderContent()}</div>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

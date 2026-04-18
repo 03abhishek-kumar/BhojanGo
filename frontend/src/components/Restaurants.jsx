@@ -16,7 +16,7 @@ const Restaurants = () => {
       try {
         const response = await fetch(`${config.BASE_URL}/api/restaurants`);
         if (!response.ok) {
-           throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         // Ensure data is an array before setting state
@@ -90,7 +90,7 @@ const Restaurants = () => {
               {/* Badge */}
               {r.badge && (
                 <span
-                  className={`absolute top-2 left-2 ${r.badgeColor || 'bg-orange-500'} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide`}
+                  className={`absolute top-2 left-2 ${r.badgeColor || "bg-orange-500"} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide`}
                 >
                   {r.badge}
                 </span>
@@ -137,13 +137,17 @@ const Restaurants = () => {
 
               {/* Status Bar */}
               <div
-                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || 'bg-gray-50'} rounded-xl p-3`}
+                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || "bg-gray-50"} rounded-xl p-3`}
               >
-                <span className={`flex items-center gap-1 ${r.statusColor || 'text-gray-500'}`}>
-                  <span className={`w-2 h-2 rounded-full ${r.dotColor || 'bg-gray-500'}`} />
+                <span
+                  className={`flex items-center gap-1 ${r.statusColor || "text-gray-500"}`}
+                >
+                  <span
+                    className={`w-2 h-2 rounded-full ${r.dotColor || "bg-gray-500"}`}
+                  />
                   {r.status}
                 </span>
-                <span className={`${r.statusColor || 'text-gray-500'} italic`}>
+                <span className={`${r.statusColor || "text-gray-500"} italic`}>
                   {r.statusRight}
                 </span>
               </div>

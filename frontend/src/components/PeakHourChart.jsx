@@ -50,8 +50,8 @@ const PeakHourChart = () => {
                     slot.isActive && bIdx === 1
                       ? "bg-[#F4521E]"
                       : slot.isActive
-                      ? "bg-orange-200"
-                      : "bg-slate-200"
+                        ? "bg-orange-200"
+                        : "bg-slate-200"
                   }`}
                   style={{ height: `${h * 10}px` }}
                 />
