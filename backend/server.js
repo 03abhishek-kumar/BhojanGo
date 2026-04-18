@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const Restaurant = require("./models/Restaurant");
 const Order = require("./models/Order");
+const User = require("./models/User");
 
 const app = express();
 app.use(cors());
@@ -63,6 +64,33 @@ app.get("/api/orders/user/:uid", async (req, res) => {
       createdAt: -1,
     });
     res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// ── USER ROUTES ──
+
+// Get user profile (including location)
+app.get("/api/users/:uid", async (req, res) => {
+  try {
+    const user = await User.findOne({ uid: req.params.uid });
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update user location
+app.post("/api/users/location", async (req, res) => {
+  const { uid, location, name, email } = req.body;
+  try {
+    const user = await User.findOneAndUpdate(
+      { uid },
+      { location, name, email },
+      { new: true, upsert: true },
+    );
+    res.json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

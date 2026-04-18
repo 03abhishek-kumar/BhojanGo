@@ -9,9 +9,13 @@ import Auth from "./pages/Auth";
 import Management from "./pages/Management";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
+import { RestaurantContext } from "./context/RestaurantContext";
+import LocationModal from "./components/LocationModal";
+import { useContext } from "react";
 
 const App = () => {
   const { user } = useAuth();
+  const { isLocationModalOpen, setIsLocationModalOpen } = useContext(RestaurantContext);
 
   return (
     <div className="bg-[#F5F3EE] min-h-screen">
@@ -56,6 +60,12 @@ const App = () => {
           }
         />
       </Routes>
+
+      {/* Global Location Modal */}
+      <LocationModal 
+        isOpen={isLocationModalOpen} 
+        onClose={() => setIsLocationModalOpen(false)} 
+      />
     </div>
   );
 };

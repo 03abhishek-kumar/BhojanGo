@@ -11,13 +11,35 @@ import {
 import SettingsPopup from "./SettingsPopup";
 import NotificationsPopup from "./NotificationsPopup";
 import { useAuth } from "../context/AuthContext";
+import { RestaurantContext } from "../context/RestaurantContext";
+import LocationModal from "./LocationModal";
 
 const Navbar = () => {
-  const [location, setLocation] = useState("New York, Central Park");
+  const { address, setAddress, setIsLocationModalOpen } = React.useContext(
+    RestaurantContext
+  );
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  // Fetch location from MongoDB when user logs in
+  React.useEffect(() => {
+    const fetchUserLocation = async () => {
+      if (user) {
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/${user.uid}`);
+          const data = await response.json();
+          if (data && data.location) {
+            setAddress(data.location);
+          }
+        } catch (error) {
+          console.error("Error fetching user location:", error);
+        }
+      }
+    };
+    fetchUserLocation();
+  }, [user, setAddress]);
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
       {/* left Side */}
@@ -35,9 +57,14 @@ const Navbar = () => {
         </Link>
 
         {/* Location */}
-        <div className="flex items-center gap-2 bg-orange-50 border border-slate-200 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300">
+        <div 
+          className="flex items-center gap-2 bg-orange-50 border border-slate-200 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300"
+          onClick={() => setIsLocationModalOpen(true)}
+        >
           <MapPinIcon className="w-4 h-4 text-[#F4521E]" />
-          <span className="text-sm font-medium text-slate-700">{location}</span>
+          <span className="text-sm font-medium text-slate-700 truncate max-w-[150px]">
+            {address}
+          </span>
           <ChevronDownIcon className="w-4 h-4 text-slate-400" />
         </div>
       </div>
