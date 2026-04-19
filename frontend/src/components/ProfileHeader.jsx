@@ -27,7 +27,7 @@ const ProfileHeader = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
+    <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm mb-6 border border-transparent dark:border-slate-800 transition-colors duration-300">
       <div className="flex items-center gap-6">
         {/* ── Avatar ── */}
         <div className="relative">
@@ -35,7 +35,7 @@ const ProfileHeader = () => {
             {name.charAt(0)}
           </div>
           {/* Online dot */}
-          <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
+          <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-900" />
         </div>
 
         {/* ── Info ── */}
@@ -47,7 +47,7 @@ const ProfileHeader = () => {
                 type="text"
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                className="font-bold text-xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#151515]"
+                className="font-bold text-xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#151515] dark:text-white"
               />
               <button
                 onClick={handleSave}
@@ -57,15 +57,15 @@ const ProfileHeader = () => {
               </button>
             </div>
           ) : (
-            <h2 className="font-['Sora'] font-bold text-xl text-[#151515] mb-1">
+            <h2 className="font-['Sora'] font-bold text-xl text-[#151515] dark:text-white mb-1">
               {name}
             </h2>
           )}
 
-          <p className="text-sm text-gray-400 mb-1">
+          <p className="text-sm text-gray-400 dark:text-slate-500 mb-1">
             {profileData?.email || user?.email}
           </p>
-          <p className="text-xs text-gray-300 font-medium">
+          <p className="text-xs text-gray-300 dark:text-slate-600 font-medium">
             Member since{" "}
             {profileData?.createdAt
               ? new Date(profileData.createdAt).toLocaleDateString("en-US", {
@@ -83,7 +83,7 @@ const ProfileHeader = () => {
             setIsEditing(!isEditing);
             setTempName(name);
           }}
-          className="flex items-center gap-2 border border-black/10 rounded-full px-4 py-2 text-sm font-medium text-[#151515] hover:border-[#F4521E] hover:text-[#F4521E] transition"
+          className="flex items-center gap-2 border border-black/10 dark:border-slate-800 rounded-full px-4 py-2 text-sm font-medium text-[#151515] dark:text-slate-200 hover:border-[#F4521E] dark:hover:border-[#F4521E] hover:text-[#F4521E] transition"
         >
           <PencilIcon className="w-4 h-4" />
           {isEditing ? "Cancel" : "Edit Profile"}

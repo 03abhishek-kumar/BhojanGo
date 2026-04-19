@@ -30,7 +30,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-[#F5F3EE] min-h-screen">
+    <div className="bg-[#F5F3EE] dark:bg-slate-950 min-h-screen transition-colors duration-300">
       <ProfileNavbar />
 
       <div className="px-[5%] py-6">

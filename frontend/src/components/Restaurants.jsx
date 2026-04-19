@@ -52,14 +52,14 @@ const Restaurants = () => {
     <section className="px-8 py-6">
       {/* ── Section Header ── */}
       <div className="flex items-center justify-between mb-1">
-        <h2 className="font-bold text-xl text-[#151515]">
+        <h2 className="font-bold text-xl text-[#151515] dark:text-white">
           Popular Restaurants Near You
         </h2>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-xl px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
+          <button className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-slate-800 rounded-xl px-4 py-2 text-xs font-medium dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-800 transition cursor-pointer">
             <FunnelIcon className="w-5 h-5" /> Filter
           </button>
-          <button className="flex items-center gap-2 bg-white border border-black/10 rounded-xl px-4 py-2 text-xs font-medium hover:bg-orange-50 transition cursor-pointer">
+          <button className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-slate-800 rounded-xl px-4 py-2 text-xs font-medium dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-800 transition cursor-pointer">
             <BarsArrowUpIcon className="w-5 h-5" /> Sort by
           </button>
         </div>
@@ -77,7 +77,7 @@ const Restaurants = () => {
               setSelectedRestaurant(r);
               navigate(`/restaurant/${r._id}`);
             }}
-            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer"
+            className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-slate-800/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer border border-transparent dark:border-slate-800"
           >
             {/* ── Card Image ── */}
             <div className="relative h-55">
@@ -102,12 +102,12 @@ const Restaurants = () => {
                   e.stopPropagation();
                   toggleLike(r._id);
                 }}
-                className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition"
+                className="absolute top-2 right-2 w-8 h-8 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition"
               >
                 {liked.includes(r._id) ? (
                   <HeartSolid className="w-4 h-4 text-red-500" />
                 ) : (
-                  <HeartIcon className="w-4 h-4 text-gray-400" />
+                  <HeartIcon className="w-4 h-4 text-gray-400 dark:text-slate-500" />
                 )}
               </button>
             </div>
@@ -116,7 +116,7 @@ const Restaurants = () => {
             <div className="p-4">
               {/* Name + Rating */}
               <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-[15px] text-[#151515]">
+                <span className="font-bold text-[15px] text-[#151515] dark:text-white">
                   {r.name}
                 </span>
                 <span className="text-yellow-400 font-semibold text-sm">
@@ -125,19 +125,19 @@ const Restaurants = () => {
               </div>
 
               {/* Cuisine */}
-              <p className="text-xs text-gray-400 mb-3">{r.cuisine}</p>
+              <p className="text-xs text-gray-400 dark:text-slate-500 mb-3">{r.cuisine}</p>
 
               {/* Time + Fee */}
-              <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
+              <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-slate-500 mb-3">
                 <span>🕐 {r.time}</span>
                 <span>🛵 {r.fee}</span>
               </div>
 
-              <hr className="text-gray-300 my-3 mx-6" />
+              <hr className="text-gray-300 dark:text-slate-800 my-3 mx-6" />
 
               {/* Status Bar */}
               <div
-                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || "bg-gray-50"} rounded-xl p-3`}
+                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || "bg-gray-50 dark:bg-slate-800/50"} rounded-xl p-3`}
               >
                 <span
                   className={`flex items-center gap-1 ${r.statusColor || "text-gray-500"}`}

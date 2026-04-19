@@ -41,7 +41,7 @@ const Navbar = () => {
     fetchUserLocation();
   }, [user, setAddress]);
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       {/* left Side */}
       <div className="flex gap-14">
         {/* Logo */}
@@ -58,14 +58,14 @@ const Navbar = () => {
 
         {/* Location */}
         <div 
-          className="flex items-center gap-2 bg-orange-50 border border-slate-200 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300"
+          className="flex items-center gap-2 bg-orange-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-orange-500 transition-all duration-300"
           onClick={() => setIsLocationModalOpen(true)}
         >
           <MapPinIcon className="w-4 h-4 text-[#F4521E]" />
-          <span className="text-sm font-medium text-slate-700 truncate max-w-[150px]">
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-200 truncate max-w-[150px]">
             {address}
           </span>
-          <ChevronDownIcon className="w-4 h-4 text-slate-400" />
+          <ChevronDownIcon className="w-4 h-4 text-slate-400 dark:text-slate-500" />
         </div>
       </div>
 
@@ -73,28 +73,28 @@ const Navbar = () => {
       <div className="flex items-center gap-5">
         {/* Bell */}
         <div
-          className="w-10 h-10 flex items-center justify-center cursor-pointer transition-all relative"
+          className="w-10 h-10 flex items-center justify-center cursor-pointer transition-all relative rounded-full hover:bg-orange-50 dark:hover:bg-slate-800"
           onClick={() => setNotificationsOpen(true)}
         >
-          <BellIcon className="w-5 h-5 text-slate-600" />
+          <BellIcon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
           <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F4521E]" />
         </div>
 
         {/* Settings */}
         <div
-          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 transition-all"
+          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 dark:hover:bg-slate-800 transition-all"
           onClick={() => setSettingsOpen(true)}
         >
-          <Settings className="w-5 h-5 text-slate-600" />
+          <Settings className="w-5 h-5 text-slate-600 dark:text-slate-400" />
         </div>
 
         {/* Avatar + Name or Login Button */}
         {user ? (
           <div
-            className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+            className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 dark:border-slate-600 p-1 rounded-full hover:border-[#F4521E] dark:hover:border-[#F4521E] transition-all"
             onClick={() => navigate("/profile")}
           >
-            <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] dark:group-hover:border-slate-700 transition-all overflow-hidden">
               {user.photoURL ? (
                 <img
                   src={user.photoURL}
@@ -105,7 +105,7 @@ const Navbar = () => {
                 <User color="white" />
               )}
             </div>
-            <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+            <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-black dark:group-hover:text-white pr-3">
               {user.displayName || "User"}
             </span>
           </div>

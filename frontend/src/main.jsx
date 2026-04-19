@@ -5,15 +5,18 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { RestaurantProvider } from "./context/RestaurantContext.jsx";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <StrictMode>
-      <RestaurantProvider>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </RestaurantProvider>
+      <ThemeProvider>
+        <RestaurantProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </RestaurantProvider>
+      </ThemeProvider>
     </StrictMode>
   </BrowserRouter>,
 );

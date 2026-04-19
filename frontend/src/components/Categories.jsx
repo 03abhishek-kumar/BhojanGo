@@ -20,7 +20,7 @@ const Categories = () => {
     <section className="px-8 py-2">
       {/* Section Header */}
       <div className="flex items-center justify-between">
-        <h2 className="font-bold text-xl text-[#1a1a1a]">
+        <h2 className="font-bold text-xl text-[#1a1a1a] dark:text-white">
           What's on your mind?
         </h2>
         <Link
@@ -44,7 +44,7 @@ const Categories = () => {
               className={`w-18 h-18 rounded-xl flex items-center justify-center text-[42px] transition-all duration-300 ${
                 active === cat.id
                   ? "bg-[#F4521E] shadow-[0_12px_24px_rgba(244,82,30,0.2)] scale-95"
-                  : "bg-white border border-gray-100 shadow-sm group-hover:scale-110 group-hover:shadow-md group-hover:border-[#F4521E]"
+                  : "bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm group-hover:scale-110 group-hover:shadow-md group-hover:border-[#F4521E]"
               }`}
             >
               <span className="leading-none select-none transition-transform duration-300 group-hover:rotate-6">
@@ -57,7 +57,7 @@ const Categories = () => {
               className={`text-[12px] font-medium tracking-tight ${
                 active === cat.id
                   ? "text-[#F4521E] font-semibold"
-                  : "text-gray-700 group-hover:text-[#1a1a1a]"
+                  : "text-gray-700 dark:text-slate-400 group-hover:text-[#1a1a1a] dark:group-hover:text-white"
               }`}
             >
               {" "}

@@ -6,7 +6,7 @@ import TrackingMap from "../components/TrackingMap";
 
 const Tracking = () => {
   return (
-    <div className="bg-[#F5F3EE] min-h-screen flex flex-col">
+    <div className="bg-[#F5F3EE] dark:bg-slate-950 min-h-screen flex flex-col transition-colors duration-300">
       {/* ── Navbar ── */}
       <TrackingNavbar />
 

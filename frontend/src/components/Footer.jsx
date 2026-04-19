@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white mt-16 border-t border-black/5 px-[5%] pt-12 pb-8">
+    <footer className="bg-white dark:bg-slate-900 mt-16 border-t border-black/5 dark:border-slate-800 px-[5%] pt-12 pb-8 transition-colors duration-300">
       {/* ── Top Grid ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
         {/* ── Brand Column ── */}
@@ -43,7 +43,7 @@ const Footer = () => {
           </Link>
 
           {/* Tagline */}
-          <p className="text-sm text-gray-400 mt-3 leading-relaxed max-w-50">
+          <p className="text-sm text-gray-400 dark:text-slate-500 mt-3 leading-relaxed max-w-50">
             Redefining food discovery with real-time analytics and predictive
             peak hour insights.
           </p>
@@ -54,7 +54,7 @@ const Footer = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               f
             </a>
@@ -62,7 +62,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               @
             </a>
@@ -70,7 +70,7 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] rounded-lg flex items-center justify-center text-sm text-gray-500 hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               📷
             </a>
@@ -80,7 +80,7 @@ const Footer = () => {
         {/* ── Link Columns ── */}
         {Object.entries(footerLinks).map(([title, links]) => (
           <div key={title}>
-            <h4 className="text-[11px] font-bold tracking-widest uppercase text-[#151515] mb-4">
+            <h4 className="text-[11px] font-bold tracking-widest uppercase text-[#151515] dark:text-white mb-4">
               {title}
             </h4>
             <ul className="space-y-3">
@@ -88,7 +88,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-gray-400 hover:text-[#F4521E] transition no-underline font-bold"
+                    className="text-sm text-gray-400 dark:text-slate-500 hover:text-[#F4521E] transition no-underline font-bold"
                   >
                     {link.label}
                   </Link>
@@ -100,7 +100,7 @@ const Footer = () => {
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="border-t border-black/5 pt-6 text-center text-xs text-gray-400 tracking-wide uppercase">
+      <div className="border-t border-black/5 dark:border-slate-800 pt-6 text-center text-xs text-gray-400 dark:text-slate-500 tracking-wide uppercase">
         © 2024 BhojanGo Technologies Inc. All Rights Reserved
       </div>
     </footer>

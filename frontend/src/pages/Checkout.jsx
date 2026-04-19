@@ -7,7 +7,7 @@ import PaymentDetails from "../components/PaymentDetails";
 
 const Checkout = () => {
   return (
-    <div className="bg-[#F5F3EE] min-h-screen">
+    <div className="bg-[#F5F3EE] dark:bg-slate-950 min-h-screen transition-colors duration-300">
       <CheckoutNavbar />
 
       {/* Page Header */}
@@ -39,7 +39,7 @@ const Checkout = () => {
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-black/5 bg-white px-[5%] py-6 flex items-center justify-between">
+      <footer className="mt-12 border-t border-black/5 dark:border-slate-800 bg-white dark:bg-slate-900 px-[5%] py-6 flex items-center justify-between transition-colors duration-300">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 bg-[#F4521E] rounded-lg flex items-center justify-center">
             <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white">

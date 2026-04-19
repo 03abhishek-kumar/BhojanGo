@@ -65,29 +65,29 @@ const LocationSearch = ({ onSelect }) => {
 
   return (
     <div className="relative w-full">
-      <div className="flex items-center bg-gray-50 rounded-2xl px-5 py-4 border-2 border-transparent focus-within:border-orange-500/50 focus-within:bg-white transition-all shadow-inner">
+      <div className="flex items-center bg-gray-50 dark:bg-slate-800 rounded-2xl px-5 py-4 border-2 border-transparent focus-within:border-orange-500/50 focus-within:bg-white dark:focus-within:bg-slate-900 transition-all shadow-inner">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search area in Bengaluru..."
-          className="bg-transparent outline-none w-full text-sm font-semibold text-gray-700 placeholder:text-gray-400"
+          className="bg-transparent outline-none w-full text-sm font-semibold text-gray-700 dark:text-gray-200 placeholder:text-gray-400"
         />
       </div>
 
       {/* Suggestions Dropdown */}
       {suggestions.length > 0 && (
-        <ul className="absolute z-50 w-full bg-white border mt-1 rounded-xl shadow-2xl max-h-60 overflow-y-auto">
+        <ul className="absolute z-50 w-full bg-white dark:bg-slate-900 border dark:border-slate-800 mt-1 rounded-xl shadow-2xl max-h-60 overflow-y-auto">
           {suggestions.map((item, index) => (
             <li
               key={index}
               onClick={() => handleSelect(item)}
-              className="p-3 hover:bg-orange-50 cursor-pointer text-xs border-b last:border-none flex flex-col gap-1"
+              className="p-3 hover:bg-orange-50 dark:hover:bg-slate-800 cursor-pointer text-xs border-b last:border-none border-gray-100 dark:border-slate-800 flex flex-col gap-1 transition-colors"
             >
-              <span className="font-bold text-gray-800">
+              <span className="font-bold text-gray-800 dark:text-slate-200">
                 {item.address.name || item.address.road}
               </span>
-              <span className="text-gray-500 truncate">
+              <span className="text-gray-500 dark:text-slate-500 truncate">
                 {item.display_name}
               </span>
             </li>

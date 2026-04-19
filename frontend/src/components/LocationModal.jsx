@@ -65,27 +65,27 @@ const LocationModal = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Content */}
-      <div className="relative bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+      <div className="relative bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300 border border-transparent dark:border-slate-800">
         {/* Header */}
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-orange-50/50">
+        <div className="p-6 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between bg-orange-50/50 dark:bg-slate-800/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-orange-200">
+            <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-orange-200 dark:shadow-none">
               <MapPinIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-800">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-white">
                 Choose Location
               </h2>
-              <p className="text-xs text-gray-500 font-medium">
+              <p className="text-xs text-gray-500 dark:text-slate-400 font-medium">
                 To see restaurants near you
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white rounded-full transition-colors shadow-sm"
+            className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-full transition-colors shadow-sm dark:shadow-none"
           >
-            <XMarkIcon className="w-6 h-6 text-gray-400" />
+            <XMarkIcon className="w-6 h-6 text-gray-400 dark:text-slate-500" />
           </button>
         </div>
 
@@ -98,18 +98,18 @@ const LocationModal = ({ isOpen, onClose }) => {
 
             <div className="pt-4">
               <div className="flex items-center gap-2 mb-4">
-                <div className="h-[1px] flex-1 bg-gray-100"></div>
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                <div className="h-[1px] flex-1 bg-gray-100 dark:bg-slate-800"></div>
+                <span className="text-[10px] font-bold text-gray-400 dark:text-slate-500 uppercase tracking-widest">
                   Or use current location
                 </span>
-                <div className="h-[1px] flex-1 bg-gray-100"></div>
+                <div className="h-[1px] flex-1 bg-gray-100 dark:bg-slate-800"></div>
               </div>
 
               <button
-                className="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-orange-200 rounded-2xl text-orange-600 font-semibold hover:bg-orange-50 hover:border-orange-300 transition-all group"
+                className="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-orange-200 dark:border-slate-700 rounded-2xl text-orange-600 dark:text-orange-500 font-semibold hover:bg-orange-50 dark:hover:bg-slate-800/50 hover:border-orange-300 dark:hover:border-orange-600 transition-all group"
                 onClick={handleDetectLocation}
               >
-                <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 bg-orange-100 dark:bg-slate-800 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                   <MapPinIcon className="w-5 h-5" />
                 </div>
                 <span>Detect my location</span>
@@ -119,8 +119,8 @@ const LocationModal = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-gray-50 text-center">
-          <p className="text-[10px] text-gray-400 font-medium">
+        <div className="p-4 bg-gray-50 dark:bg-slate-900/50 text-center">
+          <p className="text-[10px] text-gray-400 dark:text-slate-500 font-medium">
             Powered by LocationIQ • Accurate distance tracking
           </p>
         </div>

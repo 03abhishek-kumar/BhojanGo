@@ -67,7 +67,7 @@ const RestaurantDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-[#F5F3EE]">
+      <div className="flex justify-center items-center h-screen bg-[#F5F3EE] dark:bg-slate-950 transition-colors duration-300">
         <div className="w-12 h-12 border-4 border-[#F4521E] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -75,7 +75,7 @@ const RestaurantDetail = () => {
 
   if (!restaurant) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen bg-[#F5F3EE]">
+      <div className="flex flex-col items-center justify-center h-screen bg-[#F5F3EE] dark:bg-slate-950 transition-colors duration-300">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">
           Restaurant not found
         </h2>
@@ -90,7 +90,7 @@ const RestaurantDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] flex flex-col">
+    <div className="min-h-screen bg-[#F5F3EE] dark:bg-slate-950 flex flex-col transition-colors duration-300">
       {/* Navbar */}
       <DetailNavbar />
 
@@ -137,7 +137,7 @@ const RestaurantDetail = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 py-3 flex items-center justify-between z-50 shadow-2xl shadow-black/10">
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-6 py-3 flex items-center justify-between z-50 shadow-2xl shadow-black/10 transition-colors duration-300">
         <div>
           <p className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">
             Current Order
@@ -175,7 +175,7 @@ const RestaurantDetail = () => {
           onClick={() => setViewOrderOpen(false)}
         >
           <div
-            className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl max-h-[80vh] overflow-y-auto"
+            className="bg-white dark:bg-slate-900 w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl max-h-[80vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
