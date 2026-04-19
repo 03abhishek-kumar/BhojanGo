@@ -39,13 +39,13 @@ const OrderJourney = () => {
   ];
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm">
+    <div className="bg-white dark:bg-[#111111] rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] transition-colors duration-300">
       {/* ── Header ── */}
       <div className="flex items-center justify-between mb-6">
-        <p className="text-[11px] font-bold tracking-widest uppercase text-gray-400">
+        <p className="text-[10px] uppercase tracking-widest font-[800] text-gray-400 dark:text-gray-500">
           Order Journey
         </p>
-        <p className="text-sm font-bold text-[#F4521E]">ETA: 14 mins</p>
+        <p className="text-sm font-[800] text-[#F4521E] tracking-tight">ETA: 14 mins</p>
       </div>
 
       {/* ── Steps ── */}
@@ -63,10 +63,10 @@ const OrderJourney = () => {
                   className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all
                     ${
                       step.status === "done"
-                        ? "bg-[#F4521E] shadow-md shadow-orange-200"
+                        ? "bg-[#F4521E] shadow-md shadow-orange-200 dark:shadow-none"
                         : step.status === "active"
-                          ? "bg-white border-2 border-[#F4521E]"
-                          : "bg-white border-2 border-gray-200"
+                          ? "bg-white dark:bg-[#1A1A1A] border-2 border-[#F4521E]"
+                          : "bg-white dark:bg-[#1A1A1A] border-2 border-gray-200 dark:border-[#222222]"
                     }`}
                 >
                   <Icon
@@ -76,7 +76,7 @@ const OrderJourney = () => {
                           ? "text-white"
                           : step.status === "active"
                             ? "text-[#F4521E]"
-                            : "text-gray-300"
+                            : "text-gray-300 dark:text-gray-600"
                       }`}
                   />
                 </div>
@@ -86,7 +86,7 @@ const OrderJourney = () => {
                   <div
                     className={`w-0.5 flex-1 my-1 min-h-8
                       ${
-                        step.status === "done" ? "bg-[#F4521E]" : "bg-gray-200"
+                        step.status === "done" ? "bg-[#F4521E]" : "bg-gray-100 dark:bg-[#222222]"
                       }`}
                   />
                 )}
@@ -95,23 +95,23 @@ const OrderJourney = () => {
               {/* ── Right — Text ── */}
               <div className="pb-6">
                 <p
-                  className={`font-['Sora'] font-bold text-sm
+                  className={`font-[800] text-sm tracking-tight
                     ${
                       step.status === "active"
                         ? "text-[#F4521E]"
                         : step.status === "done"
-                          ? "text-[#151515]"
-                          : "text-gray-300"
+                          ? "text-[#111111] dark:text-white"
+                          : "text-gray-300 dark:text-gray-700"
                     }`}
                 >
                   {step.label}
                 </p>
                 <p
-                  className={`text-xs mt-0.5
+                  className={`text-xs mt-0.5 font-medium
                     ${
                       step.status === "pending"
-                        ? "text-gray-300"
-                        : "text-gray-400"
+                        ? "text-gray-300 dark:text-gray-700"
+                        : "text-gray-400 dark:text-gray-500"
                     }`}
                 >
                   {step.description}

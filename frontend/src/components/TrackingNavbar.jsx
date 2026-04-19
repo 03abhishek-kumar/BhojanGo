@@ -12,7 +12,7 @@ const TrackingNavbar = () => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const navigate = useNavigate();
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 dark:border-[#222222] transition-colors duration-300">
       {/* ── Left — Logo + Order Info ── */}
       <div className="flex items-center gap-3">
         {/* Logo */}
@@ -27,30 +27,30 @@ const TrackingNavbar = () => {
           </span>
         </Link>
         {/* Divider */}
-        <div className="w-px h-8 bg-black/10" />
+        <div className="w-px h-8 bg-black/10 dark:bg-white/10" />
 
         {/* Order Info */}
         <div>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-base text-[#151515]">
+            <span className="font-[800] text-base text-[#111111] dark:text-white tracking-tight">
               Order #BG-9921
             </span>
           </div>
-          <p className="text-[11px] font-bold tracking-widest uppercase text-gray-400">
-            Live Tracking Dashboard
+          <p className="text-[10px] uppercase tracking-widest font-[800] text-gray-400 dark:text-gray-500">
+            Live Tracking
           </p>
         </div>
       </div>
 
       {/* ── Center — Live Connection Badge ── */}
-      <div className="flex items-center gap-2 bg-white border border-black/8 rounded-full px-4 py-2">
+      <div className="flex items-center gap-2 bg-white dark:bg-[#111111] border border-gray-100 dark:border-[#222222] rounded-full px-5 py-2.5 shadow-sm transition-colors transition-duration-300">
         {/* Pulsing green dot */}
         <div className="relative flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-green-500" />
-          <div className="absolute w-2 h-2 rounded-full bg-green-500 animate-ping opacity-75" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+          <div className="absolute w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-75" />
         </div>
-        <span className="text-xs font-bold tracking-widest uppercase text-[#151515]">
-          Live Connection
+        <span className="text-[10px] font-[800] tracking-widest uppercase text-[#111111] dark:text-white">
+          Live Bridge
         </span>
       </div>
 
@@ -59,25 +59,25 @@ const TrackingNavbar = () => {
         <div className="flex items-center gap-3 ">
           {/* Bell */}
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-black/8 cursor-pointer hover:bg-gray-50 transition relative"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-100 dark:border-[#222222] cursor-pointer hover:bg-gray-50 dark:hover:bg-[#1A1A1A] transition relative"
             onClick={() => setNotificationsOpen(true)}
           >
-            <BellIcon className="w-5 h-5 text-[#151515]" />
-            <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F4521E]" />
+            <BellIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+            <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-[#F4521E] border-2 border-white dark:border-[#0A0A0A]" />
           </div>
 
           {/* Settings */}
           <div
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-black/8 cursor-pointer hover:bg-orange-50 transition"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-100 dark:border-[#222222] cursor-pointer hover:bg-orange-50 dark:hover:bg-[#F4521E]/10 transition"
             onClick={() => setSettingsOpen(true)}
           >
-            <Settings className="w-5 h-5 text-[#151515]" />
+            <Settings className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </div>
 
           {/* Support Button */}
           <Link
             to="/support"
-            className="bg-[#151515] hover:bg-black text-white text-sm font-bold px-5 py-2.5 rounded-full transition no-underline"
+            className="bg-[#111111] dark:bg-[#222222] hover:bg-black dark:hover:bg-[#333333] text-white text-[11px] font-[800] px-6 py-3 rounded-full transition no-underline uppercase tracking-widest"
           >
             Support
           </Link>
@@ -85,13 +85,13 @@ const TrackingNavbar = () => {
 
         {/* Avatar + Name */}
         <div
-          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+          className="flex items-center gap-3 cursor-pointer group border border-solid border-gray-200 dark:border-[#333333] p-1 rounded-full px-2 pr-4 hover:border-[#F4521E] transition-all"
           onClick={() => navigate("/profile")}
         >
-          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
+          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] dark:group-hover:border-[#F4521E]/30 transition-all overflow-hidden">
             <User color="white" />
           </div>
-          <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+          <span className="text-sm font-[600] text-gray-700 dark:text-gray-300 group-hover:text-[#111111] dark:group-hover:text-white transition-colors">
             {user?.displayName || "User"}
           </span>
         </div>

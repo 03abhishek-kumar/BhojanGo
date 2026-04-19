@@ -86,7 +86,7 @@ const SettingsPopup = ({ isOpen, onClose }) => {
       {/* card */}
       <div
         ref={popupRef}
-        className="w-80 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-slate-800/60 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-[popIn_0.25s_ease-out_forwards] origin-top-right overflow-hidden"
+        className="w-80 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl border border-white/60 dark:border-[#222222]/60 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-[popIn_0.25s_ease-out_forwards] origin-top-right overflow-hidden"
       >
         {/* ── Header ── */}
         <div className="flex items-center justify-between px-5 pt-5 pb-3">

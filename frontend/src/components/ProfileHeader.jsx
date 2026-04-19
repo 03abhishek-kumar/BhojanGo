@@ -27,15 +27,15 @@ const ProfileHeader = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm mb-6 border border-transparent dark:border-slate-800 transition-colors duration-300">
+    <div className="bg-white dark:bg-[#0A0A0A] rounded-[24px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] mb-8 border border-gray-100 dark:border-[#1A1A1A] transition-colors duration-300">
       <div className="flex items-center gap-6">
         {/* ── Avatar ── */}
         <div className="relative">
-          <div className="w-20 h-20 rounded-full bg-[#E0D7FF] flex items-center justify-center text-2xl font-bold text-[#5B4FCC] shrink-0">
+          <div className="w-24 h-24 rounded-[32px] bg-[#E0D7FF] dark:bg-[#1A1A1A] flex items-center justify-center text-3xl font-[800] text-[#5B4FCC] dark:text-[#E0D7FF] shrink-0 border border-transparent dark:border-[#2A2A2A]">
             {name.charAt(0)}
           </div>
           {/* Online dot */}
-          <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-900" />
+          <div className="absolute bottom-2 right-2 w-5 h-5 bg-green-500 rounded-full border-4 border-white dark:border-[#0A0A0A]" />
         </div>
 
         {/* ── Info ── */}
@@ -47,7 +47,7 @@ const ProfileHeader = () => {
                 type="text"
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                className="font-bold text-xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#151515] dark:text-white"
+                className="font-[800] text-2xl border-b-2 border-[#F4521E] outline-none bg-transparent text-[#111111] dark:text-white tracking-tight"
               />
               <button
                 onClick={handleSave}
@@ -57,15 +57,15 @@ const ProfileHeader = () => {
               </button>
             </div>
           ) : (
-            <h2 className="font-['Sora'] font-bold text-xl text-[#151515] dark:text-white mb-1">
+            <h2 className="font-[800] text-2xl text-[#111111] dark:text-white mb-1 tracking-tight">
               {name}
             </h2>
           )}
 
-          <p className="text-sm text-gray-400 dark:text-slate-500 mb-1">
+          <p className="text-sm text-gray-500 dark:text-gray-500 mb-2 font-medium">
             {profileData?.email || user?.email}
           </p>
-          <p className="text-xs text-gray-300 dark:text-slate-600 font-medium">
+          <p className="text-[10px] text-gray-400 dark:text-gray-600 font-[800] uppercase tracking-widest">
             Member since{" "}
             {profileData?.createdAt
               ? new Date(profileData.createdAt).toLocaleDateString("en-US", {
@@ -83,9 +83,9 @@ const ProfileHeader = () => {
             setIsEditing(!isEditing);
             setTempName(name);
           }}
-          className="flex items-center gap-2 border border-black/10 dark:border-slate-800 rounded-full px-4 py-2 text-sm font-medium text-[#151515] dark:text-slate-200 hover:border-[#F4521E] dark:hover:border-[#F4521E] hover:text-[#F4521E] transition"
+          className="flex items-center gap-2 border border-gray-100 dark:border-[#222222] rounded-full px-5 py-2.5 text-[11px] uppercase tracking-widest font-[800] text-[#111111] dark:text-white hover:border-[#F4521E] dark:hover:border-[#F4521E] hover:text-[#F4521E] transition-all cursor-pointer"
         >
-          <PencilIcon className="w-4 h-4" />
+          <PencilIcon className="w-3.5 h-3.5" />
           {isEditing ? "Cancel" : "Edit Profile"}
         </button>
       </div>

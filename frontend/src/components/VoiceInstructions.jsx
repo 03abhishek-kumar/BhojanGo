@@ -30,10 +30,10 @@ const VoiceInstructions = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-5 shadow-sm">
+    <div className="bg-white dark:bg-[#111111] rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] transition-colors duration-300">
       {/* ── Header ── */}
-      <p className="text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-4">
-        Voice Instructions
+      <p className="text-[10px] uppercase tracking-widest font-[800] text-gray-400 dark:text-gray-500 mb-5">
+        Voice Records
       </p>
 
       {/* ── Voice Notes List ── */}
@@ -45,21 +45,21 @@ const VoiceInstructions = () => {
             <div key={note.id}>
               {/* Title Row */}
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 bg-[#F5F3EE] rounded-xl flex items-center justify-center text-base">
+                <div className="w-10 h-10 bg-gray-50 dark:bg-[#1A1A1A] rounded-xl flex items-center justify-center text-lg border border-gray-100 dark:border-[#222222]">
                   {note.icon}
                 </div>
                 <div>
-                  <p className="font-['Sora'] font-bold text-sm text-[#151515]">
+                  <p className="font-[800] text-sm text-[#111111] dark:text-white tracking-tight">
                     {note.title}
                   </p>
-                  <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400">
+                  <p className="text-[9px] font-[800] tracking-widest uppercase text-gray-400 dark:text-gray-600">
                     {note.recorded}
                   </p>
                 </div>
               </div>
 
               {/* Player Row */}
-              <div className="flex items-center gap-3 bg-[#F5F3EE] rounded-xl px-4 py-3">
+              <div className="flex items-center gap-4 bg-gray-50 dark:bg-[#1A1A1A] rounded-2xl px-5 py-4 border border-gray-100 dark:border-[#222222]">
                 {/* Play / Pause Button */}
                 <button
                   onClick={() => handlePlay(note.id)}

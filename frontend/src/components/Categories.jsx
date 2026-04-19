@@ -19,9 +19,9 @@ const Categories = () => {
   return (
     <section className="px-8 py-2">
       {/* Section Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="font-bold text-xl text-[#1a1a1a] dark:text-white">
-          What's on your mind?
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="font-[800] text-2xl text-[#111111] dark:text-white tracking-tight">
+          Categories
         </h2>
         <Link
           to="/categories"
@@ -41,27 +41,26 @@ const Categories = () => {
           >
             {/* Icon Box */}
             <div
-              className={`w-18 h-18 rounded-xl flex items-center justify-center text-[42px] transition-all duration-300 ${
+              className={`w-18 h-18 rounded-[18px] flex items-center justify-center text-[38px] transition-all duration-300 ${
                 active === cat.id
-                  ? "bg-[#F4521E] shadow-[0_12px_24px_rgba(244,82,30,0.2)] scale-95"
-                  : "bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm group-hover:scale-110 group-hover:shadow-md group-hover:border-[#F4521E]"
+                  ? "bg-[#FFF4F0] dark:bg-[#F4521E]/10 border-2 border-[#F4521E]"
+                  : "bg-white dark:bg-[#111111] border border-gray-100 dark:border-[#222222] group-hover:border-[#F4521E]/50 group-hover:bg-[#FFF4F0] dark:group-hover:bg-[#111111]"
               }`}
             >
-              <span className="leading-none select-none transition-transform duration-300 group-hover:rotate-6">
+              <span className="leading-none select-none transition-transform duration-300 group-hover:scale-110">
                 {cat.emoji}
               </span>
             </div>
 
             {/* Label */}
             <span
-              className={`text-[12px] font-medium tracking-tight ${
+              className={`text-[13px] tracking-wide mt-1 ${
                 active === cat.id
-                  ? "text-[#F4521E] font-semibold"
-                  : "text-gray-700 dark:text-slate-400 group-hover:text-[#1a1a1a] dark:group-hover:text-white"
+                  ? "text-[#F4521E] font-[700]"
+                  : "text-[#555555] dark:text-gray-400 font-[500] group-hover:text-[#111111] dark:group-hover:text-white"
               }`}
             >
-              {" "}
-              {cat.name}{" "}
+              {cat.name}
             </span>
           </div>
         ))}

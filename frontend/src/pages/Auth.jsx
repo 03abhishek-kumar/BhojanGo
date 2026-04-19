@@ -55,16 +55,16 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-orange-50 to-orange-100 dark:from-slate-950 dark:to-slate-900 flex items-center justify-center p-4 transition-colors duration-300">
-      <div className="relative w-full max-w-md overflow-hidden bg-white dark:bg-slate-900 rounded-3xl shadow-2xl shadow-orange-200 dark:shadow-none border border-orange-100 dark:border-slate-800 transition-colors duration-300">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 to-orange-100 dark:from-black dark:to-[#0A0A0A] flex items-center justify-center p-4 transition-colors duration-300">
+      <div className="relative w-full max-w-md overflow-hidden bg-white dark:bg-[#111111] rounded-3xl shadow-2xl shadow-orange-200 dark:shadow-none border border-orange-100 dark:border-[#222222] transition-colors duration-300">
         {/* Decorative Top Banner */}
         <div className="h-32 bg-linear-to-r from-[#F4521E] to-[#FF8A65] dark:from-[#D84315] dark:to-[#F4521E] flex items-center justify-center p-6 relative">
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm pointer-events-none"></div>
+          <div className="absolute inset-0 bg-white/5 dark:bg-black/20 backdrop-blur-[2px] pointer-events-none"></div>
           <Link
             to="/"
             className="z-10 flex items-center gap-3 no-underline group"
           >
-            <div className="bg-white dark:bg-slate-900 p-2 text-[#F4521E] rounded-xl shadow-lg transform group-hover:scale-105 transition-all">
+            <div className="bg-white dark:bg-[#111111] p-2 text-[#F4521E] rounded-xl shadow-lg transform group-hover:scale-105 transition-all">
               <ChefHat size={32} />
             </div>
             <h1 className="text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
@@ -79,7 +79,7 @@ const Auth = () => {
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white tracking-tight">
               {isLogin ? "Welcome Back" : "Join the Feast"}
             </h2>
-            <p className="text-gray-500 dark:text-slate-400 mt-2 text-sm">
+            <p className="text-gray-500 dark:text-gray-500 mt-2 text-sm font-medium">
               {isLogin
                 ? "Sign in to pick up where you left off"
                 : "Create an account to start your culinary journey"}
@@ -104,7 +104,7 @@ const Auth = () => {
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-slate-400"
+                  className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-[#1A1A1A] border border-gray-100 dark:border-[#333333] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-gray-600 font-medium"
                   required={!isLogin}
                 />
               </div>
@@ -128,11 +128,11 @@ const Auth = () => {
                       className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all ${
                         role === r.id
                           ? "border-[#F4521E] bg-[#FFF0EB] dark:bg-[#F4521E]/10 text-[#F4521E] shadow-sm"
-                          : "border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:border-gray-200 dark:hover:border-slate-600"
+                          : "border-gray-50 dark:border-[#222222] bg-gray-50 dark:bg-[#1A1A1A] text-gray-500 dark:text-gray-500 hover:border-gray-100 dark:hover:border-[#333333]"
                       }`}
                     >
                       <span className="text-xl">{r.icon}</span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider">
+                      <span className="text-[9px] font-[800] uppercase tracking-widest">
                         {r.label}
                       </span>
                     </button>
@@ -150,7 +150,7 @@ const Auth = () => {
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-slate-400"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-[#1A1A1A] border border-gray-100 dark:border-[#333333] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-gray-600 font-medium"
                 required
               />
             </div>
@@ -164,7 +164,7 @@ const Auth = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-slate-400"
+                className="w-full pl-11 pr-4 py-3 bg-gray-50 dark:bg-[#1A1A1A] border border-gray-100 dark:border-[#333333] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#F4521E]/30 focus:border-[#F4521E] transition-all dark:text-white dark:placeholder-gray-600 font-medium"
                 required
                 minLength={6}
               />
@@ -200,11 +200,11 @@ const Auth = () => {
             </button>
           </form>
 
-          <div className="mt-8 text-center text-sm text-gray-600 dark:text-slate-400">
+          <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-500 font-medium">
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <button
               onClick={toggleAuthMode}
-              className="font-bold text-[#F4521E] hover:text-[#D84315] hover:underline"
+              className="font-[800] text-[#F4521E] hover:text-[#D84315] transition uppercase tracking-widest text-[11px]"
             >
               {isLogin ? "Sign up now" : "Log in instead"}
             </button>

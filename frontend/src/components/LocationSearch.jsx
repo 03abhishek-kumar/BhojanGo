@@ -65,7 +65,7 @@ const LocationSearch = ({ onSelect }) => {
 
   return (
     <div className="relative w-full">
-      <div className="flex items-center bg-gray-50 dark:bg-slate-800 rounded-2xl px-5 py-4 border-2 border-transparent focus-within:border-orange-500/50 focus-within:bg-white dark:focus-within:bg-slate-900 transition-all shadow-inner">
+      <div className="flex items-center bg-gray-50 dark:bg-[#222222] rounded-2xl px-5 py-4 border-2 border-transparent focus-within:border-orange-500/50 focus-within:bg-white dark:focus-within:bg-slate-900 transition-all shadow-inner">
         <input
           type="text"
           value={query}
@@ -77,12 +77,12 @@ const LocationSearch = ({ onSelect }) => {
 
       {/* Suggestions Dropdown */}
       {suggestions.length > 0 && (
-        <ul className="absolute z-50 w-full bg-white dark:bg-slate-900 border dark:border-slate-800 mt-1 rounded-xl shadow-2xl max-h-60 overflow-y-auto">
+        <ul className="absolute z-50 w-full bg-white dark:bg-[#111111] border dark:border-[#222222] mt-1 rounded-xl shadow-2xl max-h-60 overflow-y-auto">
           {suggestions.map((item, index) => (
             <li
               key={index}
               onClick={() => handleSelect(item)}
-              className="p-3 hover:bg-orange-50 dark:hover:bg-slate-800 cursor-pointer text-xs border-b last:border-none border-gray-100 dark:border-slate-800 flex flex-col gap-1 transition-colors"
+              className="p-3 hover:bg-orange-50 dark:hover:bg-slate-800 cursor-pointer text-xs border-b last:border-none border-gray-100 dark:border-[#222222] flex flex-col gap-1 transition-colors"
             >
               <span className="font-bold text-gray-800 dark:text-slate-200">
                 {item.address.name || item.address.road}

@@ -19,7 +19,7 @@ const ProfileNavbar = () => {
     "User";
 
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 dark:border-[#222222] transition-colors duration-300">
       {/* ── Left — Logo ── */}
       <Link to="/" className="flex items-center gap-3 group no-underline">
         <div className="w-10 h-10 bg-[#F4521E] rounded-xl flex items-center justify-center shadow-lg shadow-orange-200 transition-transform group-hover:scale-105">
@@ -35,9 +35,9 @@ const ProfileNavbar = () => {
       {/* ── Center — Back Link ── */}
       <Link
         to="/"
-        className="flex items-center gap-2 text-sm font-medium text-[#151515] hover:text-[#F4521E] transition no-underline"
+        className="flex items-center gap-2 text-[11px] uppercase tracking-widest font-[800] text-[#111111] dark:text-white hover:text-[#F4521E] dark:hover:text-[#F4521E] transition no-underline"
       >
-        <ArrowLeftIcon className="w-4 h-4" />
+        <ArrowLeftIcon className="w-3.5 h-3.5" />
         Back to Home
       </Link>
 
@@ -45,30 +45,30 @@ const ProfileNavbar = () => {
       <div className="flex items-center gap-5">
         {/* Bell */}
         <div
-          className="w-10 h-10 flex items-center justify-center cursor-pointer transition-all relative"
+          className="w-10 h-10 flex items-center justify-center cursor-pointer transition-all relative border border-gray-100 dark:border-[#222222] rounded-full hover:bg-gray-50 dark:hover:bg-[#1A1A1A]"
           onClick={() => setNotificationsOpen(true)}
         >
-          <BellIcon className="w-5 h-5 text-slate-600" />
-          <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#F4521E]" />
+          <BellIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+          <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-[#F4521E] border-2 border-white dark:border-[#0A0A0A]" />
         </div>
 
         {/* Settings */}
         <div
-          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 transition-all"
+          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full border border-gray-100 dark:border-[#222222] hover:bg-orange-50 dark:hover:bg-[#F4521E]/10 transition-all"
           onClick={() => setSettingsOpen(true)}
         >
-          <Settings className="w-5 h-5 text-slate-600" />
+          <Settings className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
 
         {/* Avatar + Name */}
         <div
-          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+          className="flex items-center gap-3 cursor-pointer group border border-solid border-gray-200 dark:border-[#333333] p-1 rounded-full px-2 pr-4 hover:border-[#F4521E] transition-all"
           onClick={() => navigate("/profile")}
         >
-          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
+          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] dark:group-hover:border-[#F4521E]/30 transition-all overflow-hidden">
             <User color="white" />
           </div>
-          <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+          <span className="text-sm font-[600] text-gray-700 dark:text-gray-300 group-hover:text-[#111111] dark:group-hover:text-white transition-colors">
             {displayName}
           </span>
         </div>

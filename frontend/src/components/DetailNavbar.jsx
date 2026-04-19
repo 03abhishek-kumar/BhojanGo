@@ -13,7 +13,7 @@ const DetailNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 dark:border-[#222222] transition-colors duration-300">
       {/* Left Logo */}
       <Link to="/" className="flex items-center gap-3 group no-underline">
         <div className="w-10 h-10 bg-[#F4521E] rounded-xl flex items-center justify-center shadow-lg shadow-orange-200 transition-transform group-hover:scale-105">
@@ -28,10 +28,10 @@ const DetailNavbar = () => {
 
       {/* Ordering From */}
       <div className="text-center">
-        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium">
+        <p className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-widest font-[800]">
           Ordering From
         </p>
-        <p className="text-sm font-bold text-[#F4521E]">
+        <p className="text-sm font-[800] text-[#F4521E] tracking-tight">
           {selectedRestaurant ? selectedRestaurant.name : "BhojanGo Kitchen"}
         </p>
       </div>
@@ -40,20 +40,20 @@ const DetailNavbar = () => {
       <div className="flex items-center gap-5">
         {/* Settings */}
         <div
-          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 transition-all"
+          className="w-10 h-10 flex items-center justify-center cursor-pointer rounded-full hover:bg-orange-50 dark:hover:bg-[#1A1A1A] transition-all"
           onClick={() => setSettingsOpen(true)}
         >
-          <Settings className="w-5 h-5 text-slate-600" />
+          <Settings className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
 
         <div
-          className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 p-1 rounded-full"
+          className="flex items-center gap-3 cursor-pointer group border border-solid border-gray-200 dark:border-[#333333] p-1 rounded-full transition-all hover:border-[#F4521E]"
           onClick={() => navigate("/profile")}
         >
-          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] transition-all">
+          <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] dark:group-hover:border-[#F4521E]/30 transition-all overflow-hidden">
             <User color="white" />
           </div>
-          <span className="text-sm font-semibold text-slate-800 group-hover:text-black pr-3">
+          <span className="text-sm font-[600] text-gray-700 dark:text-gray-300 group-hover:text-[#111111] dark:group-hover:text-white pr-3">
             {user?.displayName || "User"}
           </span>
         </div>

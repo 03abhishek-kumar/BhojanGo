@@ -41,7 +41,7 @@ const Navbar = () => {
     fetchUserLocation();
   }, [user, setAddress]);
   return (
-    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 dark:border-[#222222] transition-colors duration-300">
       {/* left Side */}
       <div className="flex gap-14">
         {/* Logo */}
@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {/* Location */}
         <div 
-          className="flex items-center gap-2 bg-orange-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-orange-500 transition-all duration-300"
+          className="flex items-center gap-2 bg-orange-50 dark:bg-[#222222] border border-slate-200 dark:border-slate-700 rounded-full px-4 py-2 cursor-pointer shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-orange-500 transition-all duration-300"
           onClick={() => setIsLocationModalOpen(true)}
         >
           <MapPinIcon className="w-4 h-4 text-[#F4521E]" />

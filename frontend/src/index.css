@@ -1,4 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
 /* Configure class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Base resets to match premium aesthetic */
+@layer base {
+  body {
+    @apply antialiased text-[#111111] dark:text-[#E0E0E0] bg-[#F5F3EE] dark:bg-[#0A0A0A] transition-colors duration-300;
+  }
+}

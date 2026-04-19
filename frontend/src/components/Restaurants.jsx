@@ -51,16 +51,16 @@ const Restaurants = () => {
   return (
     <section className="px-8 py-6">
       {/* ── Section Header ── */}
-      <div className="flex items-center justify-between mb-1">
-        <h2 className="font-bold text-xl text-[#151515] dark:text-white">
-          Popular Restaurants Near You
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="font-[800] text-2xl text-[#111111] dark:text-white tracking-tight">
+          Popular Meals Near You
         </h2>
-        <div className="flex gap-2">
-          <button className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-slate-800 rounded-xl px-4 py-2 text-xs font-medium dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-800 transition cursor-pointer">
-            <FunnelIcon className="w-5 h-5" /> Filter
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 bg-[#F5F3EE] dark:bg-[#111111] border border-transparent dark:border-[#222222] rounded-full px-4 py-2 text-xs font-[600] dark:text-gray-300 hover:bg-orange-50 dark:hover:border-[#F4521E]/50 transition cursor-pointer">
+            <FunnelIcon className="w-4 h-4" /> Filter
           </button>
-          <button className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-slate-800 rounded-xl px-4 py-2 text-xs font-medium dark:text-slate-200 hover:bg-orange-50 dark:hover:bg-slate-800 transition cursor-pointer">
-            <BarsArrowUpIcon className="w-5 h-5" /> Sort by
+          <button className="flex items-center gap-2 bg-[#F5F3EE] dark:bg-[#111111] border border-transparent dark:border-[#222222] rounded-full px-4 py-2 text-xs font-[600] dark:text-gray-300 hover:bg-orange-50 dark:hover:border-[#F4521E]/50 transition cursor-pointer">
+            <BarsArrowUpIcon className="w-4 h-4" /> Sort
           </button>
         </div>
       </div>
@@ -77,46 +77,51 @@ const Restaurants = () => {
               setSelectedRestaurant(r);
               navigate(`/restaurant/${r._id}`);
             }}
-            className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg dark:hover:shadow-slate-800/50 hover:-translate-y-1 transition-all duration-200 cursor-pointer border border-transparent dark:border-slate-800"
+            className="group bg-white dark:bg-[#111111] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(244,82,30,0.1)] transition-all duration-300 cursor-pointer border border-gray-100 dark:border-[#222222] dark:hover:border-[#F4521E]/50 relative flex flex-col"
           >
             {/* ── Card Image ── */}
-            <div className="relative h-55">
-              <img
-                src={r.image}
-                alt={r.name}
-                className="w-full h-full object-cover"
-              />
+            <div className="relative h-[200px] w-full p-2">
+              <div className="w-full h-full rounded-[18px] overflow-hidden relative">
+                <img
+                  src={r.image}
+                  alt={r.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                />
+                
+                {/* Overlay gradient for dark mode premium feel */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-              {/* Badge */}
-              {r.badge && (
-                <span
-                  className={`absolute top-2 left-2 ${r.badgeColor || "bg-orange-500"} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide`}
-                >
-                  {r.badge}
-                </span>
-              )}
+                {/* Badge */}
+                {r.badge && (
+                  <span
+                    className={`absolute top-3 left-3 ${r.badgeColor || "bg-[#F4521E]"} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md`}
+                  >
+                    {r.badge}
+                  </span>
+                )}
+              </div>
 
-              {/* Heart Button */}
+              {/* Form-fitting Heart Button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleLike(r._id);
                 }}
-                className="absolute top-2 right-2 w-8 h-8 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition"
+                className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm dark:bg-[#111111]/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer border border-transparent dark:border-[#333333]"
               >
                 {liked.includes(r._id) ? (
-                  <HeartSolid className="w-4 h-4 text-red-500" />
+                  <HeartSolid className="w-4.5 h-4.5 text-[#F4521E]" />
                 ) : (
-                  <HeartIcon className="w-4 h-4 text-gray-400 dark:text-slate-500" />
+                  <HeartIcon className="w-4.5 h-4.5 text-gray-400 dark:text-gray-500" />
                 )}
               </button>
             </div>
 
             {/* ── Card Body ── */}
-            <div className="p-4">
+            <div className="p-5 pt-3 flex flex-col flex-grow">
               {/* Name + Rating */}
-              <div className="flex items-center justify-between mb-1">
-                <span className="font-bold text-[15px] text-[#151515] dark:text-white">
+              <div className="flex items-start justify-between mb-1">
+                <span className="font-[800] text-[17px] tracking-tight text-[#111111] dark:text-white leading-tight">
                   {r.name}
                 </span>
                 <span className="text-yellow-400 font-semibold text-sm">
@@ -124,32 +129,31 @@ const Restaurants = () => {
                 </span>
               </div>
 
-              {/* Cuisine */}
-              <p className="text-xs text-gray-400 dark:text-slate-500 mb-3">{r.cuisine}</p>
-
-              {/* Time + Fee */}
-              <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-slate-500 mb-3">
-                <span>🕐 {r.time}</span>
-                <span>🛵 {r.fee}</span>
+              {/* Cuisine & Time */}
+              <div className="flex items-center gap-2 text-[12px] font-[500] text-gray-400 dark:text-gray-500 mb-4">
+                <span className="flex-1 truncate">{r.cuisine}</span>
+                <span className="flex items-center bg-gray-50 dark:bg-[#1A1A1A] px-2 py-1 rounded-md">
+                    <span className="text-[#F4521E] mr-1">●</span> {r.time}
+                </span>
               </div>
 
-              <hr className="text-gray-300 dark:text-slate-800 my-3 mx-6" />
-
-              {/* Status Bar */}
-              <div
-                className={`flex items-center justify-between text-[11px] font-semibold ${r.statusBoxColor || "bg-gray-50 dark:bg-slate-800/50"} rounded-xl p-3`}
-              >
-                <span
-                  className={`flex items-center gap-1 ${r.statusColor || "text-gray-500"}`}
-                >
-                  <span
-                    className={`w-2 h-2 rounded-full ${r.dotColor || "bg-gray-500"}`}
-                  />
-                  {r.status}
-                </span>
-                <span className={`${r.statusColor || "text-gray-500"} italic`}>
-                  {r.statusRight}
-                </span>
+              <div className="mt-auto">
+                <div className="h-[1px] w-full bg-gray-100 dark:bg-[#222222] mb-4"></div>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-widest block mb-0.5">Price</span>
+                        <span className="text-[18px] font-[800] text-[#111111] dark:text-white">${Math.floor(Math.random() * 30 + 10).toFixed(2)}</span>
+                    </div>
+                    <button 
+                        className="bg-[#F4521E] text-white text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-[#D43E0E] transition-colors"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            // Optional: add to cart logic here
+                        }}
+                    >
+                        Order Now
+                    </button>
+                </div>
               </div>
             </div>
           </div>

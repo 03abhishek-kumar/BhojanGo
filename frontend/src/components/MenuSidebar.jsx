@@ -10,7 +10,7 @@ const categories = [
 
 const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
   return (
-    <aside className="flex flex-col w-52 shrink-0 gap-1 py-6 px-3 bg-[#F5F3EE]">
+    <aside className="flex flex-col w-52 shrink-0 gap-1 py-6 px-3 bg-[#F5F3EE] dark:bg-[#0A0A0A] border-r border-transparent dark:border-[#1A1A1A] transition-colors duration-300">
       {/* Category List */}
       <div className="flex flex-col gap-1 mb-6">
         {categories.map((cat) => {
@@ -23,8 +23,8 @@ const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 w-full text-left cursor-pointer
                 ${
                   isActive
-                    ? "bg-[#F4521E] text-white shadow-md shadow-orange-200"
-                    : "bg-transparent text-[#151515] hover:bg-white"
+                    ? "bg-[#F4521E] text-white shadow-md shadow-orange-200 dark:shadow-none"
+                    : "bg-transparent text-[#111111] dark:text-gray-400 hover:bg-white dark:hover:bg-[#1A1A1A]"
                 }`}
             >
               <Icon
@@ -38,7 +38,7 @@ const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
       </div>
 
       {/* Chef Voice Note Card */}
-      <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 mt-2">
+      <div className="bg-white dark:bg-[#111111] rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-[#222222] mt-2">
         {/* Header */}
         <div className="flex items-center gap-2 mb-3">
           <div className="w-7 h-7 bg-[#FFF0EB] rounded-lg flex items-center justify-center">
@@ -49,9 +49,9 @@ const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
           </span>
         </div>
         {/* Description */}
-        <p className="text-xs text-gray-500 leading-relaxed mb-4">
+        <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
           Want it extra spicy? Allergic to something? Don't type, just{" "}
-          <span className="font-bold text-[#151515]">tell the chef</span>{" "}
+          <span className="font-bold text-[#111111] dark:text-white">tell the chef</span>{" "}
           directly.
         </p>
         {/* Waveform visual */}
@@ -71,11 +71,11 @@ const MenuSidebar = ({ activeCategory, setActiveCategory, cartTotal }) => {
 
       {/* Current Order */}
       {cartTotal > 0 && (
-        <div className="mt-auto pt-4 border-t border-slate-200">
-          <p className="text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-1">
+        <div className="mt-auto pt-4 border-t border-slate-200 dark:border-[#222222]">
+          <p className="text-[10px] uppercase tracking-widest font-semibold text-gray-400 dark:text-gray-500 mb-1">
             Current Order
           </p>
-          <p className="text-lg font-bold text-[#151515]">
+          <p className="text-lg font-bold text-[#111111] dark:text-white">
             ${cartTotal.toFixed(2)}
           </p>
         </div>

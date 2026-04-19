@@ -24,17 +24,17 @@ const ProfileSidebar = ({ active, setActive }) => {
   };
 
   return (
-    <aside className="w-55 shrink-0">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl p-3 shadow-sm flex flex-col gap-1 border border-transparent dark:border-slate-800 transition-colors duration-300">
+    <aside className="w-64 shrink-0">
+      <div className="bg-white dark:bg-[#111111] rounded-[24px] p-4 shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col gap-1 border border-gray-100 dark:border-[#222222] transition-colors duration-300">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 text-left w-full
+            className={`flex items-center gap-3 px-5 py-4 rounded-xl text-xs font-[800] uppercase tracking-widest transition-all duration-300 text-left w-full cursor-pointer
               ${
                 active === tab.id
-                  ? "bg-[#F4521E] text-white shadow-md shadow-orange-200 dark:shadow-none"
-                  : "text-[#151515] dark:text-slate-200 hover:bg-[#F5F3EE] dark:hover:bg-slate-800"
+                  ? "bg-[#F4521E] text-white shadow-lg shadow-orange-200 dark:shadow-none"
+                  : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-[#1A1A1A] hover:text-[#111111] dark:hover:text-white"
               }`}
           >
             <span className="text-base">{tab.emoji}</span>
@@ -43,12 +43,12 @@ const ProfileSidebar = ({ active, setActive }) => {
         ))}
 
         {/* ── Logout ── */}
-        <div className="border-t border-black/5 dark:border-slate-800 mt-2 pt-2">
+        <div className="border-t border-gray-100 dark:border-[#222222] mt-3 pt-3">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition w-full text-left cursor-pointer"
+            className="flex items-center gap-3 px-5 py-4 rounded-xl text-[11px] uppercase tracking-widest font-[800] text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all w-full text-left cursor-pointer"
           >
-            <span>🚪</span>
+            <span className="text-lg">🚪</span>
             <span>Log Out</span>
           </button>
         </div>

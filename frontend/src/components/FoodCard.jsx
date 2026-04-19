@@ -10,7 +10,7 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
 
   const handleRemoveFromCart = () => {
     if (onRemoveFromCart) {
-      onRemoveFromCart(item.id);
+      onRemoveFromCart(item._id);
     }
   };
 
@@ -22,7 +22,7 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col">
+    <div className="bg-white dark:bg-[#111111] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] hover:shadow-lg dark:hover:border-[#F4521E]/50 transition-all duration-300 flex flex-col group">
       {/* Image */}
       <div className="relative h-48 overflow-hidden">
         <img
@@ -45,14 +45,14 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="text-[15px] font-bold text-[#151515] leading-snug">
+          <h3 className="text-[15px] font-[800] text-[#111111] dark:text-white leading-tight tracking-tight">
             {item.name}
           </h3>
           <span className="text-[#F4521E] font-bold text-sm whitespace-nowrap">
             ${item.price.toFixed(2)}
           </span>
         </div>
-        <p className="text-xs text-gray-400 leading-relaxed mb-4 flex-1">
+        <p className="text-xs text-gray-400 dark:text-gray-500 leading-relaxed mb-4 flex-1 line-clamp-2">
           {item.description}
         </p>
 
@@ -65,7 +65,7 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
               ${
                 recording
                   ? "bg-[#F4521E] border-[#F4521E] text-white animate-pulse"
-                  : "bg-white border-slate-200 text-gray-400 hover:border-[#F4521E] hover:text-[#F4521E]"
+                  : "bg-white dark:bg-[#1A1A1A] border-gray-200 dark:border-[#222222] text-gray-400 dark:text-gray-500 hover:border-[#F4521E] dark:hover:border-[#F4521E] hover:text-[#F4521E] dark:hover:text-[#F4521E]"
               }`}
           >
             {recording ? (
@@ -93,14 +93,14 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
 
           {/* Add to Cart or Quantity Controls */}
           {quantity > 0 ? (
-            <div className="flex items-center justify-between flex-1 bg-white border border-slate-200 rounded-xl px-2 py-1.5 shadow-sm">
+            <div className="flex items-center justify-between flex-1 bg-gray-50 dark:bg-[#1A1A1A] border border-gray-100 dark:border-[#222222] rounded-xl px-2 py-1.5 shadow-sm">
               <button
                 onClick={handleRemoveFromCart}
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-50 text-gray-600 font-bold hover:bg-gray-100 hover:text-red-500 transition-colors cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-[#222222] text-gray-600 dark:text-gray-400 font-bold hover:bg-white dark:hover:bg-[#333333] hover:text-red-500 transition-colors cursor-pointer"
               >
                 -
               </button>
-              <span className="font-bold text-[#151515] px-2">{quantity}</span>
+              <span className="font-[800] text-[#111111] dark:text-white px-2 text-sm">{quantity}</span>
               <button
                 onClick={handleAddToCart}
                 className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#F4521E] text-white font-bold hover:bg-[#e03d0e] transition-colors shadow-sm shadow-orange-200 cursor-pointer"

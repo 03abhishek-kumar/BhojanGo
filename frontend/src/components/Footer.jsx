@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-white dark:bg-slate-900 mt-16 border-t border-black/5 dark:border-slate-800 px-[5%] pt-12 pb-8 transition-colors duration-300">
+    <footer className="bg-white dark:bg-[#111111] mt-16 border-t border-black/5 dark:border-[#222222] px-[5%] pt-12 pb-8 transition-colors duration-300">
       {/* ── Top Grid ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
         {/* ── Brand Column ── */}
@@ -54,7 +54,7 @@ const Footer = () => {
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-[#222222] rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               f
             </a>
@@ -62,7 +62,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-[#222222] rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               @
             </a>
@@ -70,7 +70,7 @@ const Footer = () => {
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="w-8 h-8 bg-[#F5F3EE] dark:bg-slate-800 rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
+              className="w-8 h-8 bg-[#F5F3EE] dark:bg-[#222222] rounded-lg flex items-center justify-center text-sm text-gray-500 dark:text-slate-400 hover:bg-[#F4521E] dark:hover:bg-[#F4521E] hover:text-white transition"
             >
               📷
             </a>
@@ -100,7 +100,7 @@ const Footer = () => {
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="border-t border-black/5 dark:border-slate-800 pt-6 text-center text-xs text-gray-400 dark:text-slate-500 tracking-wide uppercase">
+      <div className="border-t border-black/5 dark:border-[#222222] pt-6 text-center text-xs text-gray-400 dark:text-slate-500 tracking-wide uppercase">
         © 2024 BhojanGo Technologies Inc. All Rights Reserved
       </div>
     </footer>

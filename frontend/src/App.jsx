@@ -18,7 +18,7 @@ const App = () => {
   const { isLocationModalOpen, setIsLocationModalOpen } = useContext(RestaurantContext);
 
   return (
-    <div className="bg-[#F5F3EE] dark:bg-slate-950 min-h-screen transition-colors duration-300">
+    <div className="bg-[#F5F3EE] dark:bg-[#0A0A0A] min-h-screen transition-colors duration-300">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />

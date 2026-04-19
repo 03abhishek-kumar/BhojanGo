@@ -27,15 +27,15 @@ const PaymentDetails = () => {
   const taxes = itemsSubtotal * 0.09; // 9% tax
 
   const feeDetails = [
-    { label: "Items Subtotal", amount: itemsSubtotal, color: "text-[#151515]" },
+    { label: "Items Subtotal", amount: itemsSubtotal, color: "text-[#111111] dark:text-white" },
     {
       label: "Delivery Fee",
       amount: deliveryFee,
       color: "text-[#F4521E]",
       prefix: "+",
     },
-    { label: "Service Fee", amount: serviceFee, color: "text-[#151515]" },
-    { label: "Taxes & Charges", amount: taxes, color: "text-[#151515]" },
+    { label: "Service Fee", amount: serviceFee, color: "text-[#111111] dark:text-white" },
+    { label: "Taxes & Charges", amount: taxes, color: "text-[#111111] dark:text-white" },
   ];
 
   const total = itemsSubtotal + deliveryFee + serviceFee + taxes;
@@ -88,34 +88,35 @@ const PaymentDetails = () => {
   return (
     <div className="flex flex-col gap-4">
       {/* ── Payment Card ── */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm">
+      {/* ── Payment Card ── */}
+      <div className="bg-white dark:bg-[#111111] rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] transition-colors duration-300">
         {/* Header */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-6">
           <span className="text-xl">💳</span>
-          <h2 className=" font-bold text-base text-[#151515]">
-            Payment Details
+          <h2 className="font-[800] text-lg text-[#111111] dark:text-white tracking-tight">
+            Order Review
           </h2>
         </div>
 
         {/* Peak Demand Warning */}
-        <div className="flex items-start gap-3 bg-yellow-50 border border-yellow-200 rounded-xl p-3 mb-5">
-          <BoltIcon className="w-4 h-4 text-yellow-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-600 mb-0.5">
-              Peak Demand Prediction
+        <div className="flex items-start gap-3 bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-100 dark:border-yellow-500/20 rounded-2xl p-4 mb-6">
+          <BoltIcon className="w-4.5 h-4.5 text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5" />
+          <div className="flex-1">
+            <p className="text-[10px] font-[800] uppercase tracking-widest text-yellow-700 dark:text-yellow-500 mb-1">
+              Peak Traffic Fee
             </p>
-            <p className="text-xs text-yellow-700 leading-relaxed">
-              High demand in your area. Fees adjusted to ensure 28-min delivery.
+            <p className="text-xs text-yellow-800 dark:text-yellow-400/80 leading-relaxed font-medium">
+              High density area fees adjusted for guaranteed 28-min arrival.
             </p>
           </div>
         </div>
 
         {/* Fee Breakdown */}
-        <div className="flex flex-col gap-3 mb-5">
+        <div className="flex flex-col gap-4 mb-6 px-1">
           {feeDetails.map((fee) => (
             <div key={fee.label} className="flex items-center justify-between">
-              <span className="text-sm text-gray-400">{fee.label}</span>
-              <span className={`text-sm font-semibold ${fee.color}`}>
+              <span className="text-sm text-gray-400 dark:text-gray-500 font-medium">{fee.label}</span>
+              <span className={`text-sm font-[800] tracking-tight ${fee.color}`}>
                 {fee.prefix || ""}${fee.amount.toFixed(2)}
               </span>
             </div>
@@ -123,12 +124,12 @@ const PaymentDetails = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-black/5 pt-4 mb-5">
+        <div className="border-t border-gray-100 dark:border-[#222222] pt-6 mb-6">
           <div className="flex items-center justify-between">
-            <span className="font-bold text-base text-[#151515]">
-              Total Amount
+            <span className="font-[800] text-base text-[#111111] dark:text-white">
+              Grand Total
             </span>
-            <span className="font-bold text-2xl text-[#F4521E]">
+            <span className="font-[800] text-3xl text-[#F4521E] tracking-tighter">
               ${total.toFixed(2)}
             </span>
           </div>
@@ -138,38 +139,37 @@ const PaymentDetails = () => {
         <button
           onClick={handleConfirm}
           disabled={confirmed || cart.length === 0}
-          className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white transition
+          className={`w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-[15px] font-[800] text-white transition-all tracking-wide uppercase
             ${
               confirmed
-                ? "bg-green-500 cursor-not-allowed"
-                : "bg-[#F4521E] hover:bg-[#D43E0E]"
-            } ${cart.length === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                ? "bg-emerald-500 shadow-emerald-200"
+                : "bg-[#F4521E] hover:bg-[#E64A19] shadow-orange-200 dark:shadow-none"
+            } ${cart.length === 0 ? "opacity-30 grayscale cursor-not-allowed" : "shadow-lg cursor-pointer hover:scale-[1.01] active:scale-[0.99]"}`}
         >
-          {confirmed ? <>✅ Order Placed!</> : <>Confirm & Place Order →</>}
+          {confirmed ? <>✅ ORDER CONFIRMED</> : <>Place Order Now</>}
         </button>
       </div>
 
       {/* ── Refer & Earn Card ── */}
-      <div className="bg-white rounded-2xl p-5 shadow-sm relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute right-0 top-0 w-24 h-24 bg-orange-50 rounded-bl-full opacity-60" />
-
-        <div className="relative">
-          <div className="flex items-center gap-2 mb-2">
+      {/* ── Refer & Earn Card ── */}
+      <div className="bg-white dark:bg-[#111111] rounded-[24px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] relative overflow-hidden transition-colors duration-300">
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-3">
             <GiftIcon className="w-5 h-5 text-[#F4521E]" />
-            <h3 className="font-bold text-sm text-[#151515]">Refer & Earn</h3>
+            <h3 className="font-[800] text-sm text-[#111111] dark:text-white uppercase tracking-widest">Refer & Earn</h3>
           </div>
-          <p className="text-xs text-gray-400 leading-relaxed mb-3">
-            Get $10 off your next BhojanGo order by referring a friend.
+          <p className="text-xs text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-4">
+            Get <span className="text-[#F4521E] font-bold">$10 off</span> your next BhojanGo order by referring a colleague.
           </p>
-          <button className="flex items-center gap-1 text-sm font-bold text-[#F4521E] hover:underline transition">
-            Share Link →
+          <button className="flex items-center gap-2 text-xs font-[800] text-[#F4521E] hover:text-[#E64A19] transition uppercase tracking-widest cursor-pointer group">
+            Invite Now <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
       </div>
 
       {/* ── Map Card ── */}
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+      {/* ── Map Card ── */}
+      <div className="bg-white dark:bg-[#111111] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 dark:border-[#222222] transition-colors duration-300">
         {/* Map placeholder */}
         <div className="relative h-32 bg-gray-100">
           {/* Grid lines to simulate map */}
@@ -198,9 +198,9 @@ const PaymentDetails = () => {
           </div>
 
           {/* ETA Badge */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-4 py-1.5 shadow-md">
-            <span className="text-xs font-bold text-[#151515] tracking-wide">
-              ETA: 28 MINS
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white dark:bg-[#0A0A0A] rounded-full px-5 py-2 shadow-lg border border-gray-100 dark:border-[#222222]">
+            <span className="text-[10px] font-[800] text-[#111111] dark:text-white tracking-[0.1em] uppercase">
+              Fast Delivery: 28 MINS
             </span>
           </div>
         </div>
