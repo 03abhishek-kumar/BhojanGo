@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { RestaurantContext } from "../context/RestaurantContext";
 
 const Categories = () => {
+  const { selectedCategory, setSelectedCategory } = useContext(RestaurantContext);
   const categories = [
     { id: 1, name: "Pizza", emoji: "🍕" },
     { id: 2, name: "Healthy", emoji: "🥗" },
@@ -15,7 +17,14 @@ const Categories = () => {
     { id: 9, name: "Bevrages", emoji: "🍸" },
   ];
 
-  const [active, setActive] = useState(null);
+  const handleCategoryClick = (catName) => {
+    if (selectedCategory === catName) {
+      setSelectedCategory(null);
+    } else {
+      setSelectedCategory(catName);
+    }
+  };
+
   return (
     <section className="px-8 py-2">
       {/* Section Header */}
@@ -36,13 +45,13 @@ const Categories = () => {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            onClick={() => setActive(cat.id)}
+            onClick={() => handleCategoryClick(cat.name)}
             className={`flex flex-col items-center gap-2 shrink-0 cursor-pointer group transition-all duration-300 ease-out `}
           >
             {/* Icon Box */}
             <div
               className={`w-18 h-18 rounded-[18px] flex items-center justify-center text-[38px] transition-all duration-300 ${
-                active === cat.id
+                selectedCategory === cat.name
                   ? "bg-[#FFF4F0] dark:bg-[#F4521E]/10 border-2 border-[#F4521E]"
                   : "bg-white dark:bg-[#111111] border border-gray-100 dark:border-[#222222] group-hover:border-[#F4521E]/50 group-hover:bg-[#FFF4F0] dark:group-hover:bg-[#111111]"
               }`}
@@ -55,7 +64,7 @@ const Categories = () => {
             {/* Label */}
             <span
               className={`text-[13px] tracking-wide mt-1 ${
-                active === cat.id
+                selectedCategory === cat.name
                   ? "text-[#F4521E] font-[700]"
                   : "text-[#555555] dark:text-gray-400 font-[500] group-hover:text-[#111111] dark:group-hover:text-white"
               }`}

@@ -6,6 +6,8 @@ export const RestaurantProvider = ({ children }) => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [address, setAddress] = useState("Select Location");
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   // Cart state initialized from localStorage
   const [cart, setCart] = useState(() => {
@@ -50,6 +52,10 @@ export const RestaurantProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
+        searchQuery,
+        setSearchQuery,
+        selectedCategory,
+        setSelectedCategory,
       }}
     >
       {children}

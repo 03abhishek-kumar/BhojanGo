@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import {
   MagnifyingGlassIcon,
   ArrowTrendingUpIcon,
 } from "@heroicons/react/24/solid";
+import { RestaurantContext } from "../context/RestaurantContext";
 
 const Hero = () => {
-  const [query, setQuery] = useState("");
+  const { searchQuery, setSearchQuery } = useContext(RestaurantContext);
   return (
     <section className="flex flex-col items-center text-center px-[5%] pt-8 pb-12">
       {/* ── Heading ── */}
@@ -20,8 +21,8 @@ const Hero = () => {
         <input
           type="text"
           placeholder="Search cuisines, restaurants, or dishes..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="flex-1 outline-none border-none text-[15px] px-4 bg-transparent text-[#111111] dark:text-white placeholder-gray-400"
         />
         <button className="bg-[#F4521E] hover:bg-[#E64A19] text-white text-[15px] font-bold px-8 py-3.5 rounded-xl transition-colors">

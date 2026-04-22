@@ -24,7 +24,7 @@ const LocationSearch = ({ onSelect }) => {
       } else {
         setSuggestions([]);
       }
-    }, 5000); // 5000ms delay
+    }, 2000); // 5000ms delay
 
     // 2. CLEANUP: This is the most important part.
     // It clears the previous timer if the user types again before 500ms is up.

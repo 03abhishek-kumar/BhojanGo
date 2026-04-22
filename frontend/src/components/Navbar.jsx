@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 import SettingsPopup from "./SettingsPopup";
 import NotificationsPopup from "./NotificationsPopup";
+import ProfilePopup from "./ProfilePopup";
 import { useAuth } from "../context/AuthContext";
 import { RestaurantContext } from "../context/RestaurantContext";
 import LocationModal from "./LocationModal";
@@ -20,6 +21,7 @@ const Navbar = () => {
   );
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -40,6 +42,7 @@ const Navbar = () => {
     };
     fetchUserLocation();
   }, [user, setAddress]);
+
   return (
     <nav className="flex items-center justify-between p-5 h-20 bg-white/80 dark:bg-[#111111]/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 dark:border-[#222222] transition-colors duration-300">
       {/* left Side */}
@@ -92,7 +95,7 @@ const Navbar = () => {
         {user ? (
           <div
             className="flex items-center gap-3 cursor-pointer group border border-solid border-slate-400 dark:border-slate-600 p-1 rounded-full hover:border-[#F4521E] dark:hover:border-[#F4521E] transition-all"
-            onClick={() => navigate("/profile")}
+            onClick={() => setProfileOpen(true)}
           >
             <div className="w-10 h-10 rounded-full bg-[#ea9670] flex items-center justify-center text-sm font-bold text-[#ea9670] border-2 border-transparent group-hover:border-[#E0D7FF] dark:group-hover:border-slate-700 transition-all overflow-hidden">
               {user.photoURL ? (
@@ -119,7 +122,7 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Settings Popup */}
+      {/* Popups */}
       <SettingsPopup
         isOpen={settingsOpen}
         onClose={() => setSettingsOpen(false)}
@@ -127,6 +130,10 @@ const Navbar = () => {
       <NotificationsPopup
         isOpen={notificationsOpen}
         onClose={() => setNotificationsOpen(false)}
+      />
+      <ProfilePopup
+        isOpen={profileOpen}
+        onClose={() => setProfileOpen(false)}
       />
     </nav>
   );
