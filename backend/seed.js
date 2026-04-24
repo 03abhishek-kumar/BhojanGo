@@ -354,10 +354,17 @@ async function seedDB() {
   await mongoose.connect(process.env.MONGO_URI);
   console.log("Connected to MongoDB for seeding...");
 
-  await Restaurant.deleteMany({});
+  // Check if data already exists
+  const count = await Restaurant.countDocuments();
+  if (count > 0) {
+    console.log("Database already has data. Skipping seed.");
+    mongoose.connection.close();
+    return;
+  }
+
+  console.log("Seeding initial data...");
 
   // Transform menu items into grouped list for all restaurants for this demo
-  // saare restaurants ke liye same data for demo (like same bevrages, same main course for all)
   const allMenuItems = [];
   Object.keys(menuItemsData).forEach((category) => {
     menuItemsData[category].forEach((item) => {
@@ -367,7 +374,7 @@ async function seedDB() {
 
   const restaurants = restaurantsData.map((r) => ({
     ...r,
-    menu: allMenuItems, // For this demo, giving all restaurants the same menu
+    menu: allMenuItems,
   }));
 
   await Restaurant.insertMany(restaurants);
