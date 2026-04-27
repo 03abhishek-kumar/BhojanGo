@@ -134,7 +134,7 @@ const restaurantsData = [
     dotColor: "bg-green-500",
     statusBoxColor: "bg-green-50",
     statusRight: "Fresh Brewed",
-    image: "https://images.unsplash.com/photo-1541167760496-162955ed8a9f?w=400&h=200&fit=crop",
+    image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&h=200&fit=crop",
   },
   {
     name: "Sushi Shore",
@@ -222,7 +222,7 @@ const restaurantsData = [
     dotColor: "bg-yellow-500",
     statusBoxColor: "bg-yellow-50",
     statusRight: "Cold Pressed",
-    image: "https://images.unsplash.com/photo-1600271886311-dc543b5a273c?w=400&h=200&fit=crop",
+    image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=200&fit=crop",
   },
   {
     name: "Pizza Haven",
@@ -248,7 +248,7 @@ const menuItemsData = {
       price: 18.99,
       description: "Assorted clay-oven grilled delights marinated in secret BhojanGo spices.",
       badge: "🔥 420 CAL",
-      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1599487405270-b186b51c14cb?w=600&auto=format&fit=crop&q=80",
     },
     {
       name: "Royal Paneer Bowl",
@@ -278,7 +278,7 @@ const menuItemsData = {
       price: 21.0,
       description: "Slow-cooked aromatic long-grain rice with marinated succulent chicken.",
       badge: "⭐ BESTSELLER",
-      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=600&auto=format&fit=crop&q=80",
     },
     {
       name: "Butter Chicken",
@@ -295,7 +295,7 @@ const menuItemsData = {
       image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80",
     },
     {
-        name: "Beef Beast Burger",
+        name: "Beast Burger",
         price: 15.99,
         description: "Double patty beef burger with melted cheddar and caramelized onions.",
         badge: "🔥 850 CAL",
@@ -308,7 +308,7 @@ const menuItemsData = {
       price: 7.99,
       description: "Soft milk-solid khoya dumplings soaked in rose-flavored sugar syrup.",
       badge: "VEGETARIAN",
-      image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&auto=format&fit=crop&q=80",
     },
     {
       name: "Mango Kulfi",
@@ -338,14 +338,14 @@ const menuItemsData = {
         price: 6.5,
         description: "Chilled espresso with milk, vanilla and caramel drizzle.",
         badge: "⭐ REFRESHING",
-        image: "https://images.unsplash.com/photo-1541167760496-162955ed8a9f?w=600&auto=format&fit=crop&q=80",
+        image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&auto=format&fit=crop&q=80",
     },
     {
       name: "Fresh Orange Juice",
       price: 4.99,
       description: "Freshly squeezed oranges with a hint of mint.",
       badge: "HEALTY",
-      image: "https://images.unsplash.com/photo-1600271886311-dc543b5a273c?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format&fit=crop&q=80",
     },
   ],
 };

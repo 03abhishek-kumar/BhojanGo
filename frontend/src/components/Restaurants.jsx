@@ -129,7 +129,7 @@ const Restaurants = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {r.badge && (
                     <span
-                      className={`absolute top-3 left-3 ${r.badgeColor || "bg-[#F4521E]"} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md`}
+                      className="absolute top-3 left-3 bg-[#F4521E] text-white text-[10px] font-[800] px-3 py-1 rounded-full uppercase tracking-widest shadow-lg z-10"
                     >
                       {r.badge}
                     </span>

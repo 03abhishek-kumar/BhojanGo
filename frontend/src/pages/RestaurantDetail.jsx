@@ -165,6 +165,7 @@ const RestaurantDetail = () => {
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <MenuSidebar
+          categories={menuCategories}
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
           cartTotal={cartTotal}

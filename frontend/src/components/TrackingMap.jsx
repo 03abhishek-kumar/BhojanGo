@@ -12,7 +12,9 @@ const TrackingMap = () => {
   const { user } = useAuth();
   const { selectedRestaurant, cart } = useContext(RestaurantContext);
   const totalPrice =
-    cart?.reduce((acc, item) => acc + item.price, 0).toFixed(2) || "0.00";
+    cart?.length > 0
+      ? cart.reduce((acc, item) => acc + item.price, 0).toFixed(2)
+      : localStorage.getItem("lastOrderTotal") || "0.00";
   const [expanded, setExpanded] = useState(false);
 
   return (

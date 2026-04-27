@@ -35,11 +35,13 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
           }}
         />
         {/* Badge */}
-        <div
-          className={`absolute top-3 right-3 ${item.badgeColor} text-[10px] font-bold px-2.5 py-1 rounded-full shadow`}
-        >
-          {item.badge}
-        </div>
+        {item.badge && (
+          <div
+            className="absolute top-3 right-3 bg-[#F4521E] text-white text-[10px] font-[800] px-3 py-1 rounded-full shadow-lg uppercase tracking-widest z-10"
+          >
+            {item.badge}
+          </div>
+        )}
       </div>
 
       {/* Content */}

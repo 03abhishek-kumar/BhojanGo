@@ -7,7 +7,9 @@ export const RestaurantProvider = ({ children }) => {
     const saved = localStorage.getItem("selectedRestaurant");
     return saved ? JSON.parse(saved) : null;
   });
-  const [address, setAddress] = useState("Select Location");
+  const [address, setAddress] = useState(() => {
+    return localStorage.getItem("address") || "Select Location";
+  });
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -22,6 +24,10 @@ export const RestaurantProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("address", address);
+  }, [address]);
 
   useEffect(() => {
     if (selectedRestaurant) {

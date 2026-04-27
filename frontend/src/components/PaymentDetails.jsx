@@ -59,6 +59,7 @@ const PaymentDetails = () => {
 
       if (response.ok) {
         setConfirmed(true);
+        localStorage.setItem("lastOrderTotal", total.toFixed(2));
         // FIX: Call clearCart() which wipes both context state AND localStorage
         clearCart();
         setTimeout(() => navigate("/tracking"), 2000);
@@ -87,9 +88,9 @@ const PaymentDetails = () => {
 
         {/* Restaurant info summary */}
         {selectedRestaurant && (
-          <div className="flex items-center gap-3 bg-orange-50 dark:bg-[#F4521E]/10 rounded-2xl px-4 py-3 mb-5 border border-orange-100 dark:border-[#F4521E]/20">
+          <div className="flex items-center gap-3 bg-orange-50 dark:bg-[#F4521E]/10 rounded-2xl px-4 py-3 mb-4 border border-orange-100 dark:border-[#F4521E]/20">
             <span className="text-2xl">🍽️</span>
-            <div>
+            <div className="flex-1">
               <p className="text-[10px] font-[800] uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Ordering from
               </p>
@@ -97,6 +98,19 @@ const PaymentDetails = () => {
             </div>
           </div>
         )}
+
+        {/* Delivery Address summary */}
+        <div className="flex items-center gap-3 bg-blue-50 dark:bg-blue-500/10 rounded-2xl px-4 py-3 mb-5 border border-blue-100 dark:border-blue-500/20">
+          <span className="text-2xl">📍</span>
+          <div className="flex-1">
+            <p className="text-[10px] font-[800] uppercase tracking-widest text-gray-400 dark:text-gray-500">
+              Delivering to
+            </p>
+            <p className={`text-sm font-[800] line-clamp-1 ${address === "Select Location" ? "text-red-500 italic" : "text-blue-600 dark:text-blue-400"}`}>
+              {address}
+            </p>
+          </div>
+        </div>
 
         {/* Peak Demand Warning */}
         <div className="flex items-start gap-3 bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-100 dark:border-yellow-500/20 rounded-2xl p-4 mb-6">
@@ -136,13 +150,13 @@ const PaymentDetails = () => {
         {/* Confirm Button */}
         <button
           onClick={handleConfirm}
-          disabled={confirmed || isPlacing || cart.length === 0}
+          disabled={confirmed || isPlacing || (cart.length === 0 && !confirmed)}
           className={`w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-[15px] font-[800] text-white transition-all tracking-wide uppercase
             ${
               confirmed
                 ? "bg-emerald-500 shadow-lg shadow-emerald-200"
                 : "bg-[#F4521E] hover:bg-[#E64A19] shadow-lg shadow-orange-200 dark:shadow-none"
-            } ${cart.length === 0 ? "opacity-30 grayscale cursor-not-allowed" : "cursor-pointer hover:scale-[1.01] active:scale-[0.99]"}`}
+            } ${cart.length === 0 && !confirmed ? "opacity-30 grayscale cursor-not-allowed" : "cursor-pointer hover:scale-[1.01] active:scale-[0.99]"}`}
         >
           {confirmed
             ? "✅ ORDER CONFIRMED"

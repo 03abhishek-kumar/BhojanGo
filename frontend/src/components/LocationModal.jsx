@@ -5,7 +5,7 @@ import { RestaurantContext } from "../context/RestaurantContext";
 import { useAuth } from "../context/AuthContext";
 
 const LocationModal = ({ isOpen, onClose }) => {
-  const { setAddress } = useContext(RestaurantContext);
+  const { address, setAddress } = useContext(RestaurantContext);
   const { user } = useAuth();
   const API_KEY = import.meta.env.VITE_LOCATIONIQ_KEY;
 
@@ -92,6 +92,19 @@ const LocationModal = ({ isOpen, onClose }) => {
         {/* Body */}
         <div className="p-8">
           <div className="space-y-6">
+            {/* Current Address Display */}
+            {address !== "Select Location" && (
+              <div className="bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 p-4 rounded-2xl">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                  <span className="text-[10px] font-bold text-orange-600 dark:text-orange-500 uppercase tracking-widest">Currently Selected</span>
+                </div>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 leading-tight line-clamp-2">
+                  {address}
+                </p>
+              </div>
+            )}
+
             <div className="relative">
               <LocationSearch onSelect={onClose} />
             </div>
