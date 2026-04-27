@@ -4,7 +4,7 @@ const Restaurant = require("../models/Restaurant");
 
 const getAllRestaurants = async (req, res) => {
   try {
-    const restaurants = await Restaurant.find();
+    const restaurants = await Restaurant.find().select("-menu");
     res.json(restaurants);
   } catch (err) {
     console.error("Error in GET /api/restaurants:", err);

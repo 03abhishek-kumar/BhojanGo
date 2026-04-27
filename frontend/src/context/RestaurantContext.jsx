@@ -3,7 +3,10 @@ import React, { createContext, useState, useEffect } from "react";
 export const RestaurantContext = createContext();
 
 export const RestaurantProvider = ({ children }) => {
-  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const [selectedRestaurant, setSelectedRestaurant] = useState(() => {
+    const saved = localStorage.getItem("selectedRestaurant");
+    return saved ? JSON.parse(saved) : null;
+  });
   const [address, setAddress] = useState("Select Location");
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,10 +18,18 @@ export const RestaurantProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // Persist cart changes to localStorage
+  // Persist changes to localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    if (selectedRestaurant) {
+      localStorage.setItem("selectedRestaurant", JSON.stringify(selectedRestaurant));
+    } else {
+      localStorage.removeItem("selectedRestaurant");
+    }
+  }, [selectedRestaurant]);
 
   const addToCart = (item) => {
     setCart((prev) => [...prev, item]);

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { PhoneIcon, ChatBubbleLeftIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "../context/AuthContext";
+import { RestaurantContext } from "../context/RestaurantContext";
 import {
   PlusIcon,
   MinusIcon,
@@ -9,6 +10,9 @@ import {
 
 const TrackingMap = () => {
   const { user } = useAuth();
+  const { selectedRestaurant, cart } = useContext(RestaurantContext);
+  const totalPrice =
+    cart?.reduce((acc, item) => acc + item.price, 0).toFixed(2) || "0.00";
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -69,7 +73,7 @@ const TrackingMap = () => {
           {/* Label */}
           <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white dark:bg-[#111111] rounded-full px-4 py-1.5 shadow-lg border border-gray-100 dark:border-[#222222] whitespace-nowrap z-10 transition-colors">
             <span className="text-[11px] font-[800] text-[#111111] dark:text-white uppercase tracking-widest">
-              Urban Bistro
+              {selectedRestaurant?.name || "Your Restaurant"}
             </span>
           </div>
           {/* Pin */}
@@ -118,7 +122,7 @@ const TrackingMap = () => {
             Active Order
           </p>
           <p className="text-sm font-[800] text-[#111111] dark:text-white truncate tracking-tight">
-            Gourmet Feast • $42.50
+            {selectedRestaurant?.name || "Your Restaurant"} • ${totalPrice}
           </p>
         </div>
         <button className="text-sm font-bold text-[#F4521E] hover:underline">
@@ -159,7 +163,9 @@ const TrackingMap = () => {
               </p>
               <div className="flex items-center gap-1.5 mb-1">
                 <span className="text-yellow-400 text-xs">⭐</span>
-                <span className="text-xs font-[800] text-[#111111] dark:text-white">4.9</span>
+                <span className="text-xs font-[800] text-[#111111] dark:text-white">
+                  4.9
+                </span>
               </div>
               <p className="text-[10px] font-[800] tracking-widest uppercase text-gray-400 dark:text-gray-500">
                 Top Rated Courier
@@ -197,7 +203,9 @@ const TrackingMap = () => {
                 <p className="text-[9px] font-[800] tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-0.5">
                   Distance
                 </p>
-                <p className="text-sm font-[800] text-[#111111] dark:text-white tracking-tight">2.4 km</p>
+                <p className="text-sm font-[800] text-[#111111] dark:text-white tracking-tight">
+                  2.4 km
+                </p>
               </div>
             </div>
           </div>
