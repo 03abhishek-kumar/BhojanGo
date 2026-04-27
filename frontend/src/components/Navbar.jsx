@@ -14,6 +14,7 @@ import ProfilePopup from "./ProfilePopup";
 import { useAuth } from "../context/AuthContext";
 import { RestaurantContext } from "../context/RestaurantContext";
 import LocationModal from "./LocationModal";
+import { config } from "../config/config";
 
 const Navbar = () => {
   const { address, setAddress, setIsLocationModalOpen } = React.useContext(
@@ -30,7 +31,7 @@ const Navbar = () => {
     const fetchUserLocation = async () => {
       if (user) {
         try {
-          const response = await fetch(`http://localhost:5000/api/users/${user.uid}`);
+          const response = await fetch(`${config.BASE_URL}/api/users/${user.uid}`);
           const data = await response.json();
           if (data && data.location) {
             setAddress(data.location);

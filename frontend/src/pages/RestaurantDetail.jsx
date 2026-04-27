@@ -8,12 +8,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { config } from "../config/config.js";
 import { RestaurantContext } from "../context/RestaurantContext";
 import { useContext } from "react";
+import { StarIcon, ClockIcon, TruckIcon } from "@heroicons/react/24/solid";
 
 const RestaurantDetail = () => {
   const { id } = useParams();
-  const { cart, addToCart, removeFromCart } = useContext(RestaurantContext);
+  const { cart, addToCart, removeFromCart, setSelectedRestaurant } =
+    useContext(RestaurantContext);
   const [restaurant, setRestaurant] = useState(null);
-  const [activeCategory, setActiveCategory] = useState("Appetizers");
+  const [activeCategory, setActiveCategory] = useState(null);
   const [viewOrderOpen, setViewOrderOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,6 +27,15 @@ const RestaurantDetail = () => {
         );
         const data = await response.json();
         setRestaurant(data);
+
+        // FIX A: Always populate the context, even on direct URL access / refresh
+        setSelectedRestaurant(data);
+
+        // FIX B: Default to the FIRST real category in the menu, not always "Appetizers"
+        if (data?.menu?.length > 0) {
+          const firstCat = data.menu[0].category;
+          setActiveCategory(firstCat);
+        }
       } catch (err) {
         console.error("Error fetching restaurant:", err);
       } finally {
@@ -33,7 +44,7 @@ const RestaurantDetail = () => {
     };
 
     fetchRestaurant();
-  }, [id]);
+  }, [id, setSelectedRestaurant]);
 
   const cartTotal = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -47,17 +58,17 @@ const RestaurantDetail = () => {
     return acc;
   }, []);
 
-  // Filter items based on activeCategory from the restaurant's menu
+  // FIX C: Extract unique categories from the actual menu data
+  const menuCategories = restaurant?.menu
+    ? [...new Set(restaurant.menu.map((item) => item.category))]
+    : [];
+
+  // Filter items by active category
   const items =
     restaurant?.menu?.filter((item) => item.category === activeCategory) || [];
 
-  const handleAddToCart = (item) => {
-    addToCart(item);
-  };
-
-  const handleRemoveItem = (itemId) => {
-    removeFromCart(itemId);
-  };
+  const handleAddToCart = (item) => addToCart(item);
+  const handleRemoveItem = (itemId) => removeFromCart(itemId);
 
   const navigate = useNavigate();
 
@@ -72,7 +83,7 @@ const RestaurantDetail = () => {
   if (!restaurant) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-[#F5F3EE] dark:bg-[#0A0A0A] transition-colors duration-300">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
           Restaurant not found
         </h2>
         <button
@@ -89,6 +100,66 @@ const RestaurantDetail = () => {
     <div className="min-h-screen bg-[#F5F3EE] dark:bg-[#0A0A0A] flex flex-col transition-colors duration-300">
       {/* Navbar */}
       <DetailNavbar />
+
+      {/* FIX D: Restaurant Info Banner */}
+      <div className="relative h-56 w-full overflow-hidden">
+        <img
+          src={restaurant.image}
+          alt={restaurant.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.target.src =
+              "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&auto=format&fit=crop";
+          }}
+        />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+        {/* Restaurant info on top of image */}
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <div className="flex items-end justify-between">
+            <div>
+              <h1 className="text-3xl font-[800] text-white tracking-tight mb-1">
+                {restaurant.name}
+              </h1>
+              <p className="text-white/70 text-sm font-medium mb-3">
+                {restaurant.cuisine}
+              </p>
+              <div className="flex items-center gap-4 flex-wrap">
+                {/* Rating */}
+                <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                  <StarIcon className="w-3.5 h-3.5 text-yellow-400" />
+                  <span className="text-white text-xs font-[800]">
+                    {restaurant.rating}
+                  </span>
+                </div>
+                {/* Delivery Time */}
+                <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                  <ClockIcon className="w-3.5 h-3.5 text-white" />
+                  <span className="text-white text-xs font-[800]">
+                    {restaurant.time || "30-40 mins"}
+                  </span>
+                </div>
+                {/* Delivery Fee */}
+                <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
+                  <TruckIcon className="w-3.5 h-3.5 text-white" />
+                  <span className="text-white text-xs font-[800]">
+                    {restaurant.fee || "Free Delivery"}
+                  </span>
+                </div>
+                {/* Status badge */}
+                {restaurant.badge && (
+                  <span
+                    className={`${restaurant.badgeColor || "bg-[#F4521E]"} text-white text-[10px] font-[800] px-3 py-1.5 rounded-full uppercase tracking-widest`}
+                  >
+                    {restaurant.badge}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Body */}
       <div className="flex flex-1 overflow-hidden">
@@ -175,7 +246,9 @@ const RestaurantDetail = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-lg font-[800] text-[#111111] dark:text-white tracking-tight">Your Order</h3>
+              <h3 className="text-lg font-[800] text-[#111111] dark:text-white tracking-tight">
+                Your Order
+              </h3>
               <button
                 onClick={() => setViewOrderOpen(false)}
                 className="text-gray-400 hover:text-gray-600 text-2xl leading-none cursor-pointer"
@@ -227,7 +300,9 @@ const RestaurantDetail = () => {
                   ))}
                 </div>
                 <div className="flex items-center justify-between mb-6 bg-[#FFF4F0] dark:bg-[#F4521E]/10 rounded-2xl px-5 py-4">
-                  <span className="font-bold text-[#111111] dark:text-white">Total</span>
+                  <span className="font-bold text-[#111111] dark:text-white">
+                    Total
+                  </span>
                   <span className="font-[800] text-[#F4521E] text-xl">
                     ${cartTotal.toFixed(2)}
                   </span>

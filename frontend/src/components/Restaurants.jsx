@@ -54,11 +54,35 @@ const Restaurants = () => {
 
   const navigate = useNavigate();
 
+  // Skeleton loader shown while fetching
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center py-20">
-        <div className="w-10 h-10 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
+      <section id="restaurants" className="px-8 py-6">
+        <div className="flex items-center justify-between mb-2">
+          <div className="h-7 w-52 bg-gray-200 dark:bg-[#1A1A1A] rounded-xl animate-pulse" />
+          <div className="flex gap-3">
+            <div className="h-8 w-20 bg-gray-200 dark:bg-[#1A1A1A] rounded-full animate-pulse" />
+            <div className="h-8 w-20 bg-gray-200 dark:bg-[#1A1A1A] rounded-full animate-pulse" />
+          </div>
+        </div>
+        <div className="h-4 w-64 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse mb-4" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="bg-white dark:bg-[#111111] rounded-[24px] overflow-hidden border border-gray-100 dark:border-[#222222]">
+              <div className="h-[200px] bg-gray-200 dark:bg-[#1A1A1A] animate-pulse" />
+              <div className="p-5 flex flex-col gap-3">
+                <div className="h-5 w-3/4 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse" />
+                <div className="h-4 w-1/2 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse" />
+                <div className="h-px w-full bg-gray-100 dark:bg-[#222222]" />
+                <div className="flex items-center justify-between">
+                  <div className="h-6 w-16 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse" />
+                  <div className="h-9 w-24 bg-gray-200 dark:bg-[#1A1A1A] rounded-xl animate-pulse" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     );
   }
 
@@ -145,10 +169,10 @@ const Restaurants = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase tracking-widest block mb-0.5">
-                        Price
+                        Delivery
                       </span>
-                      <span className="text-[18px] font-[800] text-[#111111] dark:text-white">
-                        ${Math.floor(Math.random() * 30 + 10).toFixed(2)}
+                      <span className="text-[15px] font-[800] text-[#111111] dark:text-white">
+                        {r.fee || "Free"}
                       </span>
                     </div>
                     <button

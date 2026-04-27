@@ -50,6 +50,11 @@ export const RestaurantProvider = ({ children }) => {
     localStorage.removeItem("cart");
   };
 
+  // Removes ALL instances of an item (for trash button)
+  const removeAllOfItem = (itemId) => {
+    setCart((prev) => prev.filter((item) => item._id !== itemId));
+  };
+
   return (
     <RestaurantContext.Provider
       value={{
@@ -62,6 +67,7 @@ export const RestaurantProvider = ({ children }) => {
         cart,
         addToCart,
         removeFromCart,
+        removeAllOfItem,
         clearCart,
         searchQuery,
         setSearchQuery,

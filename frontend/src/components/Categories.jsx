@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { RestaurantContext } from "../context/RestaurantContext";
 
@@ -14,7 +13,7 @@ const Categories = () => {
     { id: 6, name: "Desserts", emoji: "🍰" },
     { id: 7, name: "Salads", emoji: "🥙" },
     { id: 8, name: "Tacos", emoji: "🌮" },
-    { id: 9, name: "Bevrages", emoji: "🍸" },
+    { id: 9, name: "Beverages", emoji: "🍸" },
   ];
 
   const handleCategoryClick = (catName) => {
@@ -32,12 +31,12 @@ const Categories = () => {
         <h2 className="font-[800] text-2xl text-[#111111] dark:text-white tracking-tight">
           Categories
         </h2>
-        <Link
-          to="/categories"
-          className="text-sm font-medium text-[#F4521E] hover:underline flex items-center gap-2"
+        <button
+          onClick={() => document.getElementById("restaurants")?.scrollIntoView({ behavior: "smooth" })}
+          className="text-sm font-medium text-[#F4521E] hover:underline flex items-center gap-2 cursor-pointer"
         >
-          View All Categories <ArrowRightIcon className="w-4 h-4" />
-        </Link>
+          View All <ArrowRightIcon className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Categories Row */}
