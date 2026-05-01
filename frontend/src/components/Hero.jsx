@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     <section className="flex flex-col items-center text-center px-[5%] pt-8 pb-12">
       {/* ── Heading ── */}
-      <h1 className="font-[800] text-5xl md:text-6xl text-[#111111] dark:text-white leading-[1.1] tracking-tight">
+      <h1 className="font-extrabold text-5xl md:text-6xl text-[#111111] dark:text-white leading-[1.1] tracking-tight">
         Discover the best food with <br />
         <span className="text-[#F4521E]">BhojanGo</span>
       </h1>

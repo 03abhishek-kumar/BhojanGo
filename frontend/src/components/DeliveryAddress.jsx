@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { MapPinIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { RestaurantContext } from "../context/RestaurantContext";
 
 const DeliveryAddress = () => {
+  const { address, setAddress } = useContext(RestaurantContext);
   const [addresses, setAddresses] = useState([]);
   const [selected, setSelected] = useState(1);
   const [showForm, setShowForm] = useState(false);
@@ -39,6 +41,9 @@ const DeliveryAddress = () => {
       return;
     }
 
+    const fullAddress = `${form.street}, ${form.city}`;
+    setAddress(fullAddress);
+    
     const newAddress = {
       id: Date.now(), // unique id
       label: form.label,
@@ -71,18 +76,33 @@ const DeliveryAddress = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <MapPinIcon className="w-5 h-5 text-[#F4521E]" />
-          <h2 className="font-bold text-base text-[#151515]">
+          <h2 className="font-bold text-base text-[#151515] dark:text-white">
             Delivery Address
           </h2>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-1 text-sm font-medium text-[#F4521E] hover:underline transition"
+          className="flex items-center gap-1 text-sm font-medium text-[#F4521E] hover:underline transition cursor-pointer"
         >
           <PlusIcon className="w-4 h-4" />
           Add New
         </button>
       </div>
+
+      {/* Selected Address Display (Global Context) */}
+      {address && address !== "Select Location" && (
+        <div className="bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 rounded-2xl p-4 mb-6 flex items-start gap-4">
+          <div className="w-10 h-10 bg-white dark:bg-[#1A1A1A] rounded-xl flex items-center justify-center shadow-sm shrink-0">
+            <MapPinIcon className="w-5 h-5 text-[#F4521E]" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-bold text-orange-600 dark:text-orange-500 uppercase tracking-widest mb-1">Current Delivery Address</p>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 leading-tight">
+              {address}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/*Add New Address Form*/}
       {showForm && (
@@ -178,7 +198,10 @@ const DeliveryAddress = () => {
         {addresses.map((addr) => (
           <div
             key={addr.id}
-            onClick={() => setSelected(addr.id)}
+            onClick={() => {
+              setSelected(addr.id);
+              setAddress(`${addr.street}, ${addr.city}`);
+            }}
             className={`flex-1 min-w-45 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 relative
               ${
                 selected === addr.id

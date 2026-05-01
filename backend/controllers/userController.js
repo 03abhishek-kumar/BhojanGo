@@ -11,7 +11,7 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-//  Update user location
+// Update user location
 const updateUserLocation = async (req, res) => {
   const { uid, location, name, email } = req.body;
   try {

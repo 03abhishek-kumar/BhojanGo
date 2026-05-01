@@ -92,12 +92,12 @@ const NotificationsPopup = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-100 flex justify-end items-start pt-20 pr-6">
       <div
         ref={popupRef}
-        className="w-96 bg-white/90 dark:bg-[#0A0A0A]/90 backdrop-blur-xl border border-gray-100 dark:border-[#222222] rounded-[32px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-[popIn_0.25s_ease-out_forwards] origin-top-right overflow-hidden"
+        className="w-96 bg-white/90 dark:bg-[#0A0A0A]/90 backdrop-blur-xl border border-gray-100 dark:border-[#222222] rounded-4xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] animate-[popIn_0.25s_ease-out_forwards] origin-top-right overflow-hidden"
       >
         {/* ── Header ── */}
         <div className="flex items-center justify-between px-5 pt-5 pb-3">
           <div className="flex items-center gap-2">
-            <h3 className="text-base font-[800] text-[#111111] dark:text-white tracking-tight">
+            <h3 className="text-base font-extrabold text-[#111111] dark:text-white tracking-tight">
               Notifications
             </h3>
             {unreadCount > 0 && (
@@ -138,7 +138,7 @@ const NotificationsPopup = ({ isOpen, onClose }) => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <p
-                      className={`text-sm leading-tight ${n.unread ? "font-[800] text-[#111111] dark:text-white" : "font-[600] text-gray-600 dark:text-gray-400"}`}
+                      className={`text-sm leading-tight ${n.unread ? "font-extrabold text-[#111111] dark:text-white" : "font-semibold text-gray-600 dark:text-gray-400"}`}
                     >
                       {n.title}
                     </p>
@@ -151,7 +151,7 @@ const NotificationsPopup = ({ isOpen, onClose }) => {
                   </p>
                   <div className="flex items-center gap-1 mt-2">
                     <Clock className="w-3 h-3 text-gray-400 dark:text-gray-700" />
-                    <span className="text-[10px] uppercase font-[800] tracking-widest text-gray-400 dark:text-gray-700">{n.time}</span>
+                    <span className="text-[10px] uppercase font-extrabold tracking-widest text-gray-400 dark:text-gray-700">{n.time}</span>
                   </div>
                 </div>
               </div>
@@ -164,10 +164,10 @@ const NotificationsPopup = ({ isOpen, onClose }) => {
 
         {/* ── Footer ── */}
         <div className="px-6 py-4 flex items-center justify-between">
-          <button className="text-[11px] uppercase tracking-widest font-[800] text-gray-400 dark:text-gray-600 hover:text-[#F4521E] dark:hover:text-[#F4521E] transition cursor-pointer">
+          <button className="text-[11px] uppercase tracking-widest font-extrabold text-gray-400 dark:text-gray-600 hover:text-[#F4521E] dark:hover:text-[#F4521E] transition cursor-pointer">
             Mark all
           </button>
-          <button className="text-[11px] uppercase tracking-widest font-[800] text-[#F4521E] hover:text-orange-700 transition cursor-pointer">
+          <button className="text-[11px] uppercase tracking-widest font-extrabold text-[#F4521E] hover:text-orange-700 transition cursor-pointer">
             View All →
           </button>
         </div>

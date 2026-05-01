@@ -3,6 +3,7 @@ import { XMarkIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import LocationSearch from "./LocationSearch";
 import { RestaurantContext } from "../context/RestaurantContext";
 import { useAuth } from "../context/AuthContext";
+import { config } from "../config/config";
 
 const LocationModal = ({ isOpen, onClose }) => {
   const { address, setAddress } = useContext(RestaurantContext);
@@ -30,7 +31,7 @@ const LocationModal = ({ isOpen, onClose }) => {
             
             // Save to MongoDB if logged in
             if (user) {
-              await fetch("http://localhost:5000/api/users/location", {
+              await fetch(`${config.BASE_URL}/api/users/location`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

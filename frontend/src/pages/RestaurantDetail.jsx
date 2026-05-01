@@ -113,13 +113,13 @@ const RestaurantDetail = () => {
           }}
         />
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
         {/* Restaurant info on top of image */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className="flex items-end justify-between">
             <div>
-              <h1 className="text-3xl font-[800] text-white tracking-tight mb-1">
+              <h1 className="text-3xl font-extrabold text-white tracking-tight mb-1">
                 {restaurant.name}
               </h1>
               <p className="text-white/70 text-sm font-medium mb-3">
@@ -129,28 +129,28 @@ const RestaurantDetail = () => {
                 {/* Rating */}
                 <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
                   <StarIcon className="w-3.5 h-3.5 text-yellow-400" />
-                  <span className="text-white text-xs font-[800]">
+                  <span className="text-white text-xs font-extrabold">
                     {restaurant.rating}
                   </span>
                 </div>
                 {/* Delivery Time */}
                 <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
                   <ClockIcon className="w-3.5 h-3.5 text-white" />
-                  <span className="text-white text-xs font-[800]">
+                  <span className="text-white text-xs font-extrabold">
                     {restaurant.time || "30-40 mins"}
                   </span>
                 </div>
                 {/* Delivery Fee */}
                 <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1.5">
                   <TruckIcon className="w-3.5 h-3.5 text-white" />
-                  <span className="text-white text-xs font-[800]">
+                  <span className="text-white text-xs font-extrabold">
                     {restaurant.fee || "Free Delivery"}
                   </span>
                 </div>
                 {/* Status badge */}
                 {restaurant.badge && (
                   <span
-                    className={`${restaurant.badgeColor || "bg-[#F4521E]"} text-white text-[10px] font-[800] px-3 py-1.5 rounded-full uppercase tracking-widest`}
+                    className={`${restaurant.badgeColor || "bg-[#F4521E]"} text-white text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-widest`}
                   >
                     {restaurant.badge}
                   </span>
@@ -178,7 +178,7 @@ const RestaurantDetail = () => {
 
           {/* Section header */}
           <div className="flex items-center justify-between mb-5">
-            <h2 className="text-xl font-[800] text-[#111111] dark:text-white tracking-tight">
+            <h2 className="text-xl font-extrabold text-[#111111] dark:text-white tracking-tight">
               {restaurant.name} Specials
             </h2>
             <span className="text-[11px] font-bold tracking-widest uppercase bg-[#FFF0EB] text-[#F4521E] border border-[#F4521E]/20 px-3 py-1 rounded-full">
@@ -210,7 +210,7 @@ const RestaurantDetail = () => {
           <p className="text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 font-semibold mb-0.5">
             Current Order
           </p>
-          <p className="text-lg font-[800] text-[#111111] dark:text-white leading-none">
+          <p className="text-lg font-extrabold text-[#111111] dark:text-white leading-none">
             ${cartTotal.toFixed(2)}
           </p>
         </div>
@@ -247,7 +247,7 @@ const RestaurantDetail = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-lg font-[800] text-[#111111] dark:text-white tracking-tight">
+              <h3 className="text-lg font-extrabold text-[#111111] dark:text-white tracking-tight">
                 Your Order
               </h3>
               <button
@@ -286,7 +286,7 @@ const RestaurantDetail = () => {
                           >
                             -
                           </button>
-                          <span className="text-xs font-[800] w-6 text-center text-[#111111] dark:text-white">
+                          <span className="text-xs font-extrabold w-6 text-center text-[#111111] dark:text-white">
                             {item.quantity}
                           </span>
                           <button
@@ -304,12 +304,12 @@ const RestaurantDetail = () => {
                   <span className="font-bold text-[#111111] dark:text-white">
                     Total
                   </span>
-                  <span className="font-[800] text-[#F4521E] text-xl">
+                  <span className="font-extrabold text-[#F4521E] text-xl">
                     ${cartTotal.toFixed(2)}
                   </span>
                 </div>
                 <button
-                  className="w-full bg-[#F4521E] text-white font-[800] py-4 rounded-2xl hover:bg-[#E64A19] transition-all shadow-lg shadow-orange-200 dark:shadow-none cursor-pointer tracking-wide"
+                  className="w-full bg-[#F4521E] text-white font-extrabold py-4 rounded-2xl hover:bg-[#E64A19] transition-all shadow-lg shadow-orange-200 dark:shadow-none cursor-pointer tracking-wide"
                   onClick={() => {
                     localStorage.setItem(
                       "restaurant",

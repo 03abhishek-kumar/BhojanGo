@@ -68,8 +68,8 @@ const Restaurants = () => {
         <div className="h-4 w-64 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse mb-4" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="bg-white dark:bg-[#111111] rounded-[24px] overflow-hidden border border-gray-100 dark:border-[#222222]">
-              <div className="h-[200px] bg-gray-200 dark:bg-[#1A1A1A] animate-pulse" />
+            <div key={i} className="bg-white dark:bg-[#111111] rounded-3xl overflow-hidden border border-gray-100 dark:border-[#222222]">
+              <div className="h-50 bg-gray-200 dark:bg-[#1A1A1A] animate-pulse" />
               <div className="p-5 flex flex-col gap-3">
                 <div className="h-5 w-3/4 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse" />
                 <div className="h-4 w-1/2 bg-gray-200 dark:bg-[#1A1A1A] rounded animate-pulse" />
@@ -90,7 +90,7 @@ const Restaurants = () => {
     <section id="restaurants" className="px-8 py-6">
       {/* ── Section Header ── */}
       <div className="flex items-center justify-between mb-2">
-        <h2 className="font-[800] text-2xl text-[#111111] dark:text-white tracking-tight">
+        <h2 className="font-extrabold text-2xl text-[#111111] dark:text-white tracking-tight">
           Popular Meals Near You
         </h2>
         <div className="flex gap-3">
@@ -116,10 +116,10 @@ const Restaurants = () => {
                 setSelectedRestaurant(r);
                 navigate(`/restaurant/${r._id}`);
               }}
-              className="group bg-white dark:bg-[#111111] rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(244,82,30,0.1)] transition-all duration-300 cursor-pointer border border-gray-100 dark:border-[#222222] dark:hover:border-[#F4521E]/50 relative flex flex-col"
+              className="group bg-white dark:bg-[#111111] rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_8px_30px_rgba(244,82,30,0.1)] transition-all duration-300 cursor-pointer border border-gray-100 dark:border-[#222222] dark:hover:border-[#F4521E]/50 relative flex flex-col"
             >
               {/* Card Image and body content remains same */}
-              <div className="relative h-[200px] w-full p-2">
+              <div className="relative h-50 w-full p-2">
                 <div className="w-full h-full rounded-[18px] overflow-hidden relative">
                   <img
                     src={r.image}

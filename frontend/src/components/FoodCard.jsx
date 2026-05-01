@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { ShoppingCart, Mic } from "lucide-react";
+import React, { useState, useRef } from "react";
+import { ShoppingCart, Mic, MicOff, CheckCircle } from "lucide-react";
 
 const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
   const [recording, setRecording] = useState(false);
+  const [voiceNoteBase64, setVoiceNoteBase64] = useState(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
 
   const handleAddToCart = () => {
-    onAddToCart(item);
+    onAddToCart(voiceNoteBase64 ? { ...item, voiceNote: voiceNoteBase64 } : item);
   };
 
   const handleRemoveFromCart = () => {
@@ -14,10 +17,41 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
     }
   };
 
-  const handleRecording = () => {
-    setRecording((prev) => !prev);
+  const handleRecording = async () => {
     if (!recording) {
-      setTimeout(() => setRecording(false), 3000);
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            audioChunksRef.current.push(e.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+          const reader = new FileReader();
+          reader.readAsDataURL(audioBlob);
+          reader.onloadend = () => {
+            setVoiceNoteBase64(reader.result);
+          };
+          stream.getTracks().forEach((track) => track.stop());
+        };
+
+        mediaRecorder.start();
+        setRecording(true);
+      } catch (err) {
+        console.error("Error accessing microphone:", err);
+        alert("Please enable microphone access to record a chef note.");
+      }
+    } else {
+      if (mediaRecorderRef.current) {
+        mediaRecorderRef.current.stop();
+      }
+      setRecording(false);
     }
   };
 
@@ -67,6 +101,8 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
               ${
                 recording
                   ? "bg-[#F4521E] border-[#F4521E] text-white animate-pulse"
+                  : voiceNoteBase64
+                  ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-600 dark:text-green-400 hover:border-green-300"
                   : "bg-white dark:bg-[#1A1A1A] border-gray-200 dark:border-[#222222] text-gray-400 dark:text-gray-500 hover:border-[#F4521E] dark:hover:border-[#F4521E] hover:text-[#F4521E] dark:hover:text-[#F4521E]"
               }`}
           >
@@ -78,11 +114,17 @@ const FoodCard = ({ item, quantity = 0, onAddToCart, onRemoveFromCart }) => {
                   {[2, 4, 3, 5, 3].map((h, i) => (
                     <div
                       key={i}
-                      className="w-0.5 bg-white rounded-full"
-                      style={{ height: `${h * 2}px` }}
+                      className="w-0.5 bg-white rounded-full animate-pulse"
+                      style={{ height: `${h * 2}px`, animationDelay: `${i * 100}ms` }}
                     />
                   ))}
                 </div>
+              </>
+            ) : voiceNoteBase64 ? (
+              <>
+                <CheckCircle size={14} />
+                <span>NOTE</span>
+                <span>SAVED</span>
               </>
             ) : (
               <>

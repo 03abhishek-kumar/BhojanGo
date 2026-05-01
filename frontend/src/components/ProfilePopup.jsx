@@ -47,10 +47,10 @@ const ProfilePopup = ({ isOpen, onClose }) => {
   if (!isOpen || !user) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex justify-end items-start pt-20 pr-6 pointer-events-none">
+    <div className="fixed inset-0 z-100 flex justify-end items-start pt-20 pr-6 pointer-events-none">
       <div
         ref={popupRef}
-        className="w-[340px] bg-white dark:bg-[#111111] border border-gray-200 dark:border-[#222222] rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden animate-[popIn_0.2s_ease-out] origin-top-right pointer-events-auto"
+        className="w-85 bg-white dark:bg-[#111111] border border-gray-200 dark:border-[#222222] rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-hidden animate-[popIn_0.2s_ease-out] origin-top-right pointer-events-auto"
       >
         {/* Header with Close */}
         <div className="flex justify-end p-2">

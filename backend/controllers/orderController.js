@@ -1,8 +1,7 @@
 const Order = require("../models/Order");
 
-// @desc    Place an order
-// @route   POST /api/orders
-// @access  Public (should be protected in future)
+//   Place an order
+
 const placeOrder = async (req, res) => {
   try {
     const newOrder = new Order(req.body);
@@ -13,9 +12,8 @@ const placeOrder = async (req, res) => {
   }
 };
 
-// @desc    Fetch orders for a specific user
-// @route   GET /api/orders/user/:uid
-// @access  Public (should be protected in future)
+//  Fetch orders for a specific user
+
 const getUserOrders = async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.uid }).sort({

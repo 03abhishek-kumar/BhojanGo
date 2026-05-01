@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { RestaurantContext } from "../context/RestaurantContext";
 import { useAuth } from "../context/AuthContext";
+import { config } from "../config/config";
 
 const LocationSearch = ({ onSelect }) => {
   const [query, setQuery] = useState("");
@@ -40,7 +41,7 @@ const LocationSearch = ({ onSelect }) => {
     // Save to MongoDB if user is logged in
     if (user) {
       try {
-        await fetch("http://localhost:5000/api/users/location", {
+        await fetch(`${config.BASE_URL}/api/users/location`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

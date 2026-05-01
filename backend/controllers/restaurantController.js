@@ -25,7 +25,20 @@ const getRestaurantById = async (req, res) => {
   }
 };
 
+// Create a new restaurant
+const createRestaurant = async (req, res) => {
+  try {
+    const newRestaurant = new Restaurant(req.body);
+    const savedRestaurant = await newRestaurant.save();
+    res.status(201).json(savedRestaurant);
+  } catch (err) {
+    console.error("Error creating restaurant:", err);
+    res.status(500).json({ error: "Failed to create restaurant", details: err.message });
+  }
+};
+
 module.exports = {
   getAllRestaurants,
   getRestaurantById,
+  createRestaurant,
 };

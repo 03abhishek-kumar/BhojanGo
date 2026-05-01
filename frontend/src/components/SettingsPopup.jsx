@@ -130,7 +130,7 @@ const SettingsPopup = ({ isOpen, onClose }) => {
                 className={`w-10 h-5.5 rounded-full relative cursor-pointer shrink-0 transition-all duration-300 ${active ? "bg-[#F4521E]" : "bg-slate-200 dark:bg-slate-700"}`}
               >
                 <div
-                  className={`absolute top-0.75 w-4 h-4 rounded-full bg-white shadow-sm transition-all duration-300 ${active ? "left-[22px]" : "left-0.75"}`}
+                  className={`absolute top-0.75 w-4 h-4 rounded-full bg-white shadow-sm transition-all duration-300 ${active ? "left-5.5" : "left-0.75"}`}
                 />
               </div>
             </div>

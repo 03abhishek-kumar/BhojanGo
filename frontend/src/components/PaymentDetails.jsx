@@ -44,6 +44,7 @@ const PaymentDetails = () => {
           name: item.name,
           price: item.price,
           quantity: 1,
+          voiceNote: item.voiceNote,
         })),
         totalAmount: total,
         status: "Confirmed",
@@ -98,19 +99,6 @@ const PaymentDetails = () => {
             </div>
           </div>
         )}
-
-        {/* Delivery Address summary */}
-        <div className="flex items-center gap-3 bg-blue-50 dark:bg-blue-500/10 rounded-2xl px-4 py-3 mb-5 border border-blue-100 dark:border-blue-500/20">
-          <span className="text-2xl">📍</span>
-          <div className="flex-1">
-            <p className="text-[10px] font-[800] uppercase tracking-widest text-gray-400 dark:text-gray-500">
-              Delivering to
-            </p>
-            <p className={`text-sm font-[800] line-clamp-1 ${address === "Select Location" ? "text-red-500 italic" : "text-blue-600 dark:text-blue-400"}`}>
-              {address}
-            </p>
-          </div>
-        </div>
 
         {/* Peak Demand Warning */}
         <div className="flex items-start gap-3 bg-yellow-50 dark:bg-yellow-500/10 border border-yellow-100 dark:border-yellow-500/20 rounded-2xl p-4 mb-6">
